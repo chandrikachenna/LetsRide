@@ -8,7 +8,7 @@ import {
   API_FAILED
 } from '@ib/api-constants'
 
-import { getFormattedErrorDescription } from '../../../utils/APIUtils'
+import { getFormattedErrorDescription } from '../../utils/APIUtils'
 
 import LoadingView from './LoadingView'
 import FailureView from './FailureView'
