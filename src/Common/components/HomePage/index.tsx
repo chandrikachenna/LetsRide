@@ -5,6 +5,7 @@ import ReactLogo from '../Icons/ReactLogo'
 import { LETSRIDE_ROUTE_PATH } from '../../constants/NavigationConstants'
 
 import './index.css'
+import { DropDown } from '../DropDown'
 
 function HomeRoute() {
   return (
@@ -23,6 +24,7 @@ function HomeRoute() {
           Learn React
         </a>
         <Link to={LETSRIDE_ROUTE_PATH}>Let's Ride</Link>
+        <DropDown />
       </header>
     </div>
   )
