@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Provider } from 'mobx-react'
 import { I18nextProvider } from 'react-i18next'
 
-import HomeRoute from './Common/components/HomePage'
+import HomeRoute from './Common/routes/HomeRoute'
 
 import { HOME_ROUTE_PATH } from './Common/constants/NavigationConstants'
 
