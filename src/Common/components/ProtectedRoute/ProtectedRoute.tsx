@@ -5,7 +5,6 @@ import { getAccessToken } from '../../utils/StorageUtils'
 interface ProtectedRouteProps {
   path: string
   renderedComponent: any
-  exact: boolean
 }
 
 class ProtectedRoute extends React.Component<ProtectedRouteProps> {

@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import ReactLogo from '../Icons/ReactLogo'
-import { LETSRIDE_ROUTE_PATH } from '../../constants/NavigationConstants'
+import { LETSRIDE_ROUTE_PATH } from '../../../UserModule/constants/NavigationConstants'
 
 import './index.css'
 

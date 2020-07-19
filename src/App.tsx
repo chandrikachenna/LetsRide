@@ -8,6 +8,7 @@ import HomeRoute from './Common/components/HomePage'
 import { HOME_ROUTE_PATH } from './Common/constants/NavigationConstants'
 
 import i18n from './Common/i18n'
+import { userRoutes } from './UserModule/routes'
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Suspense fallback={<div />}>
           <Router basename={process.env.PUBLIC_URL}>
             <Switch>
+              {userRoutes}
               <Route path={HOME_ROUTE_PATH}>
                 <HomeRoute />
               </Route>
