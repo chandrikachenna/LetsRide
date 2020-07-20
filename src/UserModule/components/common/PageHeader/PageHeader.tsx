@@ -13,6 +13,8 @@ import {
   UserProfile,
   ProfileWrapper
 } from './styledComponents'
+import { ProfileModal } from '../../../../Common/components/ProfileModal'
+import { observable } from 'mobx'
 
 const requestOptions = [
   { key: 'ride', text: 'Ride', value: 'ride' },
@@ -24,11 +26,11 @@ const shareOptions = [
 ]
 const customStyles = {
   content: {
-    top: '10%',
+    top: '8%',
     left: '85%',
     position: 'absolute',
-    width: '200px',
-    height: '200px'
+    width: '150px',
+    height: '150px'
   }
 }
 interface PageHeaderProps extends WithTranslation {
@@ -37,10 +39,16 @@ interface PageHeaderProps extends WithTranslation {
 
 @observer
 class PageHeader extends Component<PageHeaderProps> {
+  @observable isOpen: boolean = false
   navigation = (event, data) => {
     console.log(data.value)
   }
-  onClickProfile = () => {}
+  onClickProfile = () => {
+    this.isOpen = true
+  }
+  closeProfileModal = () => {
+    this.isOpen = false
+  }
   render() {
     const { t, imgSrc } = this.props
     return (
@@ -63,6 +71,11 @@ class PageHeader extends Component<PageHeaderProps> {
             <ProfileWrapper
               imgSrc={imgSrc}
               onClickProfile={this.onClickProfile}
+            />
+            <ProfileModal
+              isOpen={this.isOpen}
+              handleClick={this.closeProfileModal}
+              customStyles={customStyles}
             />
           </UserProfile>
         </NavBar>

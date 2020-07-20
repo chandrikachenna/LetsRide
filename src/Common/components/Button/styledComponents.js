@@ -1,9 +1,9 @@
-import {css} from '@emotion/core'
+import { css } from '@emotion/core'
 
 export const ovalCss = css`
-   border-radius: 5px;
+  border-radius: 5px;
 `
 
 export const rectangularCss = css`
-   border-radius: 1px;
+  border-radius: 1px;
 `
