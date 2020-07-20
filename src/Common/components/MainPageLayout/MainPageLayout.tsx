@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 import { LayoutWrapper } from './styledComponent'
 import { PageHeader } from '../../../UserModule/components/common/PageHeader'
-class MainPageLayout extends Component {
+
+interface MainPageLayoutProps {
+  src: string
+}
+class MainPageLayout extends Component<MainPageLayoutProps> {
   render() {
+    const { src } = this.props
     return (
       <LayoutWrapper>
-        <PageHeader />
+        <PageHeader imgSrc={src} />
         {this.props.children}
       </LayoutWrapper>
     )

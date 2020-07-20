@@ -1,15 +1,19 @@
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
 import { withTranslation, WithTranslation } from 'react-i18next'
+
+import { Logo } from '../../../../Common/components/Logo'
+import { DropDown } from '../../../../Common/components/DropDown'
+
 import {
   PageHeaderWrapper,
   LogoHloder,
   NavBar,
-  Trigger
+  Trigger,
+  UserProfile,
+  ProfileWrapper
 } from './styledComponents'
-import { Logo } from '../../../../Common/components/Logo'
 
-import { DropDown } from '../../../../Common/components/DropDown'
 const requestOptions = [
   { key: 'ride', text: 'Ride', value: 'ride' },
   { key: 'assetTransport', text: 'Asset Transport', value: 'assetTransport' }
@@ -18,16 +22,27 @@ const shareOptions = [
   { key: 'ride', text: 'Ride', value: 'ride' },
   { key: 'travelInfo', text: 'Travel Info', value: 'travelInfo' }
 ]
-
-interface PageHeaderProps extends WithTranslation {}
+const customStyles = {
+  content: {
+    top: '10%',
+    left: '85%',
+    position: 'absolute',
+    width: '200px',
+    height: '200px'
+  }
+}
+interface PageHeaderProps extends WithTranslation {
+  imgSrc: string
+}
 
 @observer
 class PageHeader extends Component<PageHeaderProps> {
   navigation = (event, data) => {
     console.log(data.value)
   }
+  onClickProfile = () => {}
   render() {
-    const { t } = this.props
+    const { t, imgSrc } = this.props
     return (
       <PageHeaderWrapper>
         <LogoHloder>
@@ -44,6 +59,12 @@ class PageHeader extends Component<PageHeaderProps> {
             trigger={<Trigger>{t('letsride:share')}</Trigger>}
             onChange={this.navigation}
           />
+          <UserProfile>
+            <ProfileWrapper
+              imgSrc={imgSrc}
+              onClickProfile={this.onClickProfile}
+            />
+          </UserProfile>
         </NavBar>
       </PageHeaderWrapper>
     )
