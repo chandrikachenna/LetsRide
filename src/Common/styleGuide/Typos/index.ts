@@ -13,3 +13,13 @@ font-family: Roboto;
   color: ${COLORS.darkBlueGrey};
 `
 
+export const Typo14WhiteHKGroteskSemiBold = styled.span`
+font-family: HKGrotesk;
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.71;
+  letter-spacing: normal;
+  color:${COLORS.white};
+`
