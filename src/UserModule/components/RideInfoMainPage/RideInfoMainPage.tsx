@@ -4,13 +4,18 @@ import {
   PageWrapper,
   datePickerStyles,
   TextTypo,
-  signInButtonStyles
+  signInButtonStyles,
+  inputStyles,
+  InputLable
 } from './styledComponents'
 import { observer } from 'mobx-react'
 import { DatePicker } from '../../../Common/components/DatePicker'
 import { observable } from 'mobx'
 import { Button } from '../../../Common/components/Button'
 import { Counter } from '../../../Common/components/Counter'
+import { Input } from '../../../Common/components/Input'
+import { ValidateFullname } from '../../../Common/utils/ValidateFullname'
+import { WithLabel } from '../../../Common/components/WithLabel'
 
 const imgSrc =
   'https://cdn.zeplin.io/5d0afc9102b7fa56760995cc/assets/c2438b2e-3c57-45cc-a4e7-10c2b3eec159.svg'
@@ -26,6 +31,13 @@ class RideInfoMainPage extends Component {
     return (
       <MainPageLayout src={imgSrc}>
         <PageWrapper>
+          <WithLabel labelStyle={InputLable} label={'LABEL'} isRequired={true}>
+            <Input
+              onChange={this.onchange}
+              validateForm={ValidateFullname}
+              inputStyles={inputStyles}
+            />
+          </WithLabel>
           <DatePicker
             placeHolder={'Date And Time'}
             minDate={new Date()}

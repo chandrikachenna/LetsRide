@@ -16,12 +16,13 @@ export interface validateFormReturnType {
 }
 
 interface InputProps extends WithTranslation {
-  testid?: string
   onChange: (value: string) => void
+  validateForm: (value: string) => validateFormReturnType
   placeHolder?: string
+  testid?: string
   className?: string
   onBlur?: (value: string) => void
-  validateForm: (value: string) => validateFormReturnType
+  inputStyles?: any
 }
 @observer
 class Input extends Component<InputProps> {
@@ -29,7 +30,8 @@ class Input extends Component<InputProps> {
   @observable shouldShowErrorMessage
   @observable errorMessage
   static defaultProps = {
-    onChange: () => {}
+    onChange: () => {},
+    inputStyles: ''
   }
   onChange = event => {
     this.value = event.target.value
@@ -51,7 +53,7 @@ class Input extends Component<InputProps> {
     this.errorMessage = errorMessage
   }
   render() {
-    const { testid, placeHolder, className } = this.props
+    const { testid, placeHolder, className, inputStyles } = this.props
     return (
       <InputElementWrapper>
         <InputElement
@@ -61,10 +63,11 @@ class Input extends Component<InputProps> {
           className={className}
           data-testid={testid}
           onBlur={this.onBlur}
-        ></InputElement>
-        {this.shouldShowErrorMessage && (
-          <ErrorMsgSpan>{this.errorMessage}</ErrorMsgSpan>
-        )}
+          css={inputStyles}
+        />
+        <ErrorMsgSpan>
+          {this.shouldShowErrorMessage && this.errorMessage}
+        </ErrorMsgSpan>
       </InputElementWrapper>
     )
   }

@@ -2,7 +2,10 @@ import styled from '@emotion/styled'
 import tw from 'tailwind.macro'
 import { css } from '@emotion/core'
 import { COLORS } from '../../../Common/themes/Colors'
-import { Typo14WhiteHKGroteskSemiBold } from '../../../Common/styleGuide/Typos'
+import {
+  Typo14WhiteHKGroteskSemiBold,
+  Typo12SteelHKGroteskSemiBold
+} from '../../../Common/styleGuide/Typos'
 
 export const PageWrapper = styled.div`
   ${tw`flex flex-col items-center justify-center`}
@@ -20,3 +23,14 @@ export const signInButtonStyles = css`
   background-color: ${COLORS.brightBlue};
 `
 export const TextTypo = styled(Typo14WhiteHKGroteskSemiBold)``
+
+export const inputStyles = css`
+  width: 401px;
+  height: 40px;
+  border-radius: 2px;
+  border: solid 1px ${COLORS.lightBlueGrey};
+  background-color: ${COLORS.white};
+`
+export const InputLable = styled(Typo12SteelHKGroteskSemiBold)`
+  ${tw`flex `}
+`

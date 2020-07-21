@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
-import { CounterWrapper, CountOperand, buttonStyles } from './styledComponents'
+import {
+  CounterWrapper,
+  CountOperand,
+  buttonStyles,
+  CountValue
+} from './styledComponents'
 import { Button } from '../Button'
 import { OUTLINE } from '../../constants/ButtonTypes'
 import { ICREMENT, DECREMENT } from './constants'
@@ -27,7 +32,7 @@ class Counter extends Component<CounterProps> {
           disabled={true}
           onClick={() => {}}
           text={count}
-          textTypo={CountOperand}
+          textTypo={CountValue}
           buttonStyles={buttonStyles}
           loadingStatus={false}
         />

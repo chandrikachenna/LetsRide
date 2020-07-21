@@ -3,5 +3,5 @@
     "retry": "Retry",
     "somethingWentWrong": "Something went wrong"
   },
-  "requiredMsg": "*Required"
+  "requiredMsg": "Required"
 }
