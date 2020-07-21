@@ -6,7 +6,8 @@ import {
   TextTypo,
   signInButtonStyles,
   inputStyles,
-  InputLable
+  InputLable,
+  cardStyles
 } from './styledComponents'
 import { observer } from 'mobx-react'
 import { DatePicker } from '../../../Common/components/DatePicker'
@@ -16,6 +17,7 @@ import { Counter } from '../../../Common/components/Counter'
 import { Input } from '../../../Common/components/Input'
 import { ValidateFullname } from '../../../Common/utils/ValidateFullname'
 import { WithLabel } from '../../../Common/components/WithLabel'
+import { Card } from '../../../Common/components/Card'
 
 const imgSrc =
   'https://cdn.zeplin.io/5d0afc9102b7fa56760995cc/assets/c2438b2e-3c57-45cc-a4e7-10c2b3eec159.svg'
@@ -23,7 +25,8 @@ const imgSrc =
 @observer
 class RideInfoMainPage extends Component {
   @observable date = new Date()
-  onchange = (value: string) => {}
+  onchange = (value: string | number) => {}
+  onclick = (value: number) => {}
   handleChange = date => {
     this.date = date
   }
@@ -31,13 +34,16 @@ class RideInfoMainPage extends Component {
     return (
       <MainPageLayout src={imgSrc}>
         <PageWrapper>
-          <WithLabel labelStyle={InputLable} label={'LABEL'} isRequired={true}>
-            <Input
-              onChange={this.onchange}
-              validateForm={ValidateFullname}
-              inputStyles={inputStyles}
+          <Card cardStyles={cardStyles}>
+            <Button
+              disabled={true}
+              onClick={() => {}}
+              text={'string'}
+              textTypo={TextTypo}
+              buttonStyles={signInButtonStyles}
+              loadingStatus={false}
             />
-          </WithLabel>
+          </Card>
           <DatePicker
             placeHolder={'Date And Time'}
             minDate={new Date()}
@@ -45,15 +51,27 @@ class RideInfoMainPage extends Component {
             selectedDate={this.date}
             cssStyles={datePickerStyles}
           />
-          <Counter onIncrement={() => {}} onDecrement={() => {}} count={0} />
-          <Button
-            disabled={true}
-            onClick={() => {}}
-            text={'string'}
-            textTypo={TextTypo}
-            buttonStyles={signInButtonStyles}
-            loadingStatus={false}
-          />
+
+          <WithLabel labelStyle={InputLable} label={'LABEL'} isRequired={true}>
+            <Input
+              onChange={this.onchange}
+              validateForm={ValidateFullname}
+              inputStyles={inputStyles}
+            />
+          </WithLabel>
+
+          <WithLabel
+            labelStyle={InputLable}
+            label={'LABEL'}
+            isRequired={true}
+            isLeft={true}
+          >
+            <Counter
+              onIncrement={this.onclick}
+              onDecrement={this.onclick}
+              count={0}
+            />
+          </WithLabel>
         </PageWrapper>
       </MainPageLayout>
     )

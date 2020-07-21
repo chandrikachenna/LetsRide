@@ -10,7 +10,7 @@ export const CounterWrapper = styled.div``
 
 export const CountOperand = styled(Typo16SteelHKGroteskRegular)``
 
-export const CountValue = styled(Typo14SteelHKGroteskRegular)``
+export const CountValue = styled(Typo16SteelHKGroteskRegular)``
 
 export const buttonStyles = css`
   width: 40px;

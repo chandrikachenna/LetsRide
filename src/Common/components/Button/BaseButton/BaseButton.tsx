@@ -3,7 +3,7 @@ import { ButtonWrapper, override } from './styledComponents'
 import { ButtonProps } from '../Button'
 import ClipLoader from 'react-spinners/ClipLoader'
 export type otherProps = {
-  onClick: () => void
+  onClick: (value: any) => void
 }
 export interface BaseButtonProps extends ButtonProps {
   buttonCss: any

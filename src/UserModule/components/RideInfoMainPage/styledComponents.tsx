@@ -34,3 +34,12 @@ export const inputStyles = css`
 export const InputLable = styled(Typo12SteelHKGroteskSemiBold)`
   ${tw`flex `}
 `
+export const cardStyles = css`
+  ${tw`flex items-center justify-center`}
+  width: 460px;
+  height: 200px;
+  border-radius: 6px;
+  box-shadow: 0 4px 40px 0 darkBlueGrey16;
+  border: solid 1px ${COLORS.lightBlueGrey};
+  background-color: ${COLORS.white};
+`

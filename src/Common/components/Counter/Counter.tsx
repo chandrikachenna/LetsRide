@@ -10,8 +10,8 @@ import { OUTLINE } from '../../constants/ButtonTypes'
 import { ICREMENT, DECREMENT } from './constants'
 
 interface CounterProps {
-  onIncrement: () => void
-  onDecrement: () => void
+  onIncrement: (value: any) => void
+  onDecrement: (value: any) => void
   count: number
 }
 class Counter extends Component<CounterProps> {

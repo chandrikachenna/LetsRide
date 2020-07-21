@@ -9,7 +9,7 @@ export interface ButtonProps {
   type: string
   className?: string
   disabled: boolean
-  onClick: () => void
+  onClick: (value: string | number) => void
   text: string | number
   textTypo: Function
   buttonStyles: any
