@@ -8,6 +8,7 @@ const imgSrc =
 
 @observer
 class RideInfoMainPage extends Component {
+  onchange = (vlaue: string) => {}
   render() {
     return (
       <MainPageLayout src={imgSrc}>
