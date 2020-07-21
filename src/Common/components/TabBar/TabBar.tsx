@@ -10,15 +10,27 @@ const panes = [
   {
     menuItem: 'Tab 2',
     render: () => <Tab.Pane attached={false}>Tab 2 Content</Tab.Pane>
-  },
-  {
-    menuItem: 'Tab 3',
-    render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane>
   }
 ]
 
-const TabExampleSecondaryPointing = () => (
-  <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
-)
+// function panesList(data: Array<tabData>) {
+//   return [
+//     data.map((item)=>)
+//   ]
+// }
+type tabData = {
+  component: Function
+  data: any
+}
+interface TabBarProps {
+  data: Array<tabData>
+}
+class TabBar extends React.Component<TabBarProps> {
+  render() {
+    const { data } = this.props
+    // panesList(data)
+    return <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
+  }
+}
 
-export default TabExampleSecondaryPointing
+export { TabBar }
