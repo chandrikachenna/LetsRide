@@ -38,7 +38,7 @@ class Input extends Component<InputProps> {
     const isEmpty = this.value ? false : true
     if (isEmpty) {
       this.shouldShowErrorMessage = true
-      this.errorMessage = this.props.t('common:required')
+      this.errorMessage = this.props.t('common:requiredMsg')
     } else {
       this.shouldShowErrorMessage = false
       this.errorMessage = ''
@@ -64,6 +64,7 @@ class Input extends Component<InputProps> {
           data-testid={testid}
           onBlur={this.onBlur}
           css={inputStyles}
+          isError={this.shouldShowErrorMessage}
         />
         <ErrorMsgSpan>
           {this.shouldShowErrorMessage && this.errorMessage}

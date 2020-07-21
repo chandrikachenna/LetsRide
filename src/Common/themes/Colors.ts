@@ -6,5 +6,7 @@ export const COLORS = {
   darkBlueGrey: '#171f46',
   brightBlue: '#0b69ff',
   steel: '#7e858e',
-  darkBlueGrey16: 'rgba(23, 31, 70, 0.16)'
+  darkBlueGrey16: 'rgba(23, 31, 70, 0.16)',
+  neonRed: '#ff0b37',
+  neonRed5: 'rgba(255, 11, 55, 0.05)'
 }
