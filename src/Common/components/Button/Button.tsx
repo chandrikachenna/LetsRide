@@ -10,7 +10,7 @@ export interface ButtonProps {
   className?: string
   disabled: boolean
   onClick: () => void
-  text: string
+  text: string | number
   textTypo: Function
   buttonStyles: any
   loadingStatus?: boolean

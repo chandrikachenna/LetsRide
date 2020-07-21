@@ -23,3 +23,24 @@ font-family: HKGrotesk;
   letter-spacing: normal;
   color:${COLORS.white};
 `
+
+export const Typo14SteelHKGroteskRegular = styled.span`
+font-family: HKGrotesk;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.71;
+  letter-spacing: normal;
+  color:${COLORS.steel};
+`
+export const Typo16SteelHKGroteskRegular = styled.span`
+font-family: HKGrotesk;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.71;
+  letter-spacing: normal;
+  color:${COLORS.steel};
+`

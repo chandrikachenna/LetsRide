@@ -5,5 +5,5 @@ export const ovalCss = css`
 `
 
 export const rectangularCss = css`
-  border-radius: 1px;
+  border-radius: 0px;
 `
