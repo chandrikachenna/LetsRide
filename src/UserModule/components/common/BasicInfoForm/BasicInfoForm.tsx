@@ -18,39 +18,37 @@ import {
   FormTitle
 } from './styledComponents'
 import { DatePicker } from '../../../../Common/components/DatePicker'
-import { observable } from 'mobx'
 import { observer } from 'mobx-react'
 interface BasicInfoFormProps extends WithTranslation {
   formTitle: string
   buttonText: string
+  isFlexible: boolean
+  fromDateTime: object
+  toDateTime: object
+  onChangeFromPlace: (value: string) => void
+  onChangeToPlace: (value: string) => void
+  handleIsFlexible: (event) => void
+  onSelectFromDateTime: (date: object) => void
+  onSelectToDateTime: (date: object) => void
 }
 
 @observer
 class BasicInfoForm extends Component<BasicInfoFormProps> {
-  @observable fromPlace
-  @observable toPlace
-  @observable isFlexible
-  @observable fromDateTime
-  @observable toDateTime
-
-  onChangeFromPlace = value => {
-    this.fromPlace = value
-  }
-  onChangeToPlace = value => {
-    this.toPlace = value
-  }
-  handleIsFlexible = event => {
-    this.isFlexible = event.target.checked
-  }
-  onSelectFromDateTime = date => {
-    this.fromDateTime = date
-  }
-  onSelectToDateTime = date => {
-    this.toDateTime = date
-  }
-
   render() {
-    const { t, formTitle, buttonText, children } = this.props
+    const {
+      t,
+      formTitle,
+      buttonText,
+      children,
+      isFlexible,
+      fromDateTime,
+      toDateTime,
+      onChangeFromPlace,
+      onChangeToPlace,
+      handleIsFlexible,
+      onSelectFromDateTime,
+      onSelectToDateTime
+    } = this.props
     return (
       <Card cardStyles={cardStyles}>
         <FormTitle>{formTitle}</FormTitle>
@@ -61,7 +59,7 @@ class BasicInfoForm extends Component<BasicInfoFormProps> {
         >
           <Input
             placeHolder={t('letsride:placePlaceHolder')}
-            onChange={this.onChangeFromPlace}
+            onChange={onChangeFromPlace}
             validateForm={ValidateFullname}
             inputStyles={inputStyles}
           />
@@ -73,7 +71,7 @@ class BasicInfoForm extends Component<BasicInfoFormProps> {
         >
           <Input
             placeHolder={t('letsride:placePlaceHolder')}
-            onChange={this.onChangeToPlace}
+            onChange={onChangeToPlace}
             validateForm={ValidateFullname}
             inputStyles={inputStyles}
           />
@@ -81,23 +79,19 @@ class BasicInfoForm extends Component<BasicInfoFormProps> {
 
         <WithLabel
           labelStyle={InputLable}
-          label={
-            this.isFlexible ? t('letsride:from') : t('letsride:dateAndTime')
-          }
+          label={isFlexible ? t('letsride:from') : t('letsride:dateAndTime')}
           isRequired={true}
         >
           <DatePicker
             placeHolder={
-              this.isFlexible
-                ? t('letsride:select')
-                : t('letsride:selectDateTime')
+              isFlexible ? t('letsride:select') : t('letsride:selectDateTime')
             }
             minDate={new Date()}
-            handleChange={this.onSelectFromDateTime}
-            selectedDate={this.fromDateTime}
+            handleChange={onSelectFromDateTime}
+            selectedDate={fromDateTime}
           />
         </WithLabel>
-        {this.isFlexible && (
+        {isFlexible && (
           <WithLabel
             labelStyle={InputLable}
             label={t('letsride:to')}
@@ -106,14 +100,14 @@ class BasicInfoForm extends Component<BasicInfoFormProps> {
             <DatePicker
               placeHolder={t('letsride:select')}
               minDate={new Date()}
-              handleChange={this.onSelectToDateTime}
-              selectedDate={this.toDateTime}
+              handleChange={onSelectToDateTime}
+              selectedDate={toDateTime}
               showError={false}
             />
           </WithLabel>
         )}
         <CheckBox
-          handleCheck={this.handleIsFlexible}
+          handleCheck={handleIsFlexible}
           labelTypo={InputLable}
           label={t('letsride:flexibleTimings')}
         />
