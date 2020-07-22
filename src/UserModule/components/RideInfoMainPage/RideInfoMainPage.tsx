@@ -53,34 +53,6 @@ class RideInfoMainPage extends Component {
               loadingStatus={false}
             />
           </Card>
-          {/* <DatePicker
-            placeHolder={'Date And Time'}
-            minDate={new Date()}
-            handleChange={this.handleChange}
-            selectedDate={this.date}
-            cssStyles={datePickerStyles}
-          />
-
-          <WithLabel labelStyle={InputLable} label={'LABEL'} isRequired={true}>
-            <Input
-              onChange={this.onchange}
-              validateForm={ValidateFullname}
-              inputStyles={inputStyles}
-            />
-          </WithLabel>
-
-          <WithLabel
-            labelStyle={InputLable}
-            label={'LABEL'}
-            isRequired={true}
-            isLeft={true}
-          >
-            <Counter
-              onIncrement={this.onclick}
-              onDecrement={this.onclick}
-              count={0}
-            />
-          </WithLabel> */}
         </PageWrapper>
       </MainPageLayout>
     )

@@ -23,9 +23,10 @@ const InputElementWrapper = styled.div`
 
 `
 const ErrorMsgSpan = styled.span`
-   ${tw`mt-2`}
-   height:18px;
-   color:red
+   ${tw`mt-1`}
+   height:10px;
+   color:red;
+   font-size:10px;
 `
 
 export { InputElement, InputElementWrapper, ErrorMsgSpan }

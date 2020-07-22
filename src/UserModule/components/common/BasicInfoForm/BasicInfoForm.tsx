@@ -17,14 +17,38 @@ import {
   InputLable,
   FormTitle
 } from './styledComponents'
+import { DatePicker } from '../../../../Common/components/DatePicker'
+import { observable } from 'mobx'
+import { observer } from 'mobx-react'
 interface BasicInfoFormProps extends WithTranslation {
   formTitle: string
   buttonText: string
 }
 
+@observer
 class BasicInfoForm extends Component<BasicInfoFormProps> {
-  onchangeName = () => {}
-  handleCheck = event => {}
+  @observable fromPlace
+  @observable toPlace
+  @observable isFlexible
+  @observable fromDateTime
+  @observable toDateTime
+
+  onChangeFromPlace = value => {
+    this.fromPlace = value
+  }
+  onChangeToPlace = value => {
+    this.toPlace = value
+  }
+  handleIsFlexible = event => {
+    this.isFlexible = event.target.checked
+  }
+  onSelectFromDateTime = date => {
+    this.fromDateTime = date
+  }
+  onSelectToDateTime = date => {
+    this.toDateTime = date
+  }
+
   render() {
     const { t, formTitle, buttonText, children } = this.props
     return (
@@ -36,7 +60,8 @@ class BasicInfoForm extends Component<BasicInfoFormProps> {
           isRequired={true}
         >
           <Input
-            onChange={this.onchangeName}
+            placeHolder={t('letsride:placePlaceHolder')}
+            onChange={this.onChangeFromPlace}
             validateForm={ValidateFullname}
             inputStyles={inputStyles}
           />
@@ -47,14 +72,48 @@ class BasicInfoForm extends Component<BasicInfoFormProps> {
           isRequired={true}
         >
           <Input
-            onChange={this.onchangeName}
+            placeHolder={t('letsride:placePlaceHolder')}
+            onChange={this.onChangeToPlace}
             validateForm={ValidateFullname}
             inputStyles={inputStyles}
           />
         </WithLabel>
+
+        <WithLabel
+          labelStyle={InputLable}
+          label={
+            this.isFlexible ? t('letsride:from') : t('letsride:dateAndTime')
+          }
+          isRequired={true}
+        >
+          <DatePicker
+            placeHolder={
+              this.isFlexible
+                ? t('letsride:select')
+                : t('letsride:selectDateTime')
+            }
+            minDate={new Date()}
+            handleChange={this.onSelectFromDateTime}
+            selectedDate={this.fromDateTime}
+          />
+        </WithLabel>
+        {this.isFlexible && (
+          <WithLabel
+            labelStyle={InputLable}
+            label={t('letsride:to')}
+            isRequired={false}
+          >
+            <DatePicker
+              placeHolder={t('letsride:select')}
+              minDate={new Date()}
+              handleChange={this.onSelectToDateTime}
+              selectedDate={this.toDateTime}
+              showError={false}
+            />
+          </WithLabel>
+        )}
         <CheckBox
-          value={'flexibile'}
-          handleCheck={this.handleCheck}
+          handleCheck={this.handleIsFlexible}
           labelTypo={InputLable}
           label={t('letsride:flexibleTimings')}
         />

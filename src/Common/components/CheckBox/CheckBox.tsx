@@ -2,29 +2,17 @@ import React, { Component } from 'react'
 import { Checkbox, CheckBoxWrapper, Label } from './styledComponents'
 
 interface CheckBoxProps {
-  value: string
-  handleCheck: (event: React.ChangeEvent<HTMLInputElement>) => void
+  handleCheck: (obj: object) => void
   labelTypo: any
   label: string
   isDisable?: boolean
 }
 class CheckBox extends Component<CheckBoxProps> {
   render() {
-    const {
-      value,
-      handleCheck,
-      labelTypo: LabelTypo,
-      label,
-      isDisable
-    } = this.props
+    const { handleCheck, labelTypo: LabelTypo, label, isDisable } = this.props
     return (
       <CheckBoxWrapper>
-        <Checkbox
-          type='checkbox'
-          value={value}
-          onChange={handleCheck}
-          disabled={isDisable}
-        />
+        <Checkbox type='checkbox' onChange={handleCheck} disabled={isDisable} />
         <Label>
           <LabelTypo>{label}</LabelTypo>
         </Label>

@@ -15,6 +15,7 @@ export const PageWrapper = styled.div`
 
 export const datePickerStyles = css`
   ${tw`text-red`}
+  border:1px solid black
 `
 export const signInButtonStyles = css`
   width: 399px;

@@ -2,27 +2,52 @@ import React, { Component } from 'react'
 import 'react-datepicker/dist/react-datepicker.css'
 import { observer } from 'mobx-react'
 import ReactDatePicker from 'react-datepicker'
-
-interface DatePickerProps {
+import './index.css'
+import { observable } from 'mobx'
+import { ErrorMsgSpan, Wrapper } from './styledComponents'
+import { WithTranslation, withTranslation } from 'react-i18next'
+interface DatePickerProps extends WithTranslation {
   placeHolder: string
-  minDate: Date
+  minDate?: Date
   selectedDate: object
   handleChange: (date: object) => void
-  cssStyles?: any
+  showError?: boolean
 }
 @observer
 class DatePicker extends Component<DatePickerProps> {
+  @observable value
+  @observable shouldShowErrorMessage = false
+  @observable errorMessage
+  static defaultProps = {
+    showError: true
+  }
+  onBlur = () => {
+    this.shouldShowErrorMessage = true
+    this.errorMessage = this.props.t('common:requiredMsg')
+  }
   render() {
-    const { selectedDate, placeHolder, minDate, handleChange } = this.props
+    const {
+      selectedDate,
+      placeHolder,
+      minDate,
+      handleChange,
+      showError
+    } = this.props
     return (
-      <ReactDatePicker
-        onChange={handleChange}
-        showTimeSelect
-        placeholderText={placeHolder}
-        minDate={minDate}
-        dateFormat='Pp'
-        selected={selectedDate}
-      />
+      <Wrapper>
+        <ReactDatePicker
+          onChange={handleChange}
+          onBlur={this.onBlur}
+          showTimeSelect
+          placeholderText={placeHolder}
+          minDate={minDate}
+          dateFormat='Pp'
+          selected={selectedDate}
+        />
+        <ErrorMsgSpan>
+          {this.shouldShowErrorMessage && showError && 'Required'}
+        </ErrorMsgSpan>
+      </Wrapper>
     )
   }
 }
@@ -32,4 +57,5 @@ class DatePicker extends Component<DatePickerProps> {
 // handleChange = date => {
 //    console.log(date)
 //  }
-export { DatePicker }
+
+export default withTranslation('translation', { withRef: true })(DatePicker)

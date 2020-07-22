@@ -5,11 +5,13 @@ interface LabelProps {
 }
 export const WithLableWrapper = styled.div`
   ${tw`flex flex-col pt-1 pb-1`}
+  width:100%;
 `
 export const WithLeftLableWrapper = styled.div`
   ${tw`flex items-center`}
   margin-top: ${(props: LabelProps) => (props.css ? '8px' : '0px')};
   margin-bottom: ${(props: LabelProps) => (props.css ? '8px' : '0px')};
+  
 `
 
 export const Label = styled.div`

@@ -14,5 +14,9 @@
   "shareLable": "SHARE",
   "assetTransportRequest": "ASSET TRANSPORT REQUEST",
   "shareRide": "SHARE RIDE",
-  "shareTravelInfo": "SHARE TRAVEL INFO"
+  "shareTravelInfo": "SHARE TRAVEL INFO",
+  "dateAndTime": "DATE AND TIME",
+  "selectDateTime": "Select date and time",
+  "placePlaceHolder": "Ex. k.",
+  "select": "Select"
 }

@@ -10,7 +10,7 @@ import {
 
 export const FormTitle = styled(Typo20DarkBlueGreyHKGrotestBold)`
   align-self: center;
-  ${tw`pb-8`}
+  ${tw`pb-4`}
 `
 export const cardStyles = css`
   border-radius: 6px;
@@ -35,3 +35,7 @@ export const ButtonStyles = css`
   background-color: ${COLORS.brightBlue};
 `
 export const TextTypo = styled(Typo14WhiteHKGroteskSemiBold)``
+
+export const ToFromDateTimeWrapper = styled.div`
+  ${tw`flex flex-row `}
+`
