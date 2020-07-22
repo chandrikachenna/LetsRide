@@ -21,7 +21,7 @@ class DateTime extends Component<DateTimeProps> {
         // min={minDate}
         // max={maxDate}
         placeholder={'Date and Time'}
-        style={{ width: '20%' }}
+        style={{ width: '50%' }}
       />
     )
   }

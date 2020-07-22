@@ -38,7 +38,7 @@ class WithLabel extends Component<WithLabelProps> {
       )
     }
     return (
-      <WithLeftLableWrapper>
+      <WithLeftLableWrapper css={isLeft}>
         {this.renderUI()}
         {children}
       </WithLeftLableWrapper>

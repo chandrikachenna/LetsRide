@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Checkbox, CheckBoxWrapper } from './styledComponents'
+import { Checkbox, CheckBoxWrapper, Label } from './styledComponents'
 
 interface CheckBoxProps {
   value: string
@@ -25,7 +25,9 @@ class CheckBox extends Component<CheckBoxProps> {
           onChange={handleCheck}
           disabled={isDisable}
         />
-        <LabelTypo>{label}</LabelTypo>
+        <Label>
+          <LabelTypo>{label}</LabelTypo>
+        </Label>
       </CheckBoxWrapper>
     )
   }

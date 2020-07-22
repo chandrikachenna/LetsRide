@@ -6,6 +6,7 @@ interface CardWrapperProps {
   css: any
 }
 export const CardWrapper = styled.div`
+   ${tw`flex flex-col items-start justify-start p-16`}
   background-color: ${COLORS.white};
   padding: 15;
   ${(props: CardWrapperProps) => props.css}

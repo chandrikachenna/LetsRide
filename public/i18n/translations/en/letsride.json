@@ -3,5 +3,13 @@
   "share": "Share",
   "ride": "Ride",
   "assetTransport": "Asset Transport",
-  "travelInfo": "Travel Info"
+  "travelInfo": "Travel Info",
+  "from": "FROM",
+  "to": "TO",
+  "flexibleTimings": "FLEXIBLE TIMINGS",
+  "rideRequest": "RIDE REQUEST",
+  "noOfSeats": "NO.OF SEATS",
+  "laguageQuantity": "LAGUAGE QUNATITY",
+  "requestLable": "REQUEST",
+  "shareLable": "SHARE"
 }

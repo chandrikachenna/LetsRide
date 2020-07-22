@@ -55,3 +55,13 @@ font-family: HKGrotesk;
   letter-spacing: 0.12px;
   color:${COLORS.steel};
 `
+export const Typo20DarkBlueGreyHKGrotestBold = styled.span`
+ font-family: HKGrotesk;
+  font-size: 20px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.6;
+  letter-spacing: normal;
+  color: ${COLORS.darkBlueGrey};
+`
