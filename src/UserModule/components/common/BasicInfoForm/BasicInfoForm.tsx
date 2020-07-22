@@ -30,6 +30,7 @@ interface BasicInfoFormProps extends WithTranslation {
   handleIsFlexible: (event) => void
   onSelectFromDateTime: (date: object) => void
   onSelectToDateTime: (date: object) => void
+  onClick: () => void
 }
 
 @observer
@@ -47,7 +48,8 @@ class BasicInfoForm extends Component<BasicInfoFormProps> {
       onChangeToPlace,
       handleIsFlexible,
       onSelectFromDateTime,
-      onSelectToDateTime
+      onSelectToDateTime,
+      onClick
     } = this.props
     return (
       <Card cardStyles={cardStyles}>
@@ -113,8 +115,8 @@ class BasicInfoForm extends Component<BasicInfoFormProps> {
         />
         {children}
         <Button
-          disabled={true}
-          onClick={() => {}}
+          disabled={false}
+          onClick={onClick}
           text={buttonText}
           textTypo={TextTypo}
           buttonStyles={ButtonStyles}

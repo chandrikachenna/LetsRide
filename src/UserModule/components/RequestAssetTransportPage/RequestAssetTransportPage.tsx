@@ -4,10 +4,14 @@ import { WithTranslation, withTranslation } from 'react-i18next'
 import { BasicInfoForm } from '../common/BasicInfoForm'
 import { PageWrapper } from '../../styledComponents'
 import { observable } from 'mobx'
+import { observer } from 'mobx-react'
 const imgSrc =
   'https://cdn.zeplin.io/5d0afc9102b7fa56760995cc/assets/c2438b2e-3c57-45cc-a4e7-10c2b3eec159.svg'
 
-interface RequestAssetTransportPageProps extends WithTranslation {}
+interface RequestAssetTransportPageProps extends WithTranslation {
+  onClickRequest: (details: object) => void
+}
+@observer
 class RequestAssetTransportPage extends Component<
   RequestAssetTransportPageProps
 > {
@@ -31,13 +35,16 @@ class RequestAssetTransportPage extends Component<
   onSelectToDateTime = date => {
     this.toDateTime = date
   }
+  onClick = () => {
+    this.props.onClickRequest({})
+  }
   render() {
-    const { t } = this.props
+    const { t, onClickRequest } = this.props
     return (
       <MainPageLayout src={imgSrc}>
         <PageWrapper>
-          {/* <BasicInfoForm
-            formTitle={t('letsride:rideRequest')}
+          <BasicInfoForm
+            formTitle={t('letsride:assetTransportRequest')}
             buttonText={t('letsride:requestLable')}
             isFlexible={this.isFlexible}
             fromDateTime={this.fromDateTime}
@@ -47,7 +54,8 @@ class RequestAssetTransportPage extends Component<
             handleIsFlexible={this.handleIsFlexible}
             onSelectFromDateTime={this.onSelectFromDateTime}
             onSelectToDateTime={this.onSelectToDateTime}
-          ></BasicInfoForm> */}
+            onClick={this.onClick}
+          ></BasicInfoForm>
         </PageWrapper>
       </MainPageLayout>
     )

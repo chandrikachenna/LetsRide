@@ -18,5 +18,8 @@
   "dateAndTime": "DATE AND TIME",
   "selectDateTime": "Select date and time",
   "placePlaceHolder": "Ex. k.",
-  "select": "Select"
+  "select": "Select",
+  "assetQuantity": "ASSET QUANTITY",
+  "travelMedium": "TRAVEL MEDIUM",
+  "selectMedium": "Select medium"
 }

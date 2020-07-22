@@ -48,8 +48,8 @@ class RideInfoMainPage extends Component {
     this.date = date
   }
   onSubmit = value => {
-    console.log(this.inputRef)
-    console.log(this.inputRef.current.__reactEventHandlers$i7cvthpnuq)
+    // console.log(this.inputRef)
+    // console.log(this.inputRef.current.__reactEventHandlers$i7cvthpnuq)
   }
   onChangeToPlace = () => {}
   render() {
