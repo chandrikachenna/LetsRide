@@ -33,20 +33,41 @@ const tabsData = [
 @observer
 class RideInfoMainPage extends Component {
   @observable date = new Date()
+  @observable inputRef
+  constructor(props) {
+    super(props)
+    this.inputRef = React.createRef()
+  }
+  componentDidMount() {
+    this.inputRef.current.focus()
+  }
+
   onchange = (value: string | number) => {}
   onclick = (value: number) => {}
   handleChange = date => {
     this.date = date
   }
+  onSubmit = value => {
+    console.log(this.inputRef)
+    console.log(this.inputRef.current.__reactEventHandlers$i7cvthpnuq)
+  }
+  onChangeToPlace = () => {}
   render() {
     return (
       <MainPageLayout src={imgSrc}>
         {/* <TabBar data={tabsData} /> */}
         <PageWrapper>
           <Card cardStyles={cardStyles}>
+            <Input
+              placeHolder={'name'}
+              onChange={this.onChangeToPlace}
+              validateForm={ValidateFullname}
+              inputStyles={inputStyles}
+              inputRef={this.inputRef}
+            />
             <Button
-              disabled={true}
-              onClick={() => {}}
+              disabled={false}
+              onClick={this.onSubmit}
               text={'string'}
               textTypo={TextTypo}
               buttonStyles={signInButtonStyles}

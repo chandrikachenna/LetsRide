@@ -23,6 +23,7 @@ interface InputProps extends WithTranslation {
   className?: string
   onBlur?: (value: string) => void
   inputStyles?: any
+  inputRef?: any
 }
 @observer
 class Input extends Component<InputProps> {
@@ -53,10 +54,11 @@ class Input extends Component<InputProps> {
     this.errorMessage = errorMessage
   }
   render() {
-    const { testid, placeHolder, className, inputStyles } = this.props
+    const { testid, placeHolder, className, inputStyles, inputRef } = this.props
     return (
       <InputElementWrapper>
         <InputElement
+          ref={inputRef}
           value={this.value}
           onChange={this.onChange}
           placeholder={placeHolder}

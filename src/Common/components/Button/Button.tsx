@@ -38,6 +38,8 @@ class Button extends Component<ButtonProps> {
     }
   }
   render() {
+    console.log(this.props)
+
     const { type, variant, ...otherProps } = this.props
     switch (type) {
       case buttonType.filled:
