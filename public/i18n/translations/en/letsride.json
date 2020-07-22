@@ -11,5 +11,8 @@
   "noOfSeats": "NO.OF SEATS",
   "laguageQuantity": "LAGUAGE QUNATITY",
   "requestLable": "REQUEST",
-  "shareLable": "SHARE"
+  "shareLable": "SHARE",
+  "assetTransportRequest": "ASSET TRANSPORT REQUEST",
+  "shareRide": "SHARE RIDE",
+  "shareTravelInfo": "SHARE TRAVEL INFO"
 }

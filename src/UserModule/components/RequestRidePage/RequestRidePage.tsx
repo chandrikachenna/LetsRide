@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { MainPageLayout } from '../../../Common/components/MainPageLayout'
 import { withTranslation, WithTranslation } from 'react-i18next'
 import { BasicInfoForm } from '../common/BasicInfoForm'
-import { PageWrapper, LableTypo } from './styledCompoents'
+import { PageWrapper, LableTypo } from '../../styledComponents'
 import { WithLabel } from '../../../Common/components/WithLabel'
 import { Counter } from '../../../Common/components/Counter'
 const imgSrc =

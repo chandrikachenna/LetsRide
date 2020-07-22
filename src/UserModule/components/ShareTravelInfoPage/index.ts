@@ -1,1 +1,1 @@
-export { ShareTravelInfoPage } from './ShareTravelInfoPage'
+export { default as ShareTravelInfoPage } from './ShareTravelInfoPage'
