@@ -29,7 +29,6 @@ class BaseButton extends Component<BaseButtonProps> {
       buttonStyles,
       loadingStatus
     } = this.props
-    console.log(buttonCss)
 
     let otherProps: otherProps = { onClick: () => {} }
     if (this.isEnabled()) {

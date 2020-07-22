@@ -1,13 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { RouteComponentProps, withRouter } from 'react-router-dom'
+import { WithTranslation, withTranslation } from 'react-i18next'
 
-class ShareRideRoute extends Component {
-    render() {
-        return (
-            <div>
-                
-            </div>
-        );
-    }
+interface ShareRideRouteProps extends RouteComponentProps, WithTranslation {}
+
+class ShareRideRoute extends Component<ShareRideRouteProps> {
+  render() {
+    return <div>ShareRideRoute</div>
+  }
 }
 
-export default ShareRideRoute;
+export default withTranslation('translation', { withRef: true })(
+  withRouter(ShareRideRoute)
+)

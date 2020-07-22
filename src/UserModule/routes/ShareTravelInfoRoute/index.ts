@@ -1,1 +1,2 @@
-export { default as ShareTravelInfoRoute } from './ShareTravelInfoRoute'
+import ShareTravelInfoRoute from './ShareTravelInfoRoute'
+export default ShareTravelInfoRoute

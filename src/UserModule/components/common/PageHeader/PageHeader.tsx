@@ -1,9 +1,19 @@
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
 import { withTranslation, WithTranslation } from 'react-i18next'
+import { observable } from 'mobx'
+import { withRouter, RouteComponentProps } from 'react-router-dom'
 
 import { Logo } from '../../../../Common/components/Logo'
 import { DropDown } from '../../../../Common/components/DropDown'
+import { ProfileModal } from '../../../../Common/components/ProfileModal'
+import { pageConstants } from '../../../constants/PageConstants'
+import {
+  goToRequstRidePage,
+  goToRequstAssetTransportPage,
+  goToShareRidePage,
+  goToShareTravelInfoPage
+} from '../../../utils/NavigationUtils'
 
 import {
   PageHeaderWrapper,
@@ -13,8 +23,6 @@ import {
   UserProfile,
   ProfileWrapper
 } from './styledComponents'
-import { ProfileModal } from '../../../../Common/components/ProfileModal'
-import { observable } from 'mobx'
 
 const requestOptions = [
   { key: 'ride', text: 'Ride', value: 'ride' },
@@ -33,15 +41,35 @@ const customStyles = {
     height: '150px'
   }
 }
-interface PageHeaderProps extends WithTranslation {
+interface PageHeaderProps extends RouteComponentProps, WithTranslation {
   imgSrc: string
 }
 
 @observer
 class PageHeader extends Component<PageHeaderProps> {
   @observable isOpen: boolean = false
-  navigation = (event, data) => {
-    console.log(data.value)
+  navigateToRequestPage = (event, data) => {
+    const { history } = this.props
+    switch (data.value) {
+      case pageConstants.ride:
+        goToRequstRidePage(history)
+        break
+      case pageConstants.assetTransport:
+        goToRequstAssetTransportPage(history)
+        break
+    }
+  }
+
+  navigationToSharePage = (event, data) => {
+    const { history } = this.props
+    switch (data.value) {
+      case pageConstants.ride:
+        goToShareRidePage(history)
+        break
+      case pageConstants.travelInfo:
+        goToShareTravelInfoPage(history)
+        break
+    }
   }
   onClickProfile = () => {
     this.isOpen = true
@@ -60,12 +88,12 @@ class PageHeader extends Component<PageHeaderProps> {
           <DropDown
             options={requestOptions}
             trigger={<Trigger>{t('letsride:request')}</Trigger>}
-            onChange={this.navigation}
+            onChange={this.navigateToRequestPage}
           />
           <DropDown
             options={shareOptions}
             trigger={<Trigger>{t('letsride:share')}</Trigger>}
-            onChange={this.navigation}
+            onChange={this.navigationToSharePage}
           />
           <UserProfile>
             <ProfileWrapper
@@ -84,4 +112,6 @@ class PageHeader extends Component<PageHeaderProps> {
   }
 }
 
-export default withTranslation('translation', { withRef: true })(PageHeader)
+export default withTranslation('translation', { withRef: true })(
+  withRouter(PageHeader)
+)

@@ -1,1 +1,2 @@
-export { default as RequestAssetTransportRoute } from './RequestAssetTransportRoute'
+import RequestAssetTransportRoute from './RequestAssetTransportRoute'
+export default RequestAssetTransportRoute

@@ -1,1 +1,2 @@
-export { default as ShareRideRoute } from './ShareRideRoute'
+import ShareRideRoute from './ShareRideRoute'
+export default ShareRideRoute

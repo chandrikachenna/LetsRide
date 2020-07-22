@@ -1,1 +1,2 @@
-export { default as RequestRideRoute } from './RequestRideRoute'
+import RequestRideRoute from './RequestRideRoute'
+export default RequestRideRoute
