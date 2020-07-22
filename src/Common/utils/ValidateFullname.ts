@@ -6,7 +6,7 @@ export function ValidateFullname(value: string): validateFormReturnType {
     const isEmpty = value ? false : true
     if (isEmpty) {
         shouldShowErrorMessage = true;
-        errorMessage = "*Required"
+        errorMessage = "Required"
     }
     else if (value.length < 8) {
         shouldShowErrorMessage = true;

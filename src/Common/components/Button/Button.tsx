@@ -4,11 +4,22 @@ import { buttonType, buttonVariant } from './constants'
 import { BaseButton } from './BaseButton'
 import { OutlineButton } from './OutlineButton'
 import { ovalCss, rectangularCss } from './styledComponents'
-
-class Button extends Component {
+export interface ButtonProps {
+  variant: string
+  type: string
+  className?: string
+  disabled: boolean
+  onClick: (value: string | number) => void
+  text: string | number
+  textTypo: Function
+  buttonStyles: any
+  loadingStatus?: boolean
+}
+class Button extends Component<ButtonProps> {
   static defaultProps = {
     type: buttonType.filled,
-    variant: buttonVariant.oval
+    variant: buttonVariant.oval,
+    disabled: false
   }
 
   static buttonTypes = buttonType
@@ -30,9 +41,9 @@ class Button extends Component {
     const { type, variant, ...otherProps } = this.props
     switch (type) {
       case buttonType.filled:
-        return <BaseButton {...otherProps} buttonCss={this.getButtonCss()} />
+        return <BaseButton {...this.props} buttonCss={this.getButtonCss()} />
       case buttonType.outline:
-        return <OutlineButton {...otherProps} buttonCss={this.getButtonCss()} />
+        return <OutlineButton {...this.props} buttonCss={this.getButtonCss()} />
       default:
         console.warn('Invalid Type')
         return null

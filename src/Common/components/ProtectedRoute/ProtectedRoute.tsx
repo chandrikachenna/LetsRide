@@ -14,7 +14,7 @@ class ProtectedRoute extends React.Component<ProtectedRouteProps> {
 
   render() {
     const { path, renderedComponent: Component } = this.props
-    if (!getAccessToken()) {
+    if (getAccessToken()) {
       return <Route exact path={path} component={Component} />
     }
     return (

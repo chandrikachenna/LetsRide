@@ -16,12 +16,14 @@ export interface validateFormReturnType {
 }
 
 interface InputProps extends WithTranslation {
-  testid?: string
   onChange: (value: string) => void
+  validateForm: (value: string) => validateFormReturnType
   placeHolder?: string
+  testid?: string
   className?: string
   onBlur?: (value: string) => void
-  validateForm: (value: string) => validateFormReturnType
+  inputStyles?: any
+  inputRef?: any
 }
 @observer
 class Input extends Component<InputProps> {
@@ -29,14 +31,15 @@ class Input extends Component<InputProps> {
   @observable shouldShowErrorMessage
   @observable errorMessage
   static defaultProps = {
-    onChange: () => {}
+    onChange: () => {},
+    inputStyles: ''
   }
   onChange = event => {
     this.value = event.target.value
     const isEmpty = this.value ? false : true
     if (isEmpty) {
       this.shouldShowErrorMessage = true
-      this.errorMessage = this.props.t('common:required')
+      this.errorMessage = this.props.t('common:requiredMsg')
     } else {
       this.shouldShowErrorMessage = false
       this.errorMessage = ''
@@ -51,20 +54,23 @@ class Input extends Component<InputProps> {
     this.errorMessage = errorMessage
   }
   render() {
-    const { testid, placeHolder, className } = this.props
+    const { testid, placeHolder, className, inputStyles, inputRef } = this.props
     return (
       <InputElementWrapper>
         <InputElement
+          ref={inputRef}
           value={this.value}
           onChange={this.onChange}
           placeholder={placeHolder}
           className={className}
           data-testid={testid}
           onBlur={this.onBlur}
-        ></InputElement>
-        {this.shouldShowErrorMessage && (
-          <ErrorMsgSpan>{this.errorMessage}</ErrorMsgSpan>
-        )}
+          css={inputStyles}
+          isError={this.shouldShowErrorMessage}
+        />
+        <ErrorMsgSpan>
+          {this.shouldShowErrorMessage && this.errorMessage}
+        </ErrorMsgSpan>
       </InputElementWrapper>
     )
   }

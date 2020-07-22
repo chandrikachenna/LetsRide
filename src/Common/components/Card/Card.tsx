@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
 import { CardWrapper } from './styledComponents'
 
-class Card extends Component {
+interface CardProps {
+  cardStyles: any
+}
+class Card extends Component<CardProps> {
   render() {
-    return <CardWrapper>{this.props.children}</CardWrapper>
+    const { cardStyles } = this.props
+    return <CardWrapper css={cardStyles}>{this.props.children}</CardWrapper>
   }
 }
 
