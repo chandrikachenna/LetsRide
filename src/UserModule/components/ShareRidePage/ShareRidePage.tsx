@@ -15,7 +15,7 @@ class ShareRidePage extends Component<ShareRidePageProps> {
         <PageWrapper>
           <BasicInfoForm
             formTitle={t('letsride:shareRide')}
-            buttonText={t('letsride:requestLable')}
+            buttonText={t('letsride:shareLable')}
           ></BasicInfoForm>
         </PageWrapper>
       </MainPageLayout>
