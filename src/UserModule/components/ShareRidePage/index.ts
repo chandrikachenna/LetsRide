@@ -1,1 +1,1 @@
-export { default as ShareRidePage } from './ShareRidePage'
+export { ShareRidePage } from './ShareRidePage'

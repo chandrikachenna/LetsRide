@@ -53,7 +53,7 @@ class RideInfoMainPage extends Component {
               loadingStatus={false}
             />
           </Card>
-          <DatePicker
+          {/* <DatePicker
             placeHolder={'Date And Time'}
             minDate={new Date()}
             handleChange={this.handleChange}
@@ -80,7 +80,7 @@ class RideInfoMainPage extends Component {
               onDecrement={this.onclick}
               count={0}
             />
-          </WithLabel>
+          </WithLabel> */}
         </PageWrapper>
       </MainPageLayout>
     )

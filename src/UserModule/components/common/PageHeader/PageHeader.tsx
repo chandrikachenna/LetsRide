@@ -12,7 +12,8 @@ import {
   goToRequstRidePage,
   goToRequstAssetTransportPage,
   goToShareRidePage,
-  goToShareTravelInfoPage
+  goToShareTravelInfoPage,
+  goToHomePage
 } from '../../../utils/NavigationUtils'
 
 import {
@@ -48,6 +49,10 @@ interface PageHeaderProps extends RouteComponentProps, WithTranslation {
 @observer
 class PageHeader extends Component<PageHeaderProps> {
   @observable isOpen: boolean = false
+  goToHomePage = () => {
+    const { history } = this.props
+    goToHomePage(history)
+  }
   navigateToRequestPage = (event, data) => {
     const { history } = this.props
     switch (data.value) {
@@ -81,7 +86,7 @@ class PageHeader extends Component<PageHeaderProps> {
     const { t, imgSrc } = this.props
     return (
       <PageHeaderWrapper>
-        <LogoHloder>
+        <LogoHloder onClick={this.goToHomePage}>
           <Logo height={71} width={71} />
         </LogoHloder>
         <NavBar>

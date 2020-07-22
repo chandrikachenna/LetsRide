@@ -1,1 +1,1 @@
-export { default as RequestRidePage } from './RequestRidePage'
+export { RequestRidePage } from './RequestRidePage'

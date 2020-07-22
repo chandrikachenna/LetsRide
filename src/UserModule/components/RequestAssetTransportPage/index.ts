@@ -1,1 +1,1 @@
-export { default as RequestAssetTransportPage } from './RequestAssetTransportPage'
+export { RequestAssetTransportPage } from './RequestAssetTransportPage'
