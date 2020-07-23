@@ -9,13 +9,9 @@ const menus = { menu1: 'Menu1', menu2: 'Menu2', menu3: 'Menu3' }
 const width: any = '129px'
 
 interface MenuBarProps {
-  menu: string
   menu1Name: string
   menu2Name: string
   menu3Name: string
-  onClickMenu1: () => void
-  onClickMenu2: () => void
-  onClickMenu3: () => void
 }
 
 @observer
@@ -23,19 +19,16 @@ class MenuBar extends Component<MenuBarProps> {
   @observable selectedMenu
   constructor(props) {
     super(props)
-    this.selectedMenu = this.props.menu
+    this.selectedMenu = menus.menu1
   }
   onclickMenu1 = () => {
     this.selectedMenu = menus.menu1
-    this.props.onClickMenu1()
   }
   onclickMenu2 = () => {
     this.selectedMenu = menus.menu2
-    this.props.onClickMenu2()
   }
   onclickMenu3 = () => {
     this.selectedMenu = menus.menu3
-    this.props.onClickMenu3()
   }
   render() {
     const { menu1, menu2, menu3 } = menus

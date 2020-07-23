@@ -13,11 +13,6 @@ const panes = [
   }
 ]
 
-// function panesList(data: Array<tabData>) {
-//   return [
-//     data.map((item)=>)
-//   ]
-// }
 type tabData = {
   component: Function
   data: any
