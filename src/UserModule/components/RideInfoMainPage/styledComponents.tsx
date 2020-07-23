@@ -8,7 +8,7 @@ import {
 } from '../../../Common/styleGuide/Typos'
 
 export const PageWrapper = styled.div`
-  ${tw`flex flex-col items-center justify-center`}
+  ${tw`flex flex-col items-center justify-start mt-20`}
   flex-grow:1;
   width: 100%;
 `
