@@ -14,9 +14,9 @@ class RequestRideRoute extends Component<RequestRideRouteProps> {
     return this.props['letsRideInfoStore']
   }
   onClickRequest = details => {
-    //:TODO call store apicall
     const { history } = this.props
     goToHomePage(history)
+    this.getLetsRideInfoStore().formsInfo.UpdateRideRequestInfo(details)
   }
   render() {
     return <RequestRidePage onClickRequest={this.onClickRequest} />
