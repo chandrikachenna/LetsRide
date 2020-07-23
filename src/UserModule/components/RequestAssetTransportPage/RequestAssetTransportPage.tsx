@@ -20,14 +20,32 @@ interface RequestAssetTransportPageProps extends WithTranslation {
 class RequestAssetTransportPage extends Component<
   RequestAssetTransportPageProps
 > {
-  @observable fromPlace
-  @observable toPlace
-  @observable isFlexible
-  @observable fromDateTime
-  @observable toDateTime
-  @observable assetType
-  @observable assetSensitivity
-  @observable nameNumber
+  @observable fromPlace!: string
+  @observable toPlace!: string
+  @observable isFlexible!: boolean
+  @observable fromDateTime!: object
+  @observable toDateTime!: Object
+  @observable assetType!: string
+  @observable otherAssetType!: string
+  @observable isAssetTypeOther!: boolean
+  @observable assetSensitivity!: string
+  @observable whomToDeliver!: string
+  constructor(props) {
+    super(props)
+    this.init()
+  }
+  init = () => {
+    this.fromPlace = ''
+    this.toPlace = ''
+    this.isFlexible = false
+    this.fromDateTime = {}
+    this.toDateTime = {}
+    this.assetType = ''
+    this.otherAssetType = ''
+    this.isAssetTypeOther = false
+    this.assetSensitivity = ''
+    this.whomToDeliver = ''
+  }
   onChangeFromPlace = value => {
     this.fromPlace = value
   }
@@ -45,15 +63,35 @@ class RequestAssetTransportPage extends Component<
   }
   handleAssetType = event => {
     this.assetType = event.value
+    if (this.assetType === 'Others') {
+      this.isAssetTypeOther = true
+    } else {
+      this.isAssetTypeOther = false
+    }
+  }
+  handleOtherAssetType = value => {
+    this.otherAssetType = value
   }
   handleSensitivity = event => {
     this.assetSensitivity = event.value
   }
-  onChangeNameNumber = value => {
-    this.nameNumber = value
+  onChangewhomToDeliver = value => {
+    this.whomToDeliver = value
   }
   onClick = () => {
-    this.props.onClickRequest({})
+    const rideRequestObject = {
+      fromPlace: this.fromPlace,
+      toPlace: this.toPlace,
+      isFlexible: this.isFlexible,
+      fromDateTime: `${this.fromDateTime}`,
+      toDateTime: `${this.toDateTime}`,
+      assetType: this.assetType,
+      isAssetTypeOther: this.isAssetTypeOther,
+      otherAssetType: this.otherAssetType,
+      assetSensitivity: this.assetSensitivity,
+      whomToDeliver: this.whomToDeliver
+    }
+    this.props.onClickRequest(rideRequestObject)
   }
   render() {
     const { t, onClickRequest } = this.props
@@ -88,6 +126,21 @@ class RequestAssetTransportPage extends Component<
                 ]}
               />
             </WithLabel>
+            {this.isAssetTypeOther && (
+              <WithLabel
+                labelStyle={LableTypo}
+                label={t('letsride:assetTypeOther')}
+                isRequired={false}
+              >
+                <Input
+                  placeHolder={t('letsride:otherAssets')}
+                  onChange={this.handleOtherAssetType}
+                  validateForm={ValidateFullname}
+                  inputStyles={inputStyles}
+                  showMsg={false}
+                />
+              </WithLabel>
+            )}
             <WithLabel
               labelStyle={LableTypo}
               label={t('letsride:assetSensitivity')}
@@ -110,7 +163,7 @@ class RequestAssetTransportPage extends Component<
             >
               <Input
                 placeHolder={t('letsride:nameAndMobileNumber')}
-                onChange={this.onChangeNameNumber}
+                onChange={this.onChangewhomToDeliver}
                 validateForm={ValidateFullname}
                 inputStyles={inputStyles}
               />

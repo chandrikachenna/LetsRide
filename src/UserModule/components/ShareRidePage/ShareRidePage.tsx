@@ -21,6 +21,8 @@ class ShareRidePage extends Component<ShareRidePageProps> {
         onClick={onClickShare}
         title={t('letsride:shareRide')}
         buttonText={t('letsride:shareLable')}
+        seats={t('letsride:noOfSeatsAvailable')}
+        quantity={t('letsride:assetQuantity')}
       />
     )
   }

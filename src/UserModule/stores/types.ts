@@ -13,6 +13,8 @@ export interface UpdateRideRequest extends BasicFormInfoObject {
 export interface UpdateAsserTransportRequest extends BasicFormInfoObject {
   number_of_assets: number
   asset_type: string
+  is_asset_type_other: boolean
+  other_asset_type: string
   asset_sensitivity: string
   whom_to_deliver: string
 }

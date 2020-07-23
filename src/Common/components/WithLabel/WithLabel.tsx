@@ -5,7 +5,7 @@ import {
   Required,
   WithLeftLableWrapper
 } from './styledComponents'
-import { observer } from 'mobx-react'
+
 interface WithLabelProps {
   labelStyle: Function
   label: string

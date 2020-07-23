@@ -5,7 +5,7 @@ import { COLORS } from '../../themes/Colors'
 
 interface InputElementProps {
   css: any
-  isError: boolean
+  isError: any
 }
 const ErrorView = css`
   border: solid 1px ${COLORS.neonRed};

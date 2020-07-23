@@ -24,6 +24,7 @@ interface InputProps extends WithTranslation {
   onBlur?: (value: string) => void
   inputStyles?: any
   inputRef?: any
+  showMsg?: boolean
 }
 @observer
 class Input extends Component<InputProps> {
@@ -32,7 +33,8 @@ class Input extends Component<InputProps> {
   @observable errorMessage
   static defaultProps = {
     onChange: () => {},
-    inputStyles: ''
+    inputStyles: '',
+    showMsg: true
   }
   onChange = event => {
     this.value = event.target.value
@@ -54,7 +56,14 @@ class Input extends Component<InputProps> {
     this.errorMessage = errorMessage
   }
   render() {
-    const { testid, placeHolder, className, inputStyles, inputRef } = this.props
+    const {
+      testid,
+      placeHolder,
+      className,
+      inputStyles,
+      inputRef,
+      showMsg
+    } = this.props
     return (
       <InputElementWrapper>
         <InputElement
@@ -66,10 +75,10 @@ class Input extends Component<InputProps> {
           data-testid={testid}
           onBlur={this.onBlur}
           css={inputStyles}
-          isError={this.shouldShowErrorMessage}
+          isError={this.shouldShowErrorMessage && showMsg}
         />
         <ErrorMsgSpan>
-          {this.shouldShowErrorMessage && this.errorMessage}
+          {this.shouldShowErrorMessage && showMsg && this.errorMessage}
         </ErrorMsgSpan>
       </InputElementWrapper>
     )
