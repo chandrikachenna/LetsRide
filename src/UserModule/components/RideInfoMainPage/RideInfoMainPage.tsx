@@ -66,11 +66,14 @@ class RideInfoMainPage extends Component {
               inputStyles={inputStyles}
               inputRef={this.inputRef}
             /> */}
-            <Select
-              onSlectOption={this.onchange}
-              options={['1', '2']}
-              value={'1'}
-            />
+
+            <WithLabel labelStyle={InputLable} label={'HI'} isRequired={true}>
+              <Select
+                onSlectOption={this.onchange}
+                options={['1', '2']}
+                value={'1'}
+              />
+            </WithLabel>
             <Button
               disabled={false}
               onClick={this.onSubmit}

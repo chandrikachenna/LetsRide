@@ -2,9 +2,14 @@ import React, { Component } from 'react'
 import { MainPageLayout } from '../../../Common/components/MainPageLayout'
 import { WithTranslation, withTranslation } from 'react-i18next'
 import { BasicInfoForm } from '../common/BasicInfoForm'
-import { PageWrapper } from '../../styledComponents'
-import { observable } from 'mobx'
+import { PageWrapper, LableTypo } from '../../styledComponents'
+import { observable, values } from 'mobx'
 import { observer } from 'mobx-react'
+import { WithLabel } from '../../../Common/components/WithLabel'
+import { Select } from '../../../Common/components/Select'
+import Input from '../../../Common/components/Input/Input'
+import { ValidateFullname } from '../../../Common/utils/ValidateFullname'
+import { inputStyles } from '../common/BasicInfoForm/styledComponents'
 const imgSrc =
   'https://cdn.zeplin.io/5d0afc9102b7fa56760995cc/assets/c2438b2e-3c57-45cc-a4e7-10c2b3eec159.svg'
 
@@ -20,6 +25,9 @@ class RequestAssetTransportPage extends Component<
   @observable isFlexible
   @observable fromDateTime
   @observable toDateTime
+  @observable assetType
+  @observable assetSensitivity
+  @observable nameNumber
   onChangeFromPlace = value => {
     this.fromPlace = value
   }
@@ -34,6 +42,15 @@ class RequestAssetTransportPage extends Component<
   }
   onSelectToDateTime = date => {
     this.toDateTime = date
+  }
+  handleAssetType = event => {
+    this.assetType = event.value
+  }
+  handleSensitivity = event => {
+    this.assetSensitivity = event.value
+  }
+  onChangeNameNumber = value => {
+    this.nameNumber = value
   }
   onClick = () => {
     this.props.onClickRequest({})
@@ -55,7 +72,50 @@ class RequestAssetTransportPage extends Component<
             onSelectFromDateTime={this.onSelectFromDateTime}
             onSelectToDateTime={this.onSelectToDateTime}
             onClick={this.onClick}
-          ></BasicInfoForm>
+          >
+            <WithLabel
+              labelStyle={LableTypo}
+              label={t('letsride:assetType')}
+              isRequired={true}
+            >
+              <Select
+                placeholder={t('letsride:selectAssetType')}
+                onSlectOption={this.handleAssetType}
+                options={[
+                  t('letsride:parcel'),
+                  t('letsride:bags'),
+                  t('letsride:others')
+                ]}
+              />
+            </WithLabel>
+            <WithLabel
+              labelStyle={LableTypo}
+              label={t('letsride:assetSensitivity')}
+              isRequired={true}
+            >
+              <Select
+                onSlectOption={this.handleSensitivity}
+                options={[
+                  t('letsride:higlySensitive'),
+                  t('letsride:sensitive'),
+                  t('letsride:normal')
+                ]}
+                placeholder={t('letsride:selectSensitivity')}
+              />
+            </WithLabel>
+            <WithLabel
+              labelStyle={LableTypo}
+              label={t('letsride:whomToDeliver')}
+              isRequired={true}
+            >
+              <Input
+                placeHolder={t('letsride:nameAndMobileNumber')}
+                onChange={this.onChangeNameNumber}
+                validateForm={ValidateFullname}
+                inputStyles={inputStyles}
+              />
+            </WithLabel>
+          </BasicInfoForm>
         </PageWrapper>
       </MainPageLayout>
     )

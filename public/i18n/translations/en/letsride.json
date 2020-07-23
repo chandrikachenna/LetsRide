@@ -21,5 +21,17 @@
   "select": "Select",
   "assetQuantity": "ASSET QUANTITY",
   "travelMedium": "TRAVEL MEDIUM",
-  "selectMedium": "Select medium"
+  "selectMedium": "Select medium",
+  "assetType": "ASSET TYPE",
+  "selectAssetType": "Select asset type",
+  "parcel": "Parcel",
+  "bags": "Bags",
+  "others": "Others",
+  "assetSensitivity": "ASSET SENSITIVITY",
+  "selectSensitivity": "Select sensitivity",
+  "higlySensitive": "Highly sensitive",
+  "sensitive": "Sensitive",
+  "normal": "Normal",
+  "whomToDeliver": "WHOM TO DELIVER",
+  "nameAndMobileNumber": "Name-mobile number"
 }

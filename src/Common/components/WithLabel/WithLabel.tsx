@@ -22,7 +22,7 @@ class WithLabel extends Component<WithLabelProps> {
       <Label css={isLeft}>
         <LableStyle>
           {label}
-          {isRequired ? <Required>*</Required> : ''}
+          {isRequired ? <Required>{' *'}</Required> : ''}
         </LableStyle>
       </Label>
     )
