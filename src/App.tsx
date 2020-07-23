@@ -9,10 +9,11 @@ import { HOME_ROUTE_PATH } from './Common/constants/NavigationConstants'
 
 import i18n from './Common/i18n'
 import { userRoutes } from './UserModule/routes'
+import stores from './Common/stores'
 
 const App = () => {
   return (
-    <Provider>
+    <Provider {...stores}>
       <I18nextProvider i18n={i18n}>
         <Suspense fallback={<div />}>
           <Router basename={process.env.PUBLIC_URL}>
