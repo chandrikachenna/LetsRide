@@ -15,6 +15,8 @@ class RequestRidePage extends Component<RequestRidePageProps> {
         onClick={onClickRequest}
         title={t('letsride:rideRequest')}
         buttonText={t('letsride:requestLable')}
+        seats={t('letsride:noOfSeats')}
+        quantity={t('letsride:laguageQuantity')}
       />
     )
   }

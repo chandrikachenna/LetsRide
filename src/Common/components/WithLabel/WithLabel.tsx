@@ -5,7 +5,7 @@ import {
   Required,
   WithLeftLableWrapper
 } from './styledComponents'
-import { observer } from 'mobx-react'
+
 interface WithLabelProps {
   labelStyle: Function
   label: string
@@ -22,7 +22,7 @@ class WithLabel extends Component<WithLabelProps> {
       <Label css={isLeft}>
         <LableStyle>
           {label}
-          {isRequired ? <Required>*</Required> : ''}
+          {isRequired ? <Required>{' *'}</Required> : ''}
         </LableStyle>
       </Label>
     )

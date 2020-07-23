@@ -1,2 +1,2 @@
-export const ICREMENT = '+';
-export const DECREMENT = '-';
+export const ICREMENT = '+'
+export const DECREMENT = '-'

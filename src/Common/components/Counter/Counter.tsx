@@ -20,10 +20,9 @@ class Counter extends Component<CounterProps> {
     return (
       <CounterWrapper>
         <Button
-          type={OUTLINE}
           disabled={false}
-          onClick={onIncrement}
-          text={ICREMENT}
+          onClick={onDecrement}
+          text={DECREMENT}
           textTypo={CountOperand}
           buttonStyles={buttonStyles}
           loadingStatus={false}
@@ -37,9 +36,10 @@ class Counter extends Component<CounterProps> {
           loadingStatus={false}
         />
         <Button
+          type={OUTLINE}
           disabled={false}
-          onClick={onDecrement}
-          text={DECREMENT}
+          onClick={onIncrement}
+          text={ICREMENT}
           textTypo={CountOperand}
           buttonStyles={buttonStyles}
           loadingStatus={false}

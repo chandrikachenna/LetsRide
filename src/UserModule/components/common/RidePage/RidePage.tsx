@@ -7,6 +7,7 @@ import { WithLabel } from '../../../../Common/components/WithLabel'
 import { Counter } from '../../../../Common/components/Counter'
 import { observable } from 'mobx'
 import { observer } from 'mobx-react'
+
 const imgSrc =
   'https://cdn.zeplin.io/5d0afc9102b7fa56760995cc/assets/c2438b2e-3c57-45cc-a4e7-10c2b3eec159.svg'
 
@@ -14,23 +15,30 @@ interface RidePageProps extends WithTranslation {
   onClick: (details: object) => void
   title: string
   buttonText: string
+  seats: string
+  quantity: string
 }
 @observer
 class RidePage extends Component<RidePageProps> {
-  @observable fromPlace
-  @observable toPlace
-  @observable isFlexible
-  @observable fromDateTime
-  @observable toDateTime
+  @observable fromPlace!: string
+  @observable toPlace!: string
+  @observable isFlexible!: boolean
+  @observable fromDateTime!: object
+  @observable toDateTime!: object
+  @observable noOfSeats!: number
+  @observable laguageQuantity!: number
 
-  @observable noOfSeats: number
-  @observable laguageQuantity: number
   constructor(props) {
     super(props)
+    this.init()
+  }
+  init = () => {
+    this.fromPlace = ''
+    this.toPlace = ''
+    this.isFlexible = false
     this.noOfSeats = 0
     this.laguageQuantity = 0
   }
-
   onChangeFromPlace = value => {
     this.fromPlace = value
   }
@@ -46,26 +54,33 @@ class RidePage extends Component<RidePageProps> {
   onSelectToDateTime = date => {
     this.toDateTime = date
   }
-  onIncrementSeats = (value: number) => {
+  onIncrementSeats = () => {
     this.noOfSeats++
   }
-  onDecrementSeats = (value: number) => {
+  onDecrementSeats = () => {
     this.noOfSeats--
   }
-  onIncrementlaguageQuantity = (value: number) => {
+  onIncrementlaguageQuantity = () => {
     this.laguageQuantity++
   }
-  onDecrementlaguageQuantity = (value: number) => {
+  onDecrementlaguageQuantity = () => {
     this.laguageQuantity--
   }
   onClickButton = () => {
-    this.props.onClick({})
-    //:TODO
-    //this.props.onClick(details:interfaceOfData)
+    const ridePageInfo = {
+      fromPlace: this.fromPlace,
+      toPlace: this.toPlace,
+      isFlexible: this.isFlexible,
+      fromDateTime: `${this.fromDateTime}`,
+      toDateTime: `${this.toDateTime}`,
+      seats: this.noOfSeats,
+      quantity: this.laguageQuantity
+    }
+    this.props.onClick(ridePageInfo)
   }
 
   render() {
-    const { t, title, buttonText } = this.props
+    const { t, title, buttonText, seats, quantity } = this.props
     return (
       <MainPageLayout src={imgSrc}>
         <PageWrapper>
@@ -84,7 +99,7 @@ class RidePage extends Component<RidePageProps> {
           >
             <WithLabel
               labelStyle={LableTypo}
-              label={t('letsride:noOfSeats')}
+              label={t(`letsride:${seats}`)}
               isRequired={true}
               isLeft={true}
             >
@@ -96,7 +111,7 @@ class RidePage extends Component<RidePageProps> {
             </WithLabel>
             <WithLabel
               labelStyle={LableTypo}
-              label={t(`letsride:${'laguageQuantity'}`)}
+              label={t(`letsride:${quantity}`)}
               isRequired={true}
               isLeft={true}
             >

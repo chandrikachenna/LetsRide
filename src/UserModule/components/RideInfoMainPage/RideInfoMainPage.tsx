@@ -66,12 +66,24 @@ class RideInfoMainPage extends Component {
               validateForm={ValidateFullname}
               inputStyles={inputStyles}
               inputRef={this.inputRef}
+<<<<<<< HEAD
             ></Input>
             <Select
               onSlectOption={this.onchange}
               options={['1', '2']}
               value={'1'}
             />
+=======
+            /> */}
+
+            <WithLabel labelStyle={InputLable} label={'HI'} isRequired={true}>
+              <Select
+                onSlectOption={this.onchange}
+                options={['1', '2']}
+                value={'1'}
+              />
+            </WithLabel>
+>>>>>>> 10eed134112338d4db93d359263d1d4cd5a785bb
             <Button
               ref={this.inputCustom}
               disabled={false}
