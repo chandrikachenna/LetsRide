@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import './index.css'
 import ReactSelect from 'react-select'
-import { selectStyles } from './styledComponent'
+import { selectStyles, Wrapper, ErrorMsgSpan } from './styledComponent'
+import { observable } from 'mobx'
+import { observer } from 'mobx-react'
 
 const styles = {
   control: (base, state) => ({
@@ -21,8 +23,15 @@ interface SelectProps {
   isMulti?: boolean
   className?: string
   placeholder?: string
+  showError?: boolean
 }
+@observer
 class Select extends Component<SelectProps> {
+  @observable shouldShowErrorMessage = false
+  @observable selectedValue
+  static defaultProps = {
+    showError: true
+  }
   renderOptions = options => {
     let optionsList = [...options]
     return optionsList.map(option => {
@@ -36,6 +45,19 @@ class Select extends Component<SelectProps> {
       return { value: value, label: value }
     }
   }
+  onBlur = event => {
+    if (this.selectedValue) {
+      this.shouldShowErrorMessage = false
+    } else {
+      this.shouldShowErrorMessage = true
+    }
+  }
+  onChange = event => {
+    this.shouldShowErrorMessage = false
+    this.selectedValue = event.value
+    const { onSlectOption } = this.props
+    onSlectOption(event)
+  }
   render() {
     const {
       onSlectOption,
@@ -44,21 +66,28 @@ class Select extends Component<SelectProps> {
       isDisabled,
       isMulti,
       className,
-      placeholder
+      placeholder,
+      showError
     } = this.props
 
     return (
-      <ReactSelect
-        isDisabled={isDisabled}
-        className={className ? className : 'styles-select'}
-        css={selectStyles}
-        styles={styles}
-        options={options.length > 0 ? this.renderOptions(options) : []}
-        onChange={onSlectOption}
-        defaultValue={this.renderValue(value)}
-        isMulti={isMulti}
-        placeholder={placeholder}
-      />
+      <Wrapper>
+        <ReactSelect
+          isDisabled={isDisabled}
+          className={className ? className : 'styles-select'}
+          css={selectStyles}
+          styles={styles}
+          options={options.length > 0 ? this.renderOptions(options) : []}
+          onChange={this.onChange}
+          onBlur={this.onBlur}
+          defaultValue={this.renderValue(value)}
+          isMulti={isMulti}
+          placeholder={placeholder}
+        />
+        <ErrorMsgSpan>
+          {showError && this.shouldShowErrorMessage && 'Required'}
+        </ErrorMsgSpan>
+      </Wrapper>
     )
   }
 }

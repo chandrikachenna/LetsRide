@@ -19,7 +19,7 @@ export const cardStyles = css`
   background-color: ${COLORS.white};
 `
 export const inputStyles = css`
-  width: 301px;
+  width: 401px;
   height: 40px;
   border-radius: 2px;
   border: solid 1px ${COLORS.lightBlueGrey};
@@ -29,7 +29,7 @@ export const InputLable = styled(Typo12SteelHKGroteskSemiBold)`
   ${tw`flex `}
 `
 export const ButtonStyles = css`
-  width: 299px;
+  width: 399px;
   height: 40px;
   border-radius: 4px;
   background-color: ${COLORS.brightBlue};

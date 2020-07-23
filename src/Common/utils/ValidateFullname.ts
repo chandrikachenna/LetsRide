@@ -6,9 +6,6 @@ export function ValidateFullname(value: string): validateFormReturnType {
   if (isEmpty) {
     shouldShowErrorMessage = true
     errorMessage = 'Required'
-  } else if (value.length < 8) {
-    shouldShowErrorMessage = true
-    errorMessage = 'Fullname should be greater than 8 charecters.'
   }
   return { shouldShowErrorMessage, errorMessage }
 }
