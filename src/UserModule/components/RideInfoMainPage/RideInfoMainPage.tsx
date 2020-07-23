@@ -34,14 +34,16 @@ const tabsData = [
 @observer
 class RideInfoMainPage extends Component {
   @observable date = new Date()
-  // @observable inputRef
-  // constructor(props) {
-  //   super(props)
-  //   this.inputRef = React.createRef()
-  // }
-  // componentDidMount() {
-  //   this.inputRef.current.focus()
-  // }
+  @observable inputRef: React.RefObject<any>
+  @observable inputCustom: React.RefObject<any>
+  constructor(props) {
+    super(props)
+    this.inputCustom = React.createRef()
+    this.inputRef = React.createRef()
+  }
+  componentDidMount() {
+    this.inputRef.current.focus()
+  }
 
   onchange = (value: string) => {}
   onclick = (value: number) => {}
@@ -49,8 +51,7 @@ class RideInfoMainPage extends Component {
     this.date = date
   }
   onSubmit = value => {
-    // console.log(this.inputRef)
-    // console.log(this.inputRef.current.__reactEventHandlers$i7cvthpnuq)
+    console.log(this.inputRef)
   }
   onChangeToPlace = () => {}
   render() {
@@ -59,19 +60,20 @@ class RideInfoMainPage extends Component {
         {/* <TabBar data={tabsData} /> */}
         <PageWrapper>
           <Card cardStyles={cardStyles}>
-            {/* <Input
+            <Input
               placeHolder={'name'}
               onChange={this.onChangeToPlace}
               validateForm={ValidateFullname}
               inputStyles={inputStyles}
               inputRef={this.inputRef}
-            /> */}
+            ></Input>
             <Select
               onSlectOption={this.onchange}
               options={['1', '2']}
               value={'1'}
             />
             <Button
+              ref={this.inputCustom}
               disabled={false}
               onClick={this.onSubmit}
               text={'string'}
