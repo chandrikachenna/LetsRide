@@ -30,6 +30,7 @@ class RidePage extends Component<RidePageProps> {
 
   constructor(props) {
     super(props)
+
     this.init()
   }
   init = () => {

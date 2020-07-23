@@ -19,6 +19,7 @@ import {
 } from './styledComponents'
 import { DatePicker } from '../../../../Common/components/DatePicker'
 import { observer } from 'mobx-react'
+import { observable } from 'mobx'
 interface BasicInfoFormProps extends WithTranslation {
   formTitle: string
   buttonText: string
@@ -35,7 +36,14 @@ interface BasicInfoFormProps extends WithTranslation {
 
 @observer
 class BasicInfoForm extends Component<BasicInfoFormProps> {
+  @observable inputRef
+  constructor(props) {
+    super(props)
+    this.inputRef = React.createRef()
+  }
   render() {
+    console.log(this.inputRef)
+
     const {
       t,
       formTitle,

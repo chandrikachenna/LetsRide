@@ -59,23 +59,15 @@ class RideInfoMainPage extends Component {
       <MainPageLayout src={imgSrc}>
         {/* <TabBar data={tabsData} /> */}
         <PageWrapper>
-          <Card cardStyles={cardStyles}>
+          <Card cardStyles={cardStyles} ref={this.inputCustom}>
             <Input
               placeHolder={'name'}
               onChange={this.onChangeToPlace}
               validateForm={ValidateFullname}
               inputStyles={inputStyles}
               inputRef={this.inputRef}
-<<<<<<< HEAD
-            ></Input>
-            <Select
-              onSlectOption={this.onchange}
-              options={['1', '2']}
-              value={'1'}
-            />
-=======
-            /> */}
-
+            />{' '}
+            */}
             <WithLabel labelStyle={InputLable} label={'HI'} isRequired={true}>
               <Select
                 onSlectOption={this.onchange}
@@ -83,7 +75,6 @@ class RideInfoMainPage extends Component {
                 value={'1'}
               />
             </WithLabel>
->>>>>>> 10eed134112338d4db93d359263d1d4cd5a785bb
             <Button
               ref={this.inputCustom}
               disabled={false}
