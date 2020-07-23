@@ -1,6 +1,6 @@
 import { action, observable } from 'mobx'
 import LetsRideService from '../../services/LetsRideService'
-import { FormsInfoModel } from '../FormsInfoModel'
+import { FormsInfoModel } from '../models/FormsInfoModel'
 
 class LetsRideInfoStore {
   letsRideService: LetsRideService

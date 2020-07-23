@@ -7,7 +7,7 @@ import { WithLabel } from '../../../../Common/components/WithLabel'
 import { Counter } from '../../../../Common/components/Counter'
 import { observable } from 'mobx'
 import { observer } from 'mobx-react'
-import { object } from '@storybook/addon-knobs'
+
 const imgSrc =
   'https://cdn.zeplin.io/5d0afc9102b7fa56760995cc/assets/c2438b2e-3c57-45cc-a4e7-10c2b3eec159.svg'
 
@@ -36,8 +36,6 @@ class RidePage extends Component<RidePageProps> {
     this.fromPlace = ''
     this.toPlace = ''
     this.isFlexible = false
-    this.fromDateTime = {}
-    this.toDateTime = {}
     this.noOfSeats = 0
     this.laguageQuantity = 0
   }

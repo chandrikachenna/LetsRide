@@ -10,6 +10,7 @@ import { Select } from '../../../Common/components/Select'
 import Input from '../../../Common/components/Input/Input'
 import { ValidateFullname } from '../../../Common/utils/ValidateFullname'
 import { inputStyles } from '../common/BasicInfoForm/styledComponents'
+import { Counter } from '../../../Common/components/Counter'
 const imgSrc =
   'https://cdn.zeplin.io/5d0afc9102b7fa56760995cc/assets/c2438b2e-3c57-45cc-a4e7-10c2b3eec159.svg'
 
@@ -25,6 +26,7 @@ class RequestAssetTransportPage extends Component<
   @observable isFlexible!: boolean
   @observable fromDateTime!: object
   @observable toDateTime!: Object
+  @observable noOfAssests!: number
   @observable assetType!: string
   @observable otherAssetType!: string
   @observable isAssetTypeOther!: boolean
@@ -38,8 +40,7 @@ class RequestAssetTransportPage extends Component<
     this.fromPlace = ''
     this.toPlace = ''
     this.isFlexible = false
-    this.fromDateTime = {}
-    this.toDateTime = {}
+    this.noOfAssests = 0
     this.assetType = ''
     this.otherAssetType = ''
     this.isAssetTypeOther = false
@@ -60,6 +61,12 @@ class RequestAssetTransportPage extends Component<
   }
   onSelectToDateTime = date => {
     this.toDateTime = date
+  }
+  onIncrementAssestNo = () => {
+    this.noOfAssests++
+  }
+  onDecrementAssestNo = () => {
+    this.noOfAssests--
   }
   handleAssetType = event => {
     this.assetType = event.value
@@ -85,6 +92,7 @@ class RequestAssetTransportPage extends Component<
       isFlexible: this.isFlexible,
       fromDateTime: `${this.fromDateTime}`,
       toDateTime: `${this.toDateTime}`,
+      noOfAssests: this.noOfAssests,
       assetType: this.assetType,
       isAssetTypeOther: this.isAssetTypeOther,
       otherAssetType: this.otherAssetType,
@@ -111,6 +119,18 @@ class RequestAssetTransportPage extends Component<
             onSelectToDateTime={this.onSelectToDateTime}
             onClick={this.onClick}
           >
+            <WithLabel
+              labelStyle={LableTypo}
+              label={t(`letsride:noOfAssets`)}
+              isRequired={true}
+              isLeft={true}
+            >
+              <Counter
+                onIncrement={this.onIncrementAssestNo}
+                onDecrement={this.onDecrementAssestNo}
+                count={this.noOfAssests}
+              />
+            </WithLabel>
             <WithLabel
               labelStyle={LableTypo}
               label={t('letsride:assetType')}

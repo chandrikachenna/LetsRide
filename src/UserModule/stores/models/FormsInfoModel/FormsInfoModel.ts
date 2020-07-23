@@ -1,4 +1,4 @@
-import LetsRideService from '../../services/LetsRideService'
+import LetsRideService from '../../../services/LetsRideService'
 import { action, observable } from 'mobx'
 import { APIStatus, API_INITIAL } from '@ib/api-constants'
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
@@ -37,6 +37,18 @@ class FormsInfoModel {
   }
 
   @action.bound
+  getCommonInfo = (info) => {
+    const { fromPlace, toPlace, isFlexible, fromDateTime, toDateTime } = info
+    return {
+      'from_place': fromPlace,
+      'to_place': toPlace,
+      'is_flexible': isFlexible,
+      'from_date_time': fromDateTime,
+      'to_date_time': toDateTime
+    }
+  }
+
+  @action.bound
   setUpdateRideRequestAPIStatus(apiStatus) {
     this.getUpdateRideRequestAPIStatus = apiStatus
   }
@@ -45,7 +57,18 @@ class FormsInfoModel {
     this.getUpdateRideRequestAPIError = error
   }
   @action.bound
-  UpdateRideRequestInfo(requestObject) {
+  getRideRequestInfo(info) {
+    const basicInfo = this.getCommonInfo(info)
+    const { noOfSeats, laguageQuantity } = info
+    return {
+      ...basicInfo,
+      'number_of_seats': noOfSeats,
+      'luggage_quantity': laguageQuantity
+    }
+  }
+  @action.bound
+  UpdateRideRequestInfo(info) {
+    const requestObject = this.getRideRequestInfo(info)
     const UpdateRideRequestInfoPromise = this.letsRideService.UpdateRideRequestAPI(
       requestObject
     )
@@ -63,7 +86,22 @@ class FormsInfoModel {
     this.getUpdateAsserTransportRequestAPIError = error
   }
   @action.bound
-  UpdateAsserTransportRequestInfo(requestObject) {
+  AsserTransportRequestInfo(info) {
+    const basicInfo = this.getCommonInfo(info)
+    const { noOfAssests, assetType, isAssetTypeOther, otherAssetType, assetSensitivity, whomToDeliver } = info
+    return {
+      ...basicInfo,
+      'number_of_assets': noOfAssests,
+      'asset_type': assetType,
+      'is_asset_type_other': isAssetTypeOther,
+      'other_asset_type': otherAssetType,
+      'asset_sensitivity': assetSensitivity,
+      'whom_to_deliver': whomToDeliver
+    }
+  }
+  @action.bound
+  UpdateAsserTransportRequestInfo(info) {
+    const requestObject = this.AsserTransportRequestInfo(info)
     const UpdateAsserTransportRequestInfoPromise = this.letsRideService.UpdateAsserTransportRequestAPI(
       requestObject
     )
@@ -81,7 +119,18 @@ class FormsInfoModel {
     this.getUpdateShareRideAPIError = error
   }
   @action.bound
-  UpdateShareRideInfo(requestObject) {
+  getShareRideInfo = (info) => {
+    const basicInfo = this.getCommonInfo(info)
+    const { noOfSeats, laguageQuantity } = info
+    return {
+      ...basicInfo,
+      'number_of_seats_available': noOfSeats,
+      'assets_quantity': laguageQuantity
+    }
+  }
+  @action.bound
+  UpdateShareRideInfo(info) {
+    const requestObject = this.getShareRideInfo(info)
     const UpdateShareRideInfoPromise = this.letsRideService.UpdateShareRideAPI(
       requestObject
     )
@@ -99,7 +148,18 @@ class FormsInfoModel {
     this.getUpdateShareTravelInfoAPIError = error
   }
   @action.bound
-  UpdateShareTravelInfo(requestObject) {
+  getShareTravelInfo = (info) => {
+    const basicInfo = this.getCommonInfo(info)
+    const { travelMedium, assetQuantity } = info
+    return {
+      ...basicInfo,
+      'travel_medium': travelMedium,
+      'assets_quantity': assetQuantity
+    }
+  }
+  @action.bound
+  UpdateShareTravelInfo(info) {
+    const requestObject = this.getShareTravelInfo(info)
     const UpdateShareTravelInfoPromise = this.letsRideService.UpdateShareTravelInfoAPI(
       requestObject
     )
