@@ -45,6 +45,7 @@ class ShareTravelInfoPage extends Component<ShareTravelInfoPageProps> {
   }
   onSelectFromDateTime = date => {
     this.fromDateTime = date
+    console.log(this.fromDateTime)
   }
   onSelectToDateTime = date => {
     this.toDateTime = date

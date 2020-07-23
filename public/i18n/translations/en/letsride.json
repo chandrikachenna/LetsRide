@@ -40,5 +40,8 @@
   "sensitive": "Sensitive",
   "normal": "Normal",
   "whomToDeliver": "WHOM TO DELIVER",
-  "nameAndMobileNumber": "Name-mobile number"
+  "nameAndMobileNumber": "Name-mobile number",
+  "matchingResults": "Matching Results",
+  "myRequests": "My Requests",
+  "sharedDetails": "Shared Details"
 }

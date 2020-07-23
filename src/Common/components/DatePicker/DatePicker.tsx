@@ -22,21 +22,26 @@ class DatePicker extends Component<DatePickerProps> {
     showError: true
   }
   onBlur = () => {
-    this.shouldShowErrorMessage = true
-    this.errorMessage = this.props.t('common:requiredMsg')
+    const { selectedDate } = this.props
+    console.log(selectedDate)
+    if (!selectedDate) {
+      this.shouldShowErrorMessage = true
+      this.errorMessage = this.props.t('common:requiredMsg')
+    } else {
+      this.shouldShowErrorMessage = false
+      this.errorMessage = ''
+    }
+  }
+  handleChange = date => {
+    this.props.handleChange(date)
+    this.shouldShowErrorMessage = false
   }
   render() {
-    const {
-      selectedDate,
-      placeHolder,
-      minDate,
-      handleChange,
-      showError
-    } = this.props
+    const { selectedDate, placeHolder, minDate, showError } = this.props
     return (
       <Wrapper>
         <ReactDatePicker
-          onChange={handleChange}
+          onChange={this.handleChange}
           onBlur={this.onBlur}
           showTimeSelect
           placeholderText={placeHolder}
@@ -45,7 +50,7 @@ class DatePicker extends Component<DatePickerProps> {
           selected={selectedDate}
         />
         <ErrorMsgSpan>
-          {this.shouldShowErrorMessage && showError && 'Required'}
+          {showError && this.shouldShowErrorMessage && 'Required'}
         </ErrorMsgSpan>
       </Wrapper>
     )
