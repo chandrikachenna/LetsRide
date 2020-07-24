@@ -51,13 +51,19 @@ class FormsInfoModel {
   @action.bound
   setUpdateRideRequestAPIStatus(apiStatus) {
     this.getUpdateRideRequestAPIStatus = apiStatus
+    console.log('Status', this.getUpdateRideRequestAPIStatus);
+
   }
   @action.bound
   setUpdateRideRequestAPIError(error) {
     this.getUpdateRideRequestAPIError = error
+    console.log('Error', this.getUpdateRideRequestAPIError);
+
   }
   @action.bound
   getRideRequestInfo(info) {
+    console.log('ride Request');
+
     const basicInfo = this.getCommonInfo(info)
     const { noOfSeats, laguageQuantity } = info
     return {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Redirect, Route } from 'react-router-dom'
-import { getAccessToken } from '../../utils/StorageUtils'
+import { getAccessToken, setAccessToken } from '../../utils/StorageUtils'
 
 interface ProtectedRouteProps {
   path: string
@@ -14,6 +14,7 @@ class ProtectedRoute extends React.Component<ProtectedRouteProps> {
 
   render() {
     const { path, renderedComponent: Component } = this.props
+    setAccessToken('abc')
     if (getAccessToken()) {
       return <Route exact path={path} component={Component} />
     }
