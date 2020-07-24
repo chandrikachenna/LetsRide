@@ -25,6 +25,7 @@ interface InputProps extends WithTranslation {
   inputStyles?: any
   inputRef?: any
   showMsg?: boolean
+  isError?: boolean
 }
 @observer
 class Input extends Component<InputProps> {
@@ -62,7 +63,8 @@ class Input extends Component<InputProps> {
       className,
       inputStyles,
       inputRef,
-      showMsg
+      showMsg,
+      isError
     } = this.props
     return (
       <InputElementWrapper>
@@ -75,10 +77,14 @@ class Input extends Component<InputProps> {
           data-testid={testid}
           onBlur={this.onBlur}
           css={inputStyles}
-          isError={this.shouldShowErrorMessage && showMsg}
+          isError={
+            (this.shouldShowErrorMessage && showMsg) || (isError && !this.value)
+          }
         />
         <ErrorMsgSpan>
-          {this.shouldShowErrorMessage && showMsg && this.errorMessage}
+          {isError
+            ? !this.value && 'Required'
+            : this.shouldShowErrorMessage && showMsg && this.errorMessage}
         </ErrorMsgSpan>
       </InputElementWrapper>
     )

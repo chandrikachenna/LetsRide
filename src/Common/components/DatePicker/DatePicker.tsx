@@ -12,6 +12,7 @@ interface DatePickerProps extends WithTranslation {
   selectedDate: object
   handleChange: (date: object) => void
   showError?: boolean
+  isError?: boolean
 }
 @observer
 class DatePicker extends Component<DatePickerProps> {
@@ -23,7 +24,6 @@ class DatePicker extends Component<DatePickerProps> {
   }
   onBlur = () => {
     const { selectedDate } = this.props
-    console.log(selectedDate)
     if (!selectedDate) {
       this.shouldShowErrorMessage = true
       this.errorMessage = this.props.t('common:requiredMsg')
@@ -37,7 +37,13 @@ class DatePicker extends Component<DatePickerProps> {
     this.shouldShowErrorMessage = false
   }
   render() {
-    const { selectedDate, placeHolder, minDate, showError } = this.props
+    const {
+      selectedDate,
+      placeHolder,
+      minDate,
+      showError,
+      isError
+    } = this.props
     return (
       <Wrapper>
         <ReactDatePicker
@@ -50,6 +56,7 @@ class DatePicker extends Component<DatePickerProps> {
           selected={selectedDate}
         />
         <ErrorMsgSpan>
+          {isError && !selectedDate && 'Required'}
           {showError && this.shouldShowErrorMessage && 'Required'}
         </ErrorMsgSpan>
       </Wrapper>

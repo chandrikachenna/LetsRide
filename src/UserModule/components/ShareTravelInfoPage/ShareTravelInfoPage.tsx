@@ -8,6 +8,7 @@ import { observer } from 'mobx-react'
 import { WithLabel } from '../../../Common/components/WithLabel'
 import { Counter } from '../../../Common/components/Counter'
 import { Select } from '../../../Common/components/Select'
+import { validateFields } from '../../../Common/utils/validateFields'
 const imgSrc =
   'https://cdn.zeplin.io/5d0afc9102b7fa56760995cc/assets/c2438b2e-3c57-45cc-a4e7-10c2b3eec159.svg'
 interface ShareTravelInfoPageProps extends WithTranslation {
@@ -23,16 +24,17 @@ class ShareTravelInfoPage extends Component<ShareTravelInfoPageProps> {
   @observable toDateTime!: Object
   @observable travelMedium!: string
   @observable assetQuantity!: number
+  @observable isError: boolean = false
   constructor(props) {
     super(props)
-    this.init()
+    this.assetQuantity = 0
+    // this.init()
   }
   init = () => {
     this.fromPlace = ''
     this.toPlace = ''
     this.isFlexible = false
     this.travelMedium = ''
-    this.assetQuantity = 0
   }
   onChangeFromPlace = value => {
     this.fromPlace = value
@@ -57,19 +59,22 @@ class ShareTravelInfoPage extends Component<ShareTravelInfoPageProps> {
     this.assetQuantity++
   }
   onDecrementAssetQuantity = () => {
-    this.assetQuantity--
+    this.assetQuantity > 0 && this.assetQuantity--
   }
   onClick = () => {
-    const travelInfo = {
+    let travelInfo = {
       fromPlace: this.fromPlace,
       toPlace: this.toPlace,
-      isFlexible: this.isFlexible,
       fromDateTime: `${this.fromDateTime}`,
-      toDateTime: `${this.toDateTime}`,
-      travelMedium: this.travelMedium,
-      assetQuantity: this.assetQuantity
+      travelMedium: this.travelMedium
     }
-    this.props.onClickShare(travelInfo)
+    this.isError = validateFields(travelInfo, this.isError)
+    travelInfo[`isFlexible`] = this.isFlexible
+    travelInfo[`toDateTime`] = `${this.toDateTime}`
+    travelInfo[`assetQuantity`] = this.assetQuantity
+    if (!this.isError) {
+      this.props.onClickShare(travelInfo)
+    }
   }
   render() {
     const { t } = this.props
@@ -88,6 +93,7 @@ class ShareTravelInfoPage extends Component<ShareTravelInfoPageProps> {
             onSelectFromDateTime={this.onSelectFromDateTime}
             onSelectToDateTime={this.onSelectToDateTime}
             onClick={this.onClick}
+            isError={this.isError}
           >
             <WithLabel
               labelStyle={LableTypo}
@@ -102,6 +108,7 @@ class ShareTravelInfoPage extends Component<ShareTravelInfoPageProps> {
                   t('letsride:car'),
                   t('letsride:flight')
                 ]}
+                isError={this.isError}
               />
             </WithLabel>
             <WithLabel

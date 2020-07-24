@@ -32,6 +32,7 @@ interface BasicInfoFormProps extends WithTranslation {
   onSelectFromDateTime: (date: object) => void
   onSelectToDateTime: (date: object) => void
   onClick: () => void
+  isError?: boolean
 }
 
 @observer
@@ -42,8 +43,6 @@ class BasicInfoForm extends Component<BasicInfoFormProps> {
     this.inputRef = React.createRef()
   }
   render() {
-    console.log(this.inputRef)
-
     const {
       t,
       formTitle,
@@ -57,7 +56,8 @@ class BasicInfoForm extends Component<BasicInfoFormProps> {
       handleIsFlexible,
       onSelectFromDateTime,
       onSelectToDateTime,
-      onClick
+      onClick,
+      isError
     } = this.props
     return (
       <Card cardStyles={cardStyles}>
@@ -72,6 +72,7 @@ class BasicInfoForm extends Component<BasicInfoFormProps> {
             onChange={onChangeFromPlace}
             validateForm={ValidateFullname}
             inputStyles={inputStyles}
+            isError={isError}
           />
         </WithLabel>
         <WithLabel
@@ -84,6 +85,7 @@ class BasicInfoForm extends Component<BasicInfoFormProps> {
             onChange={onChangeToPlace}
             validateForm={ValidateFullname}
             inputStyles={inputStyles}
+            isError={isError}
           />
         </WithLabel>
 
@@ -99,6 +101,7 @@ class BasicInfoForm extends Component<BasicInfoFormProps> {
             minDate={new Date()}
             handleChange={onSelectFromDateTime}
             selectedDate={fromDateTime}
+            isError={isError}
           />
         </WithLabel>
         {isFlexible && (

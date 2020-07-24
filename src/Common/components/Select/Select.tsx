@@ -24,6 +24,7 @@ interface SelectProps {
   className?: string
   placeholder?: string
   showError?: boolean
+  isError?: boolean
 }
 @observer
 class Select extends Component<SelectProps> {
@@ -67,7 +68,8 @@ class Select extends Component<SelectProps> {
       isMulti,
       className,
       placeholder,
-      showError
+      showError,
+      isError
     } = this.props
 
     return (
@@ -85,6 +87,7 @@ class Select extends Component<SelectProps> {
           placeholder={placeholder}
         />
         <ErrorMsgSpan>
+          {isError && !this.selectedValue && 'Required'}
           {showError && this.shouldShowErrorMessage && 'Required'}
         </ErrorMsgSpan>
       </Wrapper>
