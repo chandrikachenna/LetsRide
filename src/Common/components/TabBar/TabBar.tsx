@@ -6,19 +6,11 @@ function panesList(Component, firstData, secondDate) {
   return [
     {
       menuItem: firstData.title,
-      render: () => (
-        <Tab.Pane attached={false}>
-          <Component data={firstData} />
-        </Tab.Pane>
-      )
+      render: () => <Component data={firstData} />
     },
     {
       menuItem: secondDate.title,
-      render: () => (
-        <Tab.Pane attached={false}>
-          <Component data={secondDate} />
-        </Tab.Pane>
-      )
+      render: () => <Component data={secondDate} />
     }
   ]
 }
