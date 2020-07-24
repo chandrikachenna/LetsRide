@@ -19,7 +19,8 @@ class Button extends Component<ButtonProps> {
   static defaultProps = {
     type: buttonType.filled,
     variant: buttonVariant.oval,
-    disabled: false
+    disabled: false,
+    loadingStatus: false
   }
 
   static buttonTypes = buttonType

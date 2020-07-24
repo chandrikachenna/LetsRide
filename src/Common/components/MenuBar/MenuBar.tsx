@@ -1,17 +1,23 @@
 import React, { Component } from 'react'
-import { Layout, Text } from './styledComponents'
+import {
+  Layout,
+  Text,
+  ButtonStyles,
+  ActiveButtonStyles
+} from './styledComponents'
 import { observer } from 'mobx-react'
 import { observable } from 'mobx'
-import { Button } from '../MenuButton'
-import { COLORS } from '../../themes/Colors'
 
-const menus = { menu1: 'Menu1', menu2: 'Menu2', menu3: 'Menu3' }
-const width: any = '129px'
+import { Button } from '../Button'
+
+export const menus = { menu1: 'Menu1', menu2: 'Menu2', menu3: 'Menu3' }
 
 interface MenuBarProps {
+  menu: string
   menu1Name: string
   menu2Name: string
   menu3Name: string
+  onClickMenu: (value: string) => void
 }
 
 @observer
@@ -23,12 +29,15 @@ class MenuBar extends Component<MenuBarProps> {
   }
   onclickMenu1 = () => {
     this.selectedMenu = menus.menu1
+    this.props.onClickMenu(this.selectedMenu)
   }
   onclickMenu2 = () => {
     this.selectedMenu = menus.menu2
+    this.props.onClickMenu(this.selectedMenu)
   }
   onclickMenu3 = () => {
     this.selectedMenu = menus.menu3
+    this.props.onClickMenu(this.selectedMenu)
   }
   render() {
     const { menu1, menu2, menu3 } = menus
@@ -38,48 +47,36 @@ class MenuBar extends Component<MenuBarProps> {
         {this.selectedMenu && (
           <>
             <Button
+              disabled={false}
               onClick={this.onclickMenu1}
-              name={menu1Name}
-              width={width}
-              variant={
+              text={menu1Name}
+              textTypo={Text}
+              buttonStyles={
                 this.selectedMenu.match(menu1)
-                  ? COLORS.brightBlue
-                  : COLORS.white
-              }
-              color={
-                this.selectedMenu.match(menu1)
-                  ? COLORS.white
-                  : COLORS.darkBlueGrey
+                  ? ActiveButtonStyles
+                  : ButtonStyles
               }
             />
             <Button
+              disabled={false}
               onClick={this.onclickMenu2}
-              name={menu2Name}
-              width={width}
-              variant={
+              text={menu2Name}
+              textTypo={Text}
+              buttonStyles={
                 this.selectedMenu.match(menu2)
-                  ? COLORS.brightBlue
-                  : COLORS.white
-              }
-              color={
-                this.selectedMenu.match(menu2)
-                  ? COLORS.white
-                  : COLORS.darkBlueGrey
+                  ? ActiveButtonStyles
+                  : ButtonStyles
               }
             />
             <Button
+              disabled={false}
               onClick={this.onclickMenu3}
-              name={menu3Name}
-              width={width}
-              variant={
+              text={menu3Name}
+              textTypo={Text}
+              buttonStyles={
                 this.selectedMenu.match(menu3)
-                  ? COLORS.brightBlue
-                  : COLORS.white
-              }
-              color={
-                this.selectedMenu.match(menu3)
-                  ? COLORS.white
-                  : COLORS.darkBlueGrey
+                  ? ActiveButtonStyles
+                  : ButtonStyles
               }
             />
           </>
