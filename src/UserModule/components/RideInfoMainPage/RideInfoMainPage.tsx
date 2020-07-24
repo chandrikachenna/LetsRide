@@ -11,6 +11,7 @@ import {
 import { observable } from 'mobx'
 import { menus } from '../../../Common/components/MenuBar/MenuBar'
 import { RidesInfoDashboard } from '../common/RidesInfoDashboard'
+
 const renderedMenus = {
   matchingResults: 'matchingResults',
   myRequests: 'myRequests',
