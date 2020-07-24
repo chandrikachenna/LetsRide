@@ -7,6 +7,7 @@ import { WithLabel } from '../../../../Common/components/WithLabel'
 import { Counter } from '../../../../Common/components/Counter'
 import { observable } from 'mobx'
 import { observer } from 'mobx-react'
+import { validateFields } from '../../../../Common/utils/validateFields'
 
 const imgSrc =
   'https://cdn.zeplin.io/5d0afc9102b7fa56760995cc/assets/c2438b2e-3c57-45cc-a4e7-10c2b3eec159.svg'
@@ -27,11 +28,12 @@ class RidePage extends Component<RidePageProps> {
   @observable toDateTime!: object
   @observable noOfSeats!: number
   @observable laguageQuantity!: number
-
+  @observable isError: boolean = false
   constructor(props) {
     super(props)
-
-    this.init()
+    this.noOfSeats = 0
+    this.laguageQuantity = 0
+    // this.init()
   }
   init = () => {
     this.fromPlace = ''
@@ -59,25 +61,28 @@ class RidePage extends Component<RidePageProps> {
     this.noOfSeats++
   }
   onDecrementSeats = () => {
-    this.noOfSeats--
+    this.noOfSeats > 0 && this.noOfSeats--
   }
   onIncrementlaguageQuantity = () => {
     this.laguageQuantity++
   }
   onDecrementlaguageQuantity = () => {
-    this.laguageQuantity--
+    this.laguageQuantity > 0 && this.laguageQuantity--
   }
   onClickButton = () => {
     const ridePageInfo = {
       fromPlace: this.fromPlace,
       toPlace: this.toPlace,
-      isFlexible: this.isFlexible,
-      fromDateTime: `${this.fromDateTime}`,
-      toDateTime: `${this.toDateTime}`,
-      seats: this.noOfSeats,
-      quantity: this.laguageQuantity
+      fromDateTime: `${this.fromDateTime}`
     }
-    this.props.onClick(ridePageInfo)
+    this.isError = validateFields(ridePageInfo, this.isError)
+    ridePageInfo[`isFlexible`] = this.isFlexible
+    ridePageInfo[`toDateTime`] = `${this.toDateTime}`
+    ridePageInfo[`seats`] = this.noOfSeats
+    ridePageInfo[`quantity`] = this.laguageQuantity
+    if (!this.isError) {
+      this.props.onClick(ridePageInfo)
+    }
   }
 
   render() {
@@ -97,6 +102,7 @@ class RidePage extends Component<RidePageProps> {
             onSelectFromDateTime={this.onSelectFromDateTime}
             onSelectToDateTime={this.onSelectToDateTime}
             onClick={this.onClickButton}
+            isError={this.isError}
           >
             <WithLabel
               labelStyle={LableTypo}

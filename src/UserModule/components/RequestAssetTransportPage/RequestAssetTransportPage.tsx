@@ -11,6 +11,7 @@ import Input from '../../../Common/components/Input/Input'
 import { ValidateFullname } from '../../../Common/utils/ValidateFullname'
 import { inputStyles } from '../common/BasicInfoForm/styledComponents'
 import { Counter } from '../../../Common/components/Counter'
+import { validateFields } from '../../../Common/utils/validateFields'
 const imgSrc =
   'https://cdn.zeplin.io/5d0afc9102b7fa56760995cc/assets/c2438b2e-3c57-45cc-a4e7-10c2b3eec159.svg'
 
@@ -32,9 +33,11 @@ class RequestAssetTransportPage extends Component<
   @observable isAssetTypeOther!: boolean
   @observable assetSensitivity!: string
   @observable whomToDeliver!: string
+  @observable isError: boolean = false
   constructor(props) {
     super(props)
-    this.init()
+    this.noOfAssests = 0
+    // this.init()
   }
   init = () => {
     this.fromPlace = ''
@@ -89,17 +92,20 @@ class RequestAssetTransportPage extends Component<
     const rideRequestObject = {
       fromPlace: this.fromPlace,
       toPlace: this.toPlace,
-      isFlexible: this.isFlexible,
       fromDateTime: `${this.fromDateTime}`,
-      toDateTime: `${this.toDateTime}`,
-      noOfAssests: this.noOfAssests,
       assetType: this.assetType,
-      isAssetTypeOther: this.isAssetTypeOther,
-      otherAssetType: this.otherAssetType,
       assetSensitivity: this.assetSensitivity,
       whomToDeliver: this.whomToDeliver
     }
-    this.props.onClickRequest(rideRequestObject)
+    this.isError = validateFields(rideRequestObject, this.isError)
+    rideRequestObject[`isFlexible`] = this.isFlexible
+    rideRequestObject[`toDateTime`] = `${this.toDateTime}`
+    rideRequestObject[`noOfAssests`] = `${this.noOfAssests}`
+    rideRequestObject[`isAssetTypeOther`] = `${this.isAssetTypeOther}`
+    rideRequestObject[`otherAssetType`] = `${this.otherAssetType}`
+    if (!this.isError) {
+      this.props.onClickRequest(rideRequestObject)
+    }
   }
   render() {
     const { t, onClickRequest } = this.props
@@ -118,6 +124,7 @@ class RequestAssetTransportPage extends Component<
             onSelectFromDateTime={this.onSelectFromDateTime}
             onSelectToDateTime={this.onSelectToDateTime}
             onClick={this.onClick}
+            isError={this.isError}
           >
             <WithLabel
               labelStyle={LableTypo}
@@ -144,6 +151,7 @@ class RequestAssetTransportPage extends Component<
                   t('letsride:bags'),
                   t('letsride:others')
                 ]}
+                isError={this.isError}
               />
             </WithLabel>
             {this.isAssetTypeOther && (
@@ -158,6 +166,7 @@ class RequestAssetTransportPage extends Component<
                   validateForm={ValidateFullname}
                   inputStyles={inputStyles}
                   showMsg={false}
+                  isError={this.isError}
                 />
               </WithLabel>
             )}
@@ -174,6 +183,7 @@ class RequestAssetTransportPage extends Component<
                   t('letsride:normal')
                 ]}
                 placeholder={t('letsride:selectSensitivity')}
+                isError={this.isError}
               />
             </WithLabel>
             <WithLabel
@@ -186,6 +196,7 @@ class RequestAssetTransportPage extends Component<
                 onChange={this.onChangewhomToDeliver}
                 validateForm={ValidateFullname}
                 inputStyles={inputStyles}
+                isError={this.isError}
               />
             </WithLabel>
           </BasicInfoForm>
