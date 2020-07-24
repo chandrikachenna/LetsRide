@@ -1,17 +1,21 @@
 import LetsRideService from '.'
 import { resolveWithTimeout } from '../../../Common/utils/TestUtils'
-
+import getMatchingResultsResponse from '../../fixtures/getMatchingResultsResponse.json'
+import { RequestMatchingResultsWithFilter } from "../../stores/types"
 class LetsRideAPIService implements LetsRideService {
-  async UpdateRideRequestAPI() {
+  GetRideMatchingResults() {
+    return resolveWithTimeout(getMatchingResultsResponse)
+  }
+  AddRideRequestAPI() {
     return resolveWithTimeout({})
   }
-  async UpdateAsserTransportRequestAPI() {
+  AddAsserTransportRequestAPI() {
     return resolveWithTimeout({})
   }
-  async UpdateShareRideAPI() {
+  AddShareRideAPI() {
     return resolveWithTimeout({})
   }
-  async UpdateShareTravelInfoAPI() {
+  AddShareTravelInfoAPI() {
     return resolveWithTimeout({})
   }
 }

@@ -69,7 +69,7 @@ class FormsInfoModel {
   @action.bound
   UpdateRideRequestInfo(info) {
     const requestObject = this.getRideRequestInfo(info)
-    const UpdateRideRequestInfoPromise = this.letsRideService.UpdateRideRequestAPI(
+    const UpdateRideRequestInfoPromise = this.letsRideService.AddRideRequestAPI(
       requestObject
     )
     return bindPromiseWithOnSuccess(UpdateRideRequestInfoPromise)
@@ -102,7 +102,7 @@ class FormsInfoModel {
   @action.bound
   UpdateAsserTransportRequestInfo(info) {
     const requestObject = this.AsserTransportRequestInfo(info)
-    const UpdateAsserTransportRequestInfoPromise = this.letsRideService.UpdateAsserTransportRequestAPI(
+    const UpdateAsserTransportRequestInfoPromise = this.letsRideService.AddAsserTransportRequestAPI(
       requestObject
     )
     return bindPromiseWithOnSuccess(UpdateAsserTransportRequestInfoPromise)
@@ -131,7 +131,7 @@ class FormsInfoModel {
   @action.bound
   UpdateShareRideInfo(info) {
     const requestObject = this.getShareRideInfo(info)
-    const UpdateShareRideInfoPromise = this.letsRideService.UpdateShareRideAPI(
+    const UpdateShareRideInfoPromise = this.letsRideService.AddShareRideAPI(
       requestObject
     )
     return bindPromiseWithOnSuccess(UpdateShareRideInfoPromise)
@@ -160,7 +160,7 @@ class FormsInfoModel {
   @action.bound
   UpdateShareTravelInfo(info) {
     const requestObject = this.getShareTravelInfo(info)
-    const UpdateShareTravelInfoPromise = this.letsRideService.UpdateShareTravelInfoAPI(
+    const UpdateShareTravelInfoPromise = this.letsRideService.AddShareTravelInfoAPI(
       requestObject
     )
     return bindPromiseWithOnSuccess(UpdateShareTravelInfoPromise)

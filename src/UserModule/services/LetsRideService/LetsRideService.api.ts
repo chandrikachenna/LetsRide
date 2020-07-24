@@ -4,6 +4,7 @@ import Config from '../../../Common/constants/EnvironmentConstants'
 import { apiMethods } from '../../../Common/constants/APIConstants'
 import endpoints from '../endpoints'
 import { networkCallWithApisauce } from '../../../Common/utils/APIUtils'
+import { action } from "mobx"
 
 class LetsRideAPIService implements LetsRideService {
   api: Record<string, any>
@@ -13,7 +14,17 @@ class LetsRideAPIService implements LetsRideService {
       baseURL: Config['BASE_URL']
     })
   }
-  async UpdateRideRequestAPI(requestObject) {
+  @action.bound
+  async GetRideMatchingResults(limit, offset, requestObject) {
+    const endpoint = `${endpoints.LetsRide.getRideMatchingResults}?limit=${limit}&offset=${offset}`
+    return networkCallWithApisauce(
+      this.api,
+      endpoint,
+      requestObject,
+      apiMethods.post
+    )
+  }
+  async AddRideRequestAPI(requestObject) {
     return networkCallWithApisauce(
       this.api,
       endpoints.LetsRide.updateRideRequest,
@@ -21,26 +32,26 @@ class LetsRideAPIService implements LetsRideService {
       apiMethods.post
     )
   }
-  async UpdateAsserTransportRequestAPI(requestObject) {
+  async AddAsserTransportRequestAPI(requestObject) {
     return networkCallWithApisauce(
       this.api,
-      endpoints.LetsRide.UpdateAsserTransportRequest,
+      endpoints.LetsRide.updateAsserTransportRequest,
       requestObject,
       apiMethods.post
     )
   }
-  async UpdateShareRideAPI(requestObject) {
+  async AddShareRideAPI(requestObject) {
     return networkCallWithApisauce(
       this.api,
-      endpoints.LetsRide.UpdateShareRide,
+      endpoints.LetsRide.updateShareRide,
       requestObject,
       apiMethods.post
     )
   }
-  async UpdateShareTravelInfoAPI(requestObject) {
+  async AddShareTravelInfoAPI(requestObject) {
     return networkCallWithApisauce(
       this.api,
-      endpoints.LetsRide.UpdateShareTravelInfo,
+      endpoints.LetsRide.updateShareTravelInfo,
       requestObject,
       apiMethods.post
     )

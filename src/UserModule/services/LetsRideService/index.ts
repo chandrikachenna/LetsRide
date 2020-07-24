@@ -2,16 +2,19 @@ import {
   UpdateRideRequest,
   UpdateAsserTransportRequest,
   UpdateShareRide,
-  UpdateShareTravelInfo
+  UpdateShareTravelInfo,
+  GetMatchingResultsRequest,
+  RequestMatchingResultsWithFilter
 } from '../../stores/types'
 
 interface LetsRideService {
-  UpdateRideRequestAPI: (requestObject: UpdateRideRequest) => Promise<{}>
-  UpdateAsserTransportRequestAPI: (
+  GetRideMatchingResults: (limit: number, offset: number, requestObject: RequestMatchingResultsWithFilter) => Promise<GetMatchingResultsRequest>
+  AddRideRequestAPI: (requestObject: UpdateRideRequest) => Promise<{}>
+  AddAsserTransportRequestAPI: (
     requestObject: UpdateAsserTransportRequest
   ) => Promise<{}>
-  UpdateShareRideAPI: (requestObject: UpdateShareRide) => Promise<{}>
-  UpdateShareTravelInfoAPI: (
+  AddShareRideAPI: (requestObject: UpdateShareRide) => Promise<{}>
+  AddShareTravelInfoAPI: (
     requestObject: UpdateShareTravelInfo
   ) => Promise<{}>
 }
