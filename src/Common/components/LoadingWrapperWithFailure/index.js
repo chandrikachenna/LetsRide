@@ -8,7 +8,7 @@ import {
   API_FAILED
 } from '@ib/api-constants'
 
-import { getFormattedErrorDescription } from '../../utils/APIUtils'
+import { getUserDisplayableErrorMessage } from '../../utils/APIUtils'
 
 import LoadingView from './LoadingView'
 import FailureView from './FailureView'
@@ -22,7 +22,7 @@ class LoadingWrapperWithFailure extends React.Component {
       onRetryClick,
       apiError
     } = this.props
-    const errorMessage = getFormattedErrorDescription(apiError)
+    const errorMessage = getUserDisplayableErrorMessage(apiError)
 
     switch (apiStatus) {
       case API_INITIAL:

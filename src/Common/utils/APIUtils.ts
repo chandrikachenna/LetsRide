@@ -28,7 +28,7 @@ export const networkCallWithApisauce = async (
   return response
 }
 
-export const getFormattedErrorDescription = (error): string => {
+export const getUserDisplayableErrorMessage = (error): string => {
   const formattedError = getFormattedError(error)
   return formattedError.description
 }

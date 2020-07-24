@@ -1,7 +1,7 @@
 import { observable } from 'mobx'
 import { RidesMatchingResultObject } from '../../types'
 const rideRequestStatus = { pending: 'Pending', accepted: 'Accepted' }
-class MatchingResultITem {
+class MatchingResultITemModel {
   id
   fromPlace
   toPlace
@@ -29,4 +29,4 @@ class MatchingResultITem {
     else this.rideRequestStatus = rideRequestStatus.pending
   }
 }
-export default MatchingResultITem
+export default MatchingResultITemModel

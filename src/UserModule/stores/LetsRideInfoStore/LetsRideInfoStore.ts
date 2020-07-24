@@ -1,15 +1,16 @@
 import { action, observable } from 'mobx'
 import LetsRideService from '../../services/LetsRideService'
 import { FormsInfoModel } from '../models/FormsInfoModel'
-import { APIStatus, API_INITIAL } from "@ib/api-constants"
-import { MatchingResultITem } from "../models/MatchingResultITem"
-import { GetMatchingResultsRequest } from "../types"
+import { PaginationStore } from "../../../Common/stores/PaginationStore"
+import { MatchingResultITemModel } from "../models/MatchingResultITemModel"
 
+const LIMIT = 4
 class LetsRideInfoStore {
   letsRideService: LetsRideService
   @observable formsInfo!: FormsInfoModel
 
-  @observable rideRideMatchingResultsInfo
+  limit: number = LIMIT
+  @observable rideRideMatchingResultsInfo = new PaginationStore(this.letsRideService.GetRideMatchingResults, this.limit, MatchingResultITemModel)
   constructor(letsRideService: LetsRideService) {
     this.letsRideService = letsRideService
     this.init()
