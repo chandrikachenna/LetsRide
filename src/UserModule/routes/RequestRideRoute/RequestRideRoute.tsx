@@ -10,6 +10,7 @@ interface RequestRideRouteProps extends RouteComponentProps, WithTranslation {}
 @inject('letsRideInfoStore')
 @observer
 class RequestRideRoute extends Component<RequestRideRouteProps> {
+  componentDidMount() {}
   getLetsRideInfoStore = () => {
     return this.props['letsRideInfoStore']
   }

@@ -2,6 +2,8 @@ import LetsRideService from '../../../services/LetsRideService'
 import { action, observable } from 'mobx'
 import { APIStatus, API_INITIAL } from '@ib/api-constants'
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
+import { getUserDisplayableErrorMessage } from "../../../../Common/utils/APIUtils"
+import { format } from 'date-fns'
 class FormsInfoModel {
   letsRideService: LetsRideService
 
@@ -57,7 +59,9 @@ class FormsInfoModel {
   @action.bound
   setUpdateRideRequestAPIError(error) {
     this.getUpdateRideRequestAPIError = error
-    console.log('Error', this.getUpdateRideRequestAPIError);
+    // console.log('Error', this.getUpdateRideRequestAPIError);
+    console.log(getUserDisplayableErrorMessage(error));
+
 
   }
   @action.bound
@@ -65,12 +69,19 @@ class FormsInfoModel {
     console.log('ride Request');
 
     const basicInfo = this.getCommonInfo(info)
-    const { noOfSeats, laguageQuantity } = info
+    const { seats, quantity } = info
+    console.log({
+      ...basicInfo,
+      'number_of_seats': seats,
+      'luggage_quantity': quantity
+    });
     return {
       ...basicInfo,
-      'number_of_seats': noOfSeats,
-      'luggage_quantity': laguageQuantity
+      'number_of_seats': seats,
+      'luggage_quantity': quantity
     }
+
+
   }
   @action.bound
   UpdateRideRequestInfo(info) {

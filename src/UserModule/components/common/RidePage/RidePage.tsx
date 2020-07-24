@@ -8,7 +8,7 @@ import { Counter } from '../../../../Common/components/Counter'
 import { observable } from 'mobx'
 import { observer } from 'mobx-react'
 import { validateFields } from '../../../../Common/utils/validateFields'
-
+import { compareAsc, format } from 'date-fns'
 const imgSrc =
   'https://cdn.zeplin.io/5d0afc9102b7fa56760995cc/assets/c2438b2e-3c57-45cc-a4e7-10c2b3eec159.svg'
 
@@ -23,9 +23,9 @@ interface RidePageProps extends WithTranslation {
 class RidePage extends Component<RidePageProps> {
   @observable fromPlace!: string
   @observable toPlace!: string
-  @observable isFlexible!: boolean
-  @observable fromDateTime!: object
-  @observable toDateTime!: object
+  @observable isFlexible: boolean = false
+  @observable fromDateTime!: Date
+  @observable toDateTime!: Date
   @observable noOfSeats!: number
   @observable laguageQuantity!: number
   @observable isError: boolean = false
@@ -53,6 +53,7 @@ class RidePage extends Component<RidePageProps> {
   }
   onSelectFromDateTime = date => {
     this.fromDateTime = date
+    console.log(typeof format(date, 'yyyy-MM-dd HH:mm:ss.ssssss'))
   }
   onSelectToDateTime = date => {
     this.toDateTime = date
@@ -73,11 +74,16 @@ class RidePage extends Component<RidePageProps> {
     const ridePageInfo = {
       fromPlace: this.fromPlace,
       toPlace: this.toPlace,
-      fromDateTime: `${this.fromDateTime}`
+      fromDateTime: format(this.fromDateTime, 'yyyy-MM-dd HH:mm:ss.ssssss')
     }
     this.isError = validateFields(ridePageInfo, this.isError)
+    console.log(this.isFlexible)
+
     ridePageInfo[`isFlexible`] = this.isFlexible
-    ridePageInfo[`toDateTime`] = `${this.toDateTime}`
+    ridePageInfo[`toDateTime`] = format(
+      this.fromDateTime,
+      'yyyy-MM-dd HH:mm:ss.ssssss'
+    )
     ridePageInfo[`seats`] = this.noOfSeats
     ridePageInfo[`quantity`] = this.laguageQuantity
     if (!this.isError) {

@@ -42,15 +42,18 @@ class PaginationStore {
   }
   @action.bound
   setEntitiesListApiError(error) {
-    console.log(error)
+    // console.log(error)
 
     this.entitiesListApiError = getUserDisplayableErrorMessage(error)
   }
   @action.bound
   setEntitiesListApiResponse(response) {
+    console.log(response);
+
     if (this.totalPages < this.selectedPage) {
       this.selectedPage = 1
     }
+
     this.totalPages = Math.ceil(response.total / this.limit)
     this.entitiesList = response.result.map(item => new this.EntityModel(item))
   }

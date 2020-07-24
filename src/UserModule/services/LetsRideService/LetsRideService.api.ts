@@ -11,7 +11,8 @@ class LetsRideAPIService implements LetsRideService {
 
   constructor() {
     this.api = create({
-      baseURL: Config['BASE_URL']
+      baseURL: "https://7c98d38064a4.ngrok.io/api/lets_ride/"
+      // baseURL: Config['BASE_URL']
     })
   }
   @action.bound
