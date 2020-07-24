@@ -56,8 +56,12 @@ class DatePicker extends Component<DatePickerProps> {
           selected={selectedDate}
         />
         <ErrorMsgSpan>
-          {isError && !selectedDate && 'Required'}
-          {showError && this.shouldShowErrorMessage && 'Required'}
+          {isError
+            ? !this.value && 'Required'
+            : !this.value &&
+              this.shouldShowErrorMessage &&
+              showError &&
+              this.errorMessage}
         </ErrorMsgSpan>
       </Wrapper>
     )

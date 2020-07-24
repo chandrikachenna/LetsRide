@@ -14,17 +14,8 @@ interface InjectedProps extends RideInfoMainRoute {
 @observer
 class RideInfoMainRoute extends Component<RideInfoMainRouteProps> {
   componentDidMount = () => {
-    if (
-      this.getLetsRideInfoStore().rideRideMatchingResultsInfo.entitiesList
-        .length > 0
-    ) {
-      this.getLetsRideInfoStore().rideRideMatchingResultsInfo.getEntities({
-        filter_by: 'All'
-      })
-    }
-    console.log(
-      this.getLetsRideInfoStore().rideRideMatchingResultsInfo.entitiesList
-    )
+    this.getLetsRideInfoStore().getRideMatchingResults({ filter_by: 'All' })
+    console.log(this.getLetsRideInfoStore())
   }
   getLetsRideInfoStore = () => {
     return this.props['letsRideInfoStore']

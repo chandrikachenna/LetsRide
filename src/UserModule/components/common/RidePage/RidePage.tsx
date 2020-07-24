@@ -24,8 +24,8 @@ class RidePage extends Component<RidePageProps> {
   @observable fromPlace!: string
   @observable toPlace!: string
   @observable isFlexible: boolean = false
-  @observable fromDateTime!: Date
-  @observable toDateTime!: Date
+  @observable fromDateTime!: any
+  @observable toDateTime!: any
   @observable noOfSeats!: number
   @observable laguageQuantity!: number
   @observable isError: boolean = false
@@ -53,7 +53,6 @@ class RidePage extends Component<RidePageProps> {
   }
   onSelectFromDateTime = date => {
     this.fromDateTime = date
-    console.log(typeof format(date, 'yyyy-MM-dd HH:mm:ss.ssssss'))
   }
   onSelectToDateTime = date => {
     this.toDateTime = date
@@ -74,19 +73,21 @@ class RidePage extends Component<RidePageProps> {
     const ridePageInfo = {
       fromPlace: this.fromPlace,
       toPlace: this.toPlace,
-      fromDateTime: format(this.fromDateTime, 'yyyy-MM-dd HH:mm:ss.ssssss')
+      fromDateTime: `${this.fromDateTime}`
     }
     this.isError = validateFields(ridePageInfo, this.isError)
-    console.log(this.isFlexible)
-
-    ridePageInfo[`isFlexible`] = this.isFlexible
-    ridePageInfo[`toDateTime`] = format(
-      this.fromDateTime,
-      'yyyy-MM-dd HH:mm:ss.ssssss'
-    )
-    ridePageInfo[`seats`] = this.noOfSeats
-    ridePageInfo[`quantity`] = this.laguageQuantity
     if (!this.isError) {
+      ridePageInfo.fromDateTime = format(
+        this.fromDateTime,
+        'yyyy-MM-dd HH:mm:ss.ssssss'
+      )
+      ridePageInfo[`isFlexible`] = this.isFlexible
+      ridePageInfo[`toDateTime`] = format(
+        this.fromDateTime,
+        'yyyy-MM-dd HH:mm:ss.ssssss'
+      )
+      ridePageInfo[`seats`] = this.noOfSeats
+      ridePageInfo[`quantity`] = this.laguageQuantity
       this.props.onClick(ridePageInfo)
     }
   }

@@ -21,8 +21,8 @@ class LetsRideInfoStore {
     this.formsInfo = new FormsInfoModel(this.letsRideService)
   }
   @action.bound
-  getRideMatchingResults = async () => {
-    await this.rideRideMatchingResultsInfo.getEntities({})
+  getRideMatchingResults = async (requestObject) => {
+    await this.rideRideMatchingResultsInfo.getEntitiesList(requestObject)
   }
 }
 export { LetsRideInfoStore }
