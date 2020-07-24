@@ -68,6 +68,7 @@ class ShareTravelInfoPage extends Component<ShareTravelInfoPageProps> {
       fromDateTime: `${this.fromDateTime}`,
       travelMedium: this.travelMedium
     }
+
     this.isError = validateFields(travelInfo, this.isError)
     travelInfo[`isFlexible`] = this.isFlexible
     travelInfo[`toDateTime`] = `${this.toDateTime}`
