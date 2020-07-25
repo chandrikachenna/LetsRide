@@ -12,11 +12,13 @@ import { ValidateFullname } from '../../../Common/utils/ValidateFullname'
 import { inputStyles } from '../common/BasicInfoForm/styledComponents'
 import { Counter } from '../../../Common/components/Counter'
 import { validateFields } from '../../../Common/utils/validateFields'
+import { APIStatus } from '@ib/api-constants'
 const imgSrc =
   'https://cdn.zeplin.io/5d0afc9102b7fa56760995cc/assets/c2438b2e-3c57-45cc-a4e7-10c2b3eec159.svg'
 
 interface RequestAssetTransportPageProps extends WithTranslation {
   onClickRequest: (details: object) => void
+  apiStatus: APIStatus
 }
 @observer
 class RequestAssetTransportPage extends Component<
@@ -69,7 +71,7 @@ class RequestAssetTransportPage extends Component<
     this.noOfAssests++
   }
   onDecrementAssestNo = () => {
-    this.noOfAssests--
+    this.noOfAssests > 0 && this.noOfAssests--
   }
   handleAssetType = event => {
     this.assetType = event.value
@@ -108,7 +110,7 @@ class RequestAssetTransportPage extends Component<
     }
   }
   render() {
-    const { t, onClickRequest } = this.props
+    const { t, onClickRequest, apiStatus } = this.props
     return (
       <MainPageLayout src={imgSrc}>
         <PageWrapper>
@@ -125,6 +127,7 @@ class RequestAssetTransportPage extends Component<
             onSelectToDateTime={this.onSelectToDateTime}
             onClick={this.onClick}
             isError={this.isError}
+            apiStatus={apiStatus}
           >
             <WithLabel
               labelStyle={LableTypo}

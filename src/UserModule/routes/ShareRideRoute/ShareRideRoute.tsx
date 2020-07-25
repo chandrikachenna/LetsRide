@@ -12,13 +12,20 @@ class ShareRideRoute extends Component<ShareRideRouteProps> {
   getLetsRideInfoStore = () => {
     return this.props['letsRideInfoStore']
   }
-  onClickShare = details => {
+  onClickShare = async details => {
+    await this.getLetsRideInfoStore().formsInfo.AddShareRideInfo(details)
     const { history } = this.props
     goToHomePage(history)
-    this.getLetsRideInfoStore().formsInfo.UpdateShareRideInfo(details)
   }
   render() {
-    return <ShareRidePage onClickShare={this.onClickShare} />
+    return (
+      <ShareRidePage
+        onClickShare={this.onClickShare}
+        apiStatus={
+          this.getLetsRideInfoStore().formsInfo.getAddShareRideAPIStatus
+        }
+      />
+    )
   }
 }
 

@@ -20,6 +20,7 @@ import {
 import { DatePicker } from '../../../../Common/components/DatePicker'
 import { observer } from 'mobx-react'
 import { observable } from 'mobx'
+import { API_FAILED, APIStatus, API_FETCHING } from '@ib/api-constants'
 interface BasicInfoFormProps extends WithTranslation {
   formTitle: string
   buttonText: string
@@ -33,6 +34,7 @@ interface BasicInfoFormProps extends WithTranslation {
   onSelectToDateTime: (date: object) => void
   onClick: () => void
   isError?: boolean
+  apiStatus?: APIStatus
 }
 
 @observer
@@ -41,6 +43,9 @@ class BasicInfoForm extends Component<BasicInfoFormProps> {
   constructor(props) {
     super(props)
     this.inputRef = React.createRef()
+  }
+  componentDidMount() {
+    this.inputRef.current.focus()
   }
   render() {
     const {
@@ -57,7 +62,8 @@ class BasicInfoForm extends Component<BasicInfoFormProps> {
       onSelectFromDateTime,
       onSelectToDateTime,
       onClick,
-      isError
+      isError,
+      apiStatus
     } = this.props
     return (
       <Card cardStyles={cardStyles}>
@@ -73,6 +79,7 @@ class BasicInfoForm extends Component<BasicInfoFormProps> {
             validateForm={ValidateFullname}
             inputStyles={inputStyles}
             isError={isError}
+            inputRef={this.inputRef}
           />
         </WithLabel>
         <WithLabel
@@ -131,7 +138,7 @@ class BasicInfoForm extends Component<BasicInfoFormProps> {
           text={buttonText}
           textTypo={TextTypo}
           buttonStyles={ButtonStyles}
-          loadingStatus={false}
+          loadingStatus={apiStatus === API_FETCHING ? true : false}
         />
       </Card>
     )

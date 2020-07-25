@@ -2,22 +2,22 @@ import LetsRideService from '../../../services/LetsRideService'
 import { action, observable } from 'mobx'
 import { APIStatus, API_INITIAL } from '@ib/api-constants'
 import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
-import { getUserDisplayableErrorMessage } from "../../../../Common/utils/APIUtils"
+import { getUserDisplayableErrorMessage } from '../../../../Common/utils/APIUtils'
 import { format } from 'date-fns'
 class FormsInfoModel {
   letsRideService: LetsRideService
 
-  @observable getUpdateRideRequestAPIStatus!: APIStatus
-  @observable getUpdateRideRequestAPIError!: null | Error
+  @observable getAddRideRequestAPIStatus!: APIStatus
+  @observable getAddRideRequestAPIError!: null | Error
 
-  @observable getUpdateAsserTransportRequestAPIStatus!: APIStatus
-  @observable getUpdateAsserTransportRequestAPIError!: null | Error
+  @observable getAddAsserTransportRequestAPIStatus!: APIStatus
+  @observable getAddAsserTransportRequestAPIError!: null | Error
 
-  @observable getUpdateShareRideAPIStatus!: APIStatus
-  @observable getUpdateShareRideAPIError!: null | Error
+  @observable getAddShareRideAPIStatus!: APIStatus
+  @observable getAddShareRideAPIError!: null | Error
 
-  @observable getUpdateShareTravelInfoAPIStatus!: APIStatus
-  @observable getUpdateShareTravelInfoAPIError!: null | Error
+  @observable getAddShareTravelInfoAPIStatus!: APIStatus
+  @observable getAddShareTravelInfoAPIError!: null | Error
 
   constructor(letsRideService: LetsRideService) {
     this.letsRideService = letsRideService
@@ -25,164 +25,164 @@ class FormsInfoModel {
   }
   @action.bound
   init = () => {
-    this.getUpdateRideRequestAPIStatus = API_INITIAL
-    this.getUpdateRideRequestAPIError = null
+    this.getAddRideRequestAPIStatus = API_INITIAL
+    this.getAddRideRequestAPIError = null
 
-    this.getUpdateAsserTransportRequestAPIStatus = API_INITIAL
-    this.getUpdateAsserTransportRequestAPIError = null
+    this.getAddAsserTransportRequestAPIStatus = API_INITIAL
+    this.getAddAsserTransportRequestAPIError = null
 
-    this.getUpdateShareRideAPIStatus = API_INITIAL
-    this.getUpdateShareRideAPIError = null
+    this.getAddShareRideAPIStatus = API_INITIAL
+    this.getAddShareRideAPIError = null
 
-    this.getUpdateShareTravelInfoAPIStatus = API_INITIAL
-    this.getUpdateShareTravelInfoAPIError = null
+    this.getAddShareTravelInfoAPIStatus = API_INITIAL
+    this.getAddShareTravelInfoAPIError = null
   }
 
   @action.bound
-  getCommonInfo = (info) => {
+  getCommonInfo = info => {
     const { fromPlace, toPlace, isFlexible, fromDateTime, toDateTime } = info
     return {
-      'from_place': fromPlace,
-      'to_place': toPlace,
-      'is_flexible': isFlexible,
-      'from_date_time': fromDateTime,
-      'to_date_time': toDateTime
+      from_place: fromPlace,
+      to_place: toPlace,
+      is_flexible: isFlexible,
+      from_date_time: fromDateTime,
+      to_date_time: toDateTime
     }
   }
 
   @action.bound
-  setUpdateRideRequestAPIStatus(apiStatus) {
-    this.getUpdateRideRequestAPIStatus = apiStatus
-    console.log('Status', this.getUpdateRideRequestAPIStatus);
-
+  setAddRideRequestAPIStatus(apiStatus) {
+    this.getAddRideRequestAPIStatus = apiStatus
+    console.log('Status', this.getAddRideRequestAPIStatus)
   }
   @action.bound
-  setUpdateRideRequestAPIError(error) {
-    this.getUpdateRideRequestAPIError = error
-    // console.log('Error', this.getUpdateRideRequestAPIError);
-    console.log(getUserDisplayableErrorMessage(error));
-
-
+  setAddRideRequestAPIError(error) {
+    this.getAddRideRequestAPIError = error
   }
   @action.bound
   getRideRequestInfo(info) {
-    console.log('ride Request');
+    console.log('ride Request')
 
     const basicInfo = this.getCommonInfo(info)
     const { seats, quantity } = info
     console.log({
       ...basicInfo,
-      'number_of_seats': seats,
-      'luggage_quantity': quantity
-    });
+      number_of_seats: seats,
+      luggage_quantity: quantity
+    })
     return {
       ...basicInfo,
-      'number_of_seats': seats,
-      'luggage_quantity': quantity
+      number_of_seats: seats,
+      luggage_quantity: quantity
     }
-
-
   }
   @action.bound
-  UpdateRideRequestInfo(info) {
+  AddRideRequestInfo(info) {
     const requestObject = this.getRideRequestInfo(info)
-    const UpdateRideRequestInfoPromise = this.letsRideService.AddRideRequestAPI(
+    const AddRideRequestInfoPromise = this.letsRideService.AddRideRequestAPI(
       requestObject
     )
-    return bindPromiseWithOnSuccess(UpdateRideRequestInfoPromise)
-      .to(this.setUpdateRideRequestAPIStatus, () => ({}))
-      .catch(this.setUpdateRideRequestAPIError)
+    return bindPromiseWithOnSuccess(AddRideRequestInfoPromise)
+      .to(this.setAddRideRequestAPIStatus, () => ({}))
+      .catch(this.setAddRideRequestAPIError)
   }
 
   @action.bound
-  setUpdateAsserTransportRequestAPIStatus(apiStatus) {
-    this.getUpdateAsserTransportRequestAPIStatus = apiStatus
+  setAddAsserTransportRequestAPIStatus(apiStatus) {
+    this.getAddAsserTransportRequestAPIStatus = apiStatus
   }
   @action.bound
-  setUpdateAsserTransportRequestAPIError(error) {
-    this.getUpdateAsserTransportRequestAPIError = error
+  setAddAsserTransportRequestAPIError(error) {
+    this.getAddAsserTransportRequestAPIError = error
   }
   @action.bound
   AsserTransportRequestInfo(info) {
     const basicInfo = this.getCommonInfo(info)
-    const { noOfAssests, assetType, isAssetTypeOther, otherAssetType, assetSensitivity, whomToDeliver } = info
+    const {
+      noOfAssests,
+      assetType,
+      isAssetTypeOther,
+      otherAssetType,
+      assetSensitivity,
+      whomToDeliver
+    } = info
     return {
       ...basicInfo,
-      'number_of_assets': noOfAssests,
-      'asset_type': assetType,
-      'is_asset_type_other': isAssetTypeOther,
-      'other_asset_type': otherAssetType,
-      'asset_sensitivity': assetSensitivity,
-      'whom_to_deliver': whomToDeliver
+      number_of_assets: noOfAssests,
+      asset_type: assetType,
+      is_asset_type_other: isAssetTypeOther,
+      other_asset_type: otherAssetType,
+      asset_sensitivity: assetSensitivity,
+      whom_to_deliver: whomToDeliver
     }
   }
   @action.bound
-  UpdateAsserTransportRequestInfo(info) {
+  AddAsserTransportRequestInfo(info) {
     const requestObject = this.AsserTransportRequestInfo(info)
-    const UpdateAsserTransportRequestInfoPromise = this.letsRideService.AddAsserTransportRequestAPI(
+    const AddAsserTransportRequestInfoPromise = this.letsRideService.AddAsserTransportRequestAPI(
       requestObject
     )
-    return bindPromiseWithOnSuccess(UpdateAsserTransportRequestInfoPromise)
-      .to(this.setUpdateAsserTransportRequestAPIStatus, () => ({}))
-      .catch(this.setUpdateAsserTransportRequestAPIError)
+    return bindPromiseWithOnSuccess(AddAsserTransportRequestInfoPromise)
+      .to(this.setAddAsserTransportRequestAPIStatus, () => ({}))
+      .catch(this.setAddAsserTransportRequestAPIError)
   }
 
   @action.bound
-  setUpdateShareRideAPIStatus(apiStatus) {
-    this.getUpdateShareRideAPIStatus = apiStatus
+  setAddShareRideAPIStatus(apiStatus) {
+    this.getAddShareRideAPIStatus = apiStatus
   }
   @action.bound
-  setUpdateShareRideAPIError(error) {
-    this.getUpdateShareRideAPIError = error
+  setAddShareRideAPIError(error) {
+    this.getAddShareRideAPIError = error
   }
   @action.bound
-  getShareRideInfo = (info) => {
+  getShareRideInfo = info => {
     const basicInfo = this.getCommonInfo(info)
     const { noOfSeats, laguageQuantity } = info
     return {
       ...basicInfo,
-      'number_of_seats_available': noOfSeats,
-      'assets_quantity': laguageQuantity
+      number_of_seats_available: noOfSeats,
+      assets_quantity: laguageQuantity
     }
   }
   @action.bound
-  UpdateShareRideInfo(info) {
+  AddShareRideInfo(info) {
     const requestObject = this.getShareRideInfo(info)
-    const UpdateShareRideInfoPromise = this.letsRideService.AddShareRideAPI(
+    const AddShareRideInfoPromise = this.letsRideService.AddShareRideAPI(
       requestObject
     )
-    return bindPromiseWithOnSuccess(UpdateShareRideInfoPromise)
-      .to(this.setUpdateShareRideAPIStatus, () => ({}))
-      .catch(this.setUpdateShareRideAPIError)
+    return bindPromiseWithOnSuccess(AddShareRideInfoPromise)
+      .to(this.setAddShareRideAPIStatus, () => ({}))
+      .catch(this.setAddShareRideAPIError)
   }
 
   @action.bound
-  setUpdateShareTravelInfoAPIStatus(apiStatus) {
-    this.getUpdateShareTravelInfoAPIStatus = apiStatus
+  setAddShareTravelInfoAPIStatus(apiStatus) {
+    this.getAddShareTravelInfoAPIStatus = apiStatus
   }
   @action.bound
-  setUpdateShareTravelInfoAPIError(error) {
-    this.getUpdateShareTravelInfoAPIError = error
+  setAddShareTravelInfoAPIError(error) {
+    this.getAddShareTravelInfoAPIError = error
   }
   @action.bound
-  getShareTravelInfo = (info) => {
+  getShareTravelInfo = info => {
     const basicInfo = this.getCommonInfo(info)
     const { travelMedium, assetQuantity } = info
     return {
       ...basicInfo,
-      'travel_medium': travelMedium,
-      'assets_quantity': assetQuantity
+      travel_medium: travelMedium,
+      assets_quantity: assetQuantity
     }
   }
   @action.bound
-  UpdateShareTravelInfo(info) {
+  AddShareTravelInfo(info) {
     const requestObject = this.getShareTravelInfo(info)
-    const UpdateShareTravelInfoPromise = this.letsRideService.AddShareTravelInfoAPI(
+    const AddShareTravelInfoPromise = this.letsRideService.AddShareTravelInfoAPI(
       requestObject
     )
-    return bindPromiseWithOnSuccess(UpdateShareTravelInfoPromise)
-      .to(this.setUpdateShareTravelInfoAPIStatus, () => ({}))
-      .catch(this.setUpdateShareTravelInfoAPIError)
+    return bindPromiseWithOnSuccess(AddShareTravelInfoPromise)
+      .to(this.setAddShareTravelInfoAPIStatus, () => ({}))
+      .catch(this.setAddShareTravelInfoAPIError)
   }
 }
 export { FormsInfoModel }

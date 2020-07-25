@@ -16,7 +16,6 @@ interface DatePickerProps extends WithTranslation {
 }
 @observer
 class DatePicker extends Component<DatePickerProps> {
-  @observable value
   @observable shouldShowErrorMessage = false
   @observable errorMessage
   static defaultProps = {
@@ -57,11 +56,8 @@ class DatePicker extends Component<DatePickerProps> {
         />
         <ErrorMsgSpan>
           {isError
-            ? !this.value && 'Required'
-            : !this.value &&
-              this.shouldShowErrorMessage &&
-              showError &&
-              this.errorMessage}
+            ? !selectedDate && 'Required'
+            : this.shouldShowErrorMessage && showError && this.errorMessage}
         </ErrorMsgSpan>
       </Wrapper>
     )

@@ -14,7 +14,7 @@ export const FormTitle = styled(Typo20DarkBlueGreyHKGrotestBold)`
 `
 export const cardStyles = css`
   border-radius: 6px;
-  box-shadow: 0 4px 40px 0 darkBlueGrey16;
+  box-shadow: 0 4px 40px 0 ${COLORS.darkBlueGrey16};
   border: solid 1px ${COLORS.lightBlueGrey};
   background-color: ${COLORS.white};
 `

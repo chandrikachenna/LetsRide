@@ -1,18 +1,22 @@
 import React, { Component } from 'react'
 import { withTranslation, WithTranslation } from 'react-i18next'
+import { observable } from 'mobx'
+import { observer } from 'mobx-react'
+
 import { MainPageLayout } from '../../../Common/components/MainPageLayout'
 import { PageWrapper, LableTypo } from '../../styledComponents'
 import { BasicInfoForm } from '../common/BasicInfoForm'
-import { observable } from 'mobx'
-import { observer } from 'mobx-react'
+
 import { WithLabel } from '../../../Common/components/WithLabel'
 import { Counter } from '../../../Common/components/Counter'
 import { Select } from '../../../Common/components/Select'
 import { validateFields } from '../../../Common/utils/validateFields'
+import { APIStatus } from '@ib/api-constants'
 const imgSrc =
   'https://cdn.zeplin.io/5d0afc9102b7fa56760995cc/assets/c2438b2e-3c57-45cc-a4e7-10c2b3eec159.svg'
 interface ShareTravelInfoPageProps extends WithTranslation {
   onClickShare: (details: object) => void
+  apiStatus: APIStatus
 }
 
 @observer
@@ -27,14 +31,8 @@ class ShareTravelInfoPage extends Component<ShareTravelInfoPageProps> {
   @observable isError: boolean = false
   constructor(props) {
     super(props)
-    this.assetQuantity = 0
-    // this.init()
-  }
-  init = () => {
-    this.fromPlace = ''
-    this.toPlace = ''
     this.isFlexible = false
-    this.travelMedium = ''
+    this.assetQuantity = 0
   }
   onChangeFromPlace = value => {
     this.fromPlace = value
@@ -47,7 +45,6 @@ class ShareTravelInfoPage extends Component<ShareTravelInfoPageProps> {
   }
   onSelectFromDateTime = date => {
     this.fromDateTime = date
-    console.log(this.fromDateTime)
   }
   onSelectToDateTime = date => {
     this.toDateTime = date
@@ -78,7 +75,7 @@ class ShareTravelInfoPage extends Component<ShareTravelInfoPageProps> {
     }
   }
   render() {
-    const { t } = this.props
+    const { t, apiStatus } = this.props
     return (
       <MainPageLayout src={imgSrc}>
         <PageWrapper>
@@ -95,6 +92,7 @@ class ShareTravelInfoPage extends Component<ShareTravelInfoPageProps> {
             onSelectToDateTime={this.onSelectToDateTime}
             onClick={this.onClick}
             isError={this.isError}
+            apiStatus={apiStatus}
           >
             <WithLabel
               labelStyle={LableTypo}

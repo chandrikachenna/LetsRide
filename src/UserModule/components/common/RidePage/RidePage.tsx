@@ -9,11 +9,13 @@ import { observable } from 'mobx'
 import { observer } from 'mobx-react'
 import { validateFields } from '../../../../Common/utils/validateFields'
 import { compareAsc, format } from 'date-fns'
+import { APIStatus } from '@ib/api-constants'
 const imgSrc =
   'https://cdn.zeplin.io/5d0afc9102b7fa56760995cc/assets/c2438b2e-3c57-45cc-a4e7-10c2b3eec159.svg'
 
 interface RidePageProps extends WithTranslation {
   onClick: (details: object) => void
+  apiStatus: APIStatus
   title: string
   buttonText: string
   seats: string
@@ -93,7 +95,7 @@ class RidePage extends Component<RidePageProps> {
   }
 
   render() {
-    const { t, title, buttonText, seats, quantity } = this.props
+    const { t, title, buttonText, seats, quantity, apiStatus } = this.props
     return (
       <MainPageLayout src={imgSrc}>
         <PageWrapper>
@@ -110,6 +112,7 @@ class RidePage extends Component<RidePageProps> {
             onSelectToDateTime={this.onSelectToDateTime}
             onClick={this.onClickButton}
             isError={this.isError}
+            apiStatus={apiStatus}
           >
             <WithLabel
               labelStyle={LableTypo}

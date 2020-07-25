@@ -17,15 +17,23 @@ class RequestAssetTransportRoute extends Component<
   getLetsRideInfoStore = () => {
     return this.props['letsRideInfoStore']
   }
-  onClickRequest = details => {
-    const { history } = this.props
-    goToHomePage(history)
-    this.getLetsRideInfoStore().formsInfo.UpdateAsserTransportRequestInfo(
+  onClickRequest = async details => {
+    await this.getLetsRideInfoStore().formsInfo.AddAsserTransportRequestInfo(
       details
     )
+    const { history } = this.props
+    goToHomePage(history)
   }
   render() {
-    return <RequestAssetTransportPage onClickRequest={this.onClickRequest} />
+    return (
+      <RequestAssetTransportPage
+        onClickRequest={this.onClickRequest}
+        apiStatus={
+          this.getLetsRideInfoStore().formsInfo
+            .getAddAsserTransportRequestAPIStatus
+        }
+      />
+    )
   }
 }
 export default withTranslation('translation', { withRef: true })(

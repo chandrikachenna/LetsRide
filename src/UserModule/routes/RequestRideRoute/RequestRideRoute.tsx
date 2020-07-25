@@ -4,6 +4,7 @@ import { WithTranslation, withTranslation } from 'react-i18next'
 import { goToHomePage } from '../../utils/NavigationUtils'
 import { RequestRidePage } from '../../components/RequestRidePage'
 import { observer, inject } from 'mobx-react'
+import { API_SUCCESS } from '@ib/api-constants'
 
 interface RequestRideRouteProps extends RouteComponentProps, WithTranslation {}
 
@@ -14,13 +15,20 @@ class RequestRideRoute extends Component<RequestRideRouteProps> {
   getLetsRideInfoStore = () => {
     return this.props['letsRideInfoStore']
   }
-  onClickRequest = details => {
+  onClickRequest = async details => {
+    await this.getLetsRideInfoStore().formsInfo.AddRideRequestInfo(details)
     const { history } = this.props
     goToHomePage(history)
-    this.getLetsRideInfoStore().formsInfo.UpdateRideRequestInfo(details)
   }
   render() {
-    return <RequestRidePage onClickRequest={this.onClickRequest} />
+    return (
+      <RequestRidePage
+        onClickRequest={this.onClickRequest}
+        apiStatus={
+          this.getLetsRideInfoStore().formsInfo.getAddRideRequestAPIStatus
+        }
+      />
+    )
   }
 }
 
