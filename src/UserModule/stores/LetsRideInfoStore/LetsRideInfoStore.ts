@@ -8,7 +8,7 @@ const LIMIT = 4
 class LetsRideInfoStore {
   letsRideService: LetsRideService
   @observable formsInfo!: FormsInfoModel
-  rideRideMatchingResultsInfo
+  @observable rideRideMatchingResultsInfo
   limit: number = LIMIT
   constructor(letsRideService: LetsRideService) {
     this.letsRideService = letsRideService

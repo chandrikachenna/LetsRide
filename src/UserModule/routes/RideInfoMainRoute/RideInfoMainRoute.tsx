@@ -6,9 +6,7 @@ import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { RideInfoMainPage } from '../../components/RideInfoMainPage'
 
 interface RideInfoMainRouteProps extends RouteComponentProps, WithTranslation {}
-interface InjectedProps extends RideInfoMainRoute {
-  letsRideInfoStore
-}
+interface InjectedProps extends RideInfoMainRouteProps {}
 
 @inject('letsRideInfoStore')
 @observer
@@ -21,7 +19,9 @@ class RideInfoMainRoute extends Component<RideInfoMainRouteProps> {
     return this.props['letsRideInfoStore']
   }
   renderSuccessUI = observer(() => {
-    return <RideInfoMainPage />
+    const RideMatchingResults = this.getLetsRideInfoStore()
+      .rideRideMatchingResultsInfo
+    return <RideInfoMainPage RideMatchingResults={RideMatchingResults} />
   })
   render() {
     return (

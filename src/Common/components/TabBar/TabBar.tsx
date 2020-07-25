@@ -34,6 +34,7 @@ class TabBar extends React.Component<TabBarProps> {
           dataForComponentOne,
           dataForComponentTwo
         )}
+        style={{ width: '100%', height: '300px' }}
       />
     )
   }

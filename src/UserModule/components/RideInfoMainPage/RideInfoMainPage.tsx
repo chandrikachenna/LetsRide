@@ -11,6 +11,7 @@ import {
 import { observable } from 'mobx'
 import { menus } from '../../../Common/components/MenuBar/MenuBar'
 import { RidesInfoDashboard } from '../common/RidesInfoDashboard'
+import { PaginationStore } from '../../../Common/stores/PaginationStore'
 
 const renderedMenus = {
   matchingResults: 'matchingResults',
@@ -21,7 +22,9 @@ const renderedMenus = {
 const imgSrc =
   'https://cdn.zeplin.io/5d0afc9102b7fa56760995cc/assets/c2438b2e-3c57-45cc-a4e7-10c2b3eec159.svg'
 
-interface RideInfoMainPageProps extends WithTranslation {}
+interface RideInfoMainPageProps extends WithTranslation {
+  RideMatchingResults: PaginationStore
+}
 
 @observer
 class RideInfoMainPage extends Component<RideInfoMainPageProps> {
@@ -33,12 +36,13 @@ class RideInfoMainPage extends Component<RideInfoMainPageProps> {
     this.init()
   }
   init = () => {
-    const { t } = this.props
+    const { t, RideMatchingResults } = this.props
     this.dashboardData = {
       categories: {
         one: {
           title: t('letsride:ride'),
-          any: 'any'
+          any: 'any',
+          matchingResults: RideMatchingResults
         },
         two: {
           title: t('letsride:asset'),
@@ -112,12 +116,12 @@ class RideInfoMainPage extends Component<RideInfoMainPageProps> {
           {this.renderedInfo === renderedMenus.matchingResults && (
             <RidesInfoDashboard dashboardData={this.dashboardData} />
           )}
-          {this.renderedInfo === renderedMenus.myRequests && (
+          {/* {this.renderedInfo === renderedMenus.myRequests && (
             <RidesInfoDashboard dashboardData={this.dashboardData} />
           )}
           {this.renderedInfo === renderedMenus.sharedDetails && (
             <RidesInfoDashboard dashboardData={this.dashboardData} />
-          )}
+          )} */}
         </PageWrapper>
       </MainPageLayout>
     )

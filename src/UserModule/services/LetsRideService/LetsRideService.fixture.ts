@@ -1,10 +1,16 @@
 import LetsRideService from '.'
 import { resolveWithTimeout } from '../../../Common/utils/TestUtils'
 import getMatchingResultsResponse from '../../fixtures/getMatchingResultsResponse.json'
-import { RequestMatchingResultsWithFilter } from "../../stores/types"
+
 class LetsRideAPIService implements LetsRideService {
-  GetRideMatchingResults() {
-    return resolveWithTimeout(getMatchingResultsResponse)
+  GetRideMatchingResults(limit, offset, requestObject) {
+    let dataFromFixture = getMatchingResultsResponse.data.slice()
+    let data = dataFromFixture.splice(offset, limit)
+    let dummyData = {
+      data: data,
+      total_count: getMatchingResultsResponse.total_count
+    }
+    return resolveWithTimeout(dummyData)
   }
   AddRideRequestAPI() {
     return resolveWithTimeout({})
