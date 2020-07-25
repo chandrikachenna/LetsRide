@@ -1,8 +1,8 @@
 import { action, observable } from 'mobx'
 import LetsRideService from '../../services/LetsRideService'
 import { FormsInfoModel } from '../models/FormsInfoModel'
-import { PaginationStore } from "../../../Common/stores/PaginationStore"
-import { MatchingResultITemModel } from "../models/MatchingResultITemModel"
+import { PaginationStore } from '../../../Common/stores/PaginationStore'
+import { MatchingResultITemModel } from '../models/MatchingResultITemModel'
 
 const LIMIT = 4
 class LetsRideInfoStore {
@@ -12,7 +12,11 @@ class LetsRideInfoStore {
   limit: number = LIMIT
   constructor(letsRideService: LetsRideService) {
     this.letsRideService = letsRideService
-    this.rideRideMatchingResultsInfo = new PaginationStore(this.letsRideService.GetRideMatchingResults, this.limit, MatchingResultITemModel)
+    this.rideRideMatchingResultsInfo = new PaginationStore(
+      this.letsRideService.GetRideMatchingResults,
+      this.limit,
+      MatchingResultITemModel
+    )
 
     this.init()
   }
@@ -21,7 +25,7 @@ class LetsRideInfoStore {
     this.formsInfo = new FormsInfoModel(this.letsRideService)
   }
   @action.bound
-  getRideMatchingResults = async (requestObject) => {
+  getRideMatchingResults = async requestObject => {
     await this.rideRideMatchingResultsInfo.getEntitiesList(requestObject)
   }
 }
