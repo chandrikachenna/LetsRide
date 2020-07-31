@@ -47,7 +47,8 @@ export interface RidesMatchingResultObject {
   to_date_time: string
   accepted_person_details: PersonDetails
   id: number
-  ride_request_status: string
+  // ride_request_status: string
+  is_status_pending: boolean
   number_of_seats: number
   luggage_quantity: number
 }

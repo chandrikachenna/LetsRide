@@ -7,6 +7,7 @@ import {
   Details
 } from './styledComponents'
 import { Table } from '../../../../Common/components/Table'
+import { CheckBox } from '../../../../Common/components/CheckBox'
 
 interface DashboardProps {
   headings: any
@@ -29,43 +30,26 @@ class Dashboard extends React.Component<DashboardProps> {
           </TableRow>
           {tableData.map(rowData => (
             <TableRow>
-              <TableCell key={rowData.acceptedPersonDetails}>
-                <Details>
-                  <CellLabel>{rowData.acceptedPersonDetails.name}</CellLabel>
-                  <CellLabel>
-                    {rowData.acceptedPersonDetails.mobileNumber}
-                  </CellLabel>
-                </Details>
-              </TableCell>
-              <TableCell key={rowData.fromPlace}>
-                <CellLabel>{rowData.fromPlace}</CellLabel>
-              </TableCell>
-              <TableCell key={rowData.toPlace}>
-                <CellLabel>{rowData.toPlace}</CellLabel>
-              </TableCell>
+              <AcceptedPersonDetails
+                acceptedPersonDetails={rowData.acceptedPersonDetails}
+              />
+              <Cell cellData={rowData.fromPlace} />
+              <Cell cellData={rowData.toPlace} />
               {rowData.isFlexible ? (
-                <TableCell key={rowData.fromDateTime}>
-                  <Details>
-                    <CellLabel>
-                      {rowData.fromDateTime}
-                      {' to '}
-                    </CellLabel>
-                    <CellLabel>{rowData.toDateTime}</CellLabel>
-                  </Details>
-                </TableCell>
+                <FromAndToDate
+                  fromDateTime={rowData.fromDateTime}
+                  toDateTime={rowData.toDateTime}
+                />
               ) : (
-                <TableCell key={rowData.fromDateTime}>
-                  <CellLabel>{rowData.fromDateTime}</CellLabel>
-                </TableCell>
+                <Cell cellData={rowData.fromDateTime} />
               )}
-              <TableCell key={rowData.noOfSeats}>
-                <CellLabel>{rowData.noOfSeats}</CellLabel>
-              </TableCell>
-              <TableCell key={rowData.luggageQuantity}>
-                <CellLabel>{rowData.luggageQuantity}</CellLabel>
-              </TableCell>
-              <TableCell key={rowData.rideRequestStatus}>
-                <CellLabel>{rowData.rideRequestStatus}</CellLabel>
+              <Cell cellData={rowData.noOfSeats} />
+              <Cell cellData={rowData.luggageQuantity} />
+              <TableCell key={rowData.isStatusPending}>
+                <CheckBox
+                  handleCheck={() => {}}
+                  isChecked={rowData.isStatusPending}
+                />
               </TableCell>
             </TableRow>
           ))}
@@ -76,3 +60,39 @@ class Dashboard extends React.Component<DashboardProps> {
 }
 
 export default Dashboard
+
+function AcceptedPersonDetails(props) {
+  const { name, mobileNumber } = props.acceptedPersonDetails
+  return (
+    <TableCell key={name}>
+      <Details>
+        <CellLabel>{name}</CellLabel>
+        <CellLabel>{mobileNumber}</CellLabel>
+      </Details>
+    </TableCell>
+  )
+}
+
+function Cell(props) {
+  const { cellData } = props
+  return (
+    <TableCell key={cellData}>
+      <CellLabel>{cellData}</CellLabel>
+    </TableCell>
+  )
+}
+
+function FromAndToDate(props) {
+  const { fromDateTime, toDateTime } = props
+  return (
+    <TableCell key={fromDateTime}>
+      <Details>
+        <CellLabel>
+          {fromDateTime}
+          {' to '}
+        </CellLabel>
+        <CellLabel>{toDateTime}</CellLabel>
+      </Details>
+    </TableCell>
+  )
+}

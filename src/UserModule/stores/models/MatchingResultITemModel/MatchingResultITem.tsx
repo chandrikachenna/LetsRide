@@ -1,6 +1,6 @@
 import { observable } from 'mobx'
 import { RidesMatchingResultObject } from '../../types'
-const rideRequestStatus = { pending: 'Pending', accepted: 'Accepted' }
+const isStatusPending = { pending: 'Pending', accepted: 'Accepted' }
 class MatchingResultITemModel {
   id
   fromPlace
@@ -11,7 +11,7 @@ class MatchingResultITemModel {
   acceptedPersonDetails
   noOfSeats
   luggageQuantity
-  @observable rideRequestStatus
+  @observable isStatusPending
   constructor(matchingResultItem: RidesMatchingResultObject) {
     this.id = matchingResultItem.id
     this.fromPlace = matchingResultItem.from_place
@@ -25,12 +25,12 @@ class MatchingResultITemModel {
     }
     this.noOfSeats = matchingResultItem.number_of_seats
     this.luggageQuantity = matchingResultItem.luggage_quantity
-    this.rideRequestStatus = matchingResultItem.ride_request_status
+    this.isStatusPending = matchingResultItem.is_status_pending
   }
   updateRideRequestStatus = () => {
-    if (this.rideRequestStatus.match(rideRequestStatus.pending))
-      this.rideRequestStatus = rideRequestStatus.accepted
-    else this.rideRequestStatus = rideRequestStatus.pending
+    if (this.isStatusPending.match(isStatusPending.pending))
+      this.isStatusPending = isStatusPending.accepted
+    else this.isStatusPending = isStatusPending.pending
   }
 }
 export default MatchingResultITemModel
