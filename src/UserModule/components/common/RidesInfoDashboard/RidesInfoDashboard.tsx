@@ -12,7 +12,6 @@ interface RidesInfoDashboardProps extends WithTranslation {
 class RidesInfoDashboard extends Component<RidesInfoDashboardProps> {
   render() {
     const { dashboardData } = this.props
-
     return (
       <DashboardWrapper>
         <TabBar

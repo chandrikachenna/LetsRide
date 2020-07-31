@@ -12,7 +12,7 @@ export const PageHeaderWrapper = styled.div`
   background-color: ${COLORS.white};
 `
 export const LogoHloder = styled.div`
-  ${tw`flex items-center`}
+  ${tw`flex items-center cursor-pointer`}
 `
 export const NavBar = styled.div`
   ${tw`flex items-center justify-between`}

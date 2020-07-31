@@ -74,3 +74,4 @@ export const Typo14HKGroteskRegular = styled.span`
   line-height: 1.71;
   letter-spacing: normal;
 `
+

@@ -19,6 +19,10 @@ class MatchingResultITemModel {
     this.isFlexible = matchingResultItem.is_flexible
     this.fromDateTime = matchingResultItem.from_date_time
     this.toDateTime = matchingResultItem.to_date_time
+    this.acceptedPersonDetails = {
+      name: matchingResultItem.accepted_person_details.name,
+      mobileNumber: matchingResultItem.accepted_person_details.mobile_number
+    }
     this.noOfSeats = matchingResultItem.number_of_seats
     this.luggageQuantity = matchingResultItem.luggage_quantity
     this.rideRequestStatus = matchingResultItem.ride_request_status

@@ -44,5 +44,13 @@
   "matchingResults": "Matching Results",
   "myRequests": "My Requests",
   "sharedDetails": "Shared Details",
-  "asset": "ASSET"
+  "asset": "ASSET",
+  "addRideRequest": "Add Ride Request",
+  "addAssetRequest": "Add Asset Request",
+  "addShareRide": "Add Share Ride",
+  "addTravelInfo": "Add Travel Info",
+  "page": " PAGE ",
+  "of": " OF ",
+  "tasks": " Tasks",
+  "acceptedPersonDetails": "ACCEPTED PERSON DETAILS"
 }

@@ -5,7 +5,7 @@ interface PaginateProps {
   pageCount: number
   marginPagesDisplayed: number
   pageRangeDisplayed: number
-  onPageChange: () => void
+  onPageChange: (value) => void
   containerClassName: any
   activeClassName: any
 }

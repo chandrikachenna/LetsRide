@@ -6,14 +6,13 @@
 .pagination > li > span {
   position: relative;
   float: left;
-  padding: 5px 10px;
-  margin: 2px;
+  padding: 1px 5px;
   line-height: 1.42857143;
   text-decoration: none;
   color: #000;
   background-color: #fff;
   border: 1px solid #ddd;
-  margin-left: -1px;
+  margin-left: 2px;
   outline: none;
 }
 

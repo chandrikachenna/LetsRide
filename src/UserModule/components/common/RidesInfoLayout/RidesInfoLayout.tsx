@@ -11,7 +11,8 @@ interface RidesInfoLayoutProps {
 @observer
 class RidesInfoLayout extends Component<RidesInfoLayoutProps> {
   renderSuccessUI = observer(() => {
-    return <Dashboard />
+    const { data } = this.props
+    return <Dashboard data={data} />
   })
   render() {
     const { data } = this.props
@@ -20,7 +21,6 @@ class RidesInfoLayout extends Component<RidesInfoLayoutProps> {
       getEntitiesListAPIError,
       entitiesList
     } = data.matchingResults
-    console.log(data.matchingResults)
 
     return (
       <RidesInfoLayoutwrapper>

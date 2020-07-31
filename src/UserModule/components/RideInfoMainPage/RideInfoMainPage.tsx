@@ -12,6 +12,10 @@ import { observable } from 'mobx'
 import { menus } from '../../../Common/components/MenuBar/MenuBar'
 import { RidesInfoDashboard } from '../common/RidesInfoDashboard'
 import { PaginationStore } from '../../../Common/stores/PaginationStore'
+import {
+  goToRequstRidePage,
+  goToRequstAssetTransportPage
+} from '../../utils/NavigationUtils'
 
 const renderedMenus = {
   matchingResults: 'matchingResults',
@@ -35,18 +39,21 @@ class RideInfoMainPage extends Component<RideInfoMainPageProps> {
     super(props)
     this.init()
   }
+
   init = () => {
     const { t, RideMatchingResults } = this.props
     this.dashboardData = {
       categories: {
         one: {
           title: t('letsride:ride'),
-          any: 'any',
+          formTitle: t('letsride:addRideRequest'),
+          formLink: goToRequstRidePage,
           matchingResults: RideMatchingResults
         },
         two: {
           title: t('letsride:asset'),
-          any: 'any'
+          formTitle: t('letsride:addAssetRequest'),
+          formLink: goToRequstAssetTransportPage
         }
       }
     }
@@ -60,11 +67,14 @@ class RideInfoMainPage extends Component<RideInfoMainPageProps> {
           categories: {
             one: {
               title: t('letsride:ride'),
-              any: 'any'
+              formTitle: t('letsride:addRideRequest'),
+              formLink: goToRequstRidePage,
+              matchingResults: this.renderedInfo
             },
             two: {
               title: t('letsride:asset'),
-              any: 'any'
+              formTitle: t('letsride:addAssetRequest'),
+              formLink: goToRequstAssetTransportPage
             }
           }
         }
@@ -75,11 +85,11 @@ class RideInfoMainPage extends Component<RideInfoMainPageProps> {
           categories: {
             one: {
               title: t('letsride:ride'),
-              any: 'any'
+              formTitle: t('letsride:addRideRequest')
             },
             two: {
               title: t('letsride:asset'),
-              any: 'any'
+              formTitle: t('letsride:addAssetRequest')
             }
           }
         }
@@ -90,11 +100,11 @@ class RideInfoMainPage extends Component<RideInfoMainPageProps> {
           categories: {
             one: {
               title: t('letsride:ride'),
-              any: 'any'
+              formTitle: t('letsride:addShareRide')
             },
             two: {
               title: t('letsride:travelInfo'),
-              any: 'any'
+              formTitle: t('letsride:addTravelInfo')
             }
           }
         }
@@ -103,6 +113,8 @@ class RideInfoMainPage extends Component<RideInfoMainPageProps> {
   }
   render() {
     const { t } = this.props
+    console.log(this.renderedInfo, renderedMenus.matchingResults)
+
     return (
       <MainPageLayout src={imgSrc}>
         <PageWrapper>
