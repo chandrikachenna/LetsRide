@@ -1,1 +1,1 @@
-export { default as TableUI } from './Table'
+export { default as Table } from './Table'

@@ -1,20 +1,15 @@
 import styled from '@emotion/styled'
 import tw from 'tailwind.macro'
 import { Typo14SteelHKGroteskRegular } from '../../../../Common/styleGuide/Typos'
+import { Table } from '../../../../Common/components/Table'
 
-export const Header = styled.div`
-  ${tw`flex justify-between`}
-`
-export const FilterBar = styled.div`
-  ${tw`flex `}
-`
-export const TotalTasks = styled(Typo14SteelHKGroteskRegular)``
-export const Footer = styled.div`
-  ${tw`flex justify-between items-center`}
-`
-export const FormLink = styled.div`
-  ${tw`flex items-center cursor-pointer`}
-`
-export const FormLabel = styled(Typo14SteelHKGroteskRegular)``
+export const TableBody = styled(Table.Body)``
 
-export const Pages = styled(Typo14SteelHKGroteskRegular)``
+export const TableRow = styled(Table.Row)``
+
+export const TableCell = styled(Table.Cell)``
+export const CellLabel = styled(Typo14SteelHKGroteskRegular)``
+
+export const Details = styled.div`
+  ${tw`flex flex-col`}
+`

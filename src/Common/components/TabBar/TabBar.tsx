@@ -1,6 +1,7 @@
 import React from 'react'
 import { Tab } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
+import { observer } from 'mobx-react'
 
 function panesList(Component, firstData, secondDate) {
   return [
@@ -19,6 +20,8 @@ interface TabBarProps {
   dataForComponentOne: any
   dataForComponentTwo: any
 }
+
+@observer
 class TabBar extends React.Component<TabBarProps> {
   render() {
     const {

@@ -12,6 +12,8 @@ class PaginationStore {
   @observable getEntitiesListAPIError
   @observable entitiesList
   @observable totalPages
+  @observable details
+  @observable totalCount
   constructor(service, limit, entityModel) {
     this.limit = limit
     this.service = service
@@ -29,25 +31,29 @@ class PaginationStore {
   }
   @action.bound
   setGetEntitiesListAPIStatus(apiStatus) {
-    console.log(apiStatus)
-
     this.getEntitiesListAPIStatus = apiStatus
   }
   @action.bound
   setGetEntitiesListAPIError(error) {
-    console.log(error)
     this.getEntitiesListAPIError = error
   }
   @action.bound
   setEntitiesListResponse(response) {
     const { entityModel } = this
+    if (this.totalPages < this.currentPage) {
+      this.currentPage = 1
+    }
+    this.totalCount = response.total_count
     this.totalPages = Math.ceil(response.total_count / this.limit)
     this.entitiesList = response.data.map(item => new entityModel(item))
   }
   @action.bound
   getEntitiesList(details) {
-    console.log('service')
-    const promise = this.service(this.limit, this.offset, details)
+    this.details = details
+    let offset = Math.ceil(this.limit * (this.currentPage - 1))
+    console.log(offset);
+
+    const promise = this.service(this.limit, offset, details)
     return bindPromiseWithOnSuccess(promise)
       .to(this.setGetEntitiesListAPIStatus, this.setEntitiesListResponse)
       .catch(this.setGetEntitiesListAPIError)
@@ -55,6 +61,9 @@ class PaginationStore {
   @action.bound
   pagination(value) {
     this.currentPage = parseInt(value)
+    console.log(this.currentPage);
+
+    this.getEntitiesList(this.details)
   }
 }
 export { PaginationStore }

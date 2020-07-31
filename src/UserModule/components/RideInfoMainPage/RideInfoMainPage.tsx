@@ -16,6 +16,7 @@ import {
   goToRequstRidePage,
   goToRequstAssetTransportPage
 } from '../../utils/NavigationUtils'
+import { RideRequestTableHeadings } from '../../constants/TableHeadings'
 
 const renderedMenus = {
   matchingResults: 'matchingResults',
@@ -48,18 +49,21 @@ class RideInfoMainPage extends Component<RideInfoMainPageProps> {
           title: t('letsride:ride'),
           formTitle: t('letsride:addRideRequest'),
           formLink: goToRequstRidePage,
-          matchingResults: RideMatchingResults
+          matchingResults: RideMatchingResults,
+          dashboardHeadings: RideRequestTableHeadings
         },
         two: {
           title: t('letsride:asset'),
           formTitle: t('letsride:addAssetRequest'),
-          formLink: goToRequstAssetTransportPage
+          formLink: goToRequstAssetTransportPage,
+          matchingResults: RideMatchingResults,
+          dashboardHeadings: RideRequestTableHeadings
         }
       }
     }
   }
   onClickMenu = menu => {
-    const { t } = this.props
+    const { t, RideMatchingResults } = this.props
     switch (menu) {
       case menus.menu1:
         this.renderedInfo = renderedMenus.matchingResults
@@ -69,12 +73,15 @@ class RideInfoMainPage extends Component<RideInfoMainPageProps> {
               title: t('letsride:ride'),
               formTitle: t('letsride:addRideRequest'),
               formLink: goToRequstRidePage,
-              matchingResults: this.renderedInfo
+              matchingResults: RideMatchingResults,
+              dashboardHeadings: RideRequestTableHeadings
             },
             two: {
               title: t('letsride:asset'),
               formTitle: t('letsride:addAssetRequest'),
-              formLink: goToRequstAssetTransportPage
+              formLink: goToRequstAssetTransportPage,
+              matchingResults: RideMatchingResults,
+              dashboardHeadings: RideRequestTableHeadings
             }
           }
         }
@@ -113,8 +120,6 @@ class RideInfoMainPage extends Component<RideInfoMainPageProps> {
   }
   render() {
     const { t } = this.props
-    console.log(this.renderedInfo, renderedMenus.matchingResults)
-
     return (
       <MainPageLayout src={imgSrc}>
         <PageWrapper>

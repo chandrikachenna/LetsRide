@@ -1,76 +1,78 @@
-import React, { Component } from 'react'
-import { TableUI } from '../../../../Common/components/Table'
-import { Paginate } from '../../../../Common/components/Paginate'
-import '../../../../Common/styles/index.css'
+import React from 'react'
 import {
-  Header,
-  TotalTasks,
-  Footer,
-  FormLink,
-  FormLabel,
-  Pages,
-  FilterBar
+  CellLabel,
+  TableBody,
+  TableRow,
+  TableCell,
+  Details
 } from './styledComponents'
-import { PlusIcon } from '../../../../Common/components/Icons/PlusIcon'
-import { WithTranslation, withTranslation } from 'react-i18next'
-import { observer } from 'mobx-react'
-import { observable } from 'mobx'
-import { withRouter, RouteComponentProps } from 'react-router-dom'
+import { Table } from '../../../../Common/components/Table'
 
-interface DashboardProps extends WithTranslation, RouteComponentProps {
-  data: any
+interface DashboardProps {
+  headings: any
+  tableData: any
 }
-@observer
-class Dashboard extends Component<DashboardProps> {
-  @observable currentPage = 1
-
-  onClickFormTitle = () => {
-    const { history } = this.props
-    const { formLink } = this.props.data
-    formLink(history)
-  }
-  onPageChange = pages => {
-    this.currentPage = pages.selected + 1
-  }
+class Dashboard extends React.Component<DashboardProps> {
   render() {
-    const { t, data } = this.props
-    console.log(data)
+    const { headings, tableData } = this.props
+    console.log(tableData)
 
     return (
-      <>
-        <Header>
-          <TotalTasks>
-            {29}
-            {t('letsride:tasks')}
-          </TotalTasks>
-          <FilterBar></FilterBar>
-        </Header>
-        <TableUI />
-        <Footer>
-          <FormLink onClick={this.onClickFormTitle}>
-            <PlusIcon />
-            <FormLabel>{data.formTitle}</FormLabel>
-          </FormLink>
-          <Pages>
-            {t('letsride:page')}
-            {this.currentPage}
-            {t('letsride:of')}
-            {30}
-          </Pages>
-          <Paginate
-            pageCount={30}
-            marginPagesDisplayed={2}
-            pageRangeDisplayed={1}
-            onPageChange={this.onPageChange}
-            containerClassName={'pagination'}
-            activeClassName={'active'}
-          />
-        </Footer>
-      </>
+      <Table padded>
+        <TableBody>
+          <TableRow>
+            {headings.map(heading => (
+              <TableCell key={heading}>
+                <CellLabel>{heading}</CellLabel>
+              </TableCell>
+            ))}
+          </TableRow>
+          {tableData.map(rowData => (
+            <TableRow>
+              <TableCell key={rowData.acceptedPersonDetails}>
+                <Details>
+                  <CellLabel>{rowData.acceptedPersonDetails.name}</CellLabel>
+                  <CellLabel>
+                    {rowData.acceptedPersonDetails.mobileNumber}
+                  </CellLabel>
+                </Details>
+              </TableCell>
+              <TableCell key={rowData.fromPlace}>
+                <CellLabel>{rowData.fromPlace}</CellLabel>
+              </TableCell>
+              <TableCell key={rowData.toPlace}>
+                <CellLabel>{rowData.toPlace}</CellLabel>
+              </TableCell>
+              {rowData.isFlexible ? (
+                <TableCell key={rowData.fromDateTime}>
+                  <Details>
+                    <CellLabel>
+                      {rowData.fromDateTime}
+                      {' to '}
+                    </CellLabel>
+                    <CellLabel>{rowData.toDateTime}</CellLabel>
+                  </Details>
+                </TableCell>
+              ) : (
+                <TableCell key={rowData.fromDateTime}>
+                  <CellLabel>{rowData.fromDateTime}</CellLabel>
+                </TableCell>
+              )}
+              <TableCell key={rowData.noOfSeats}>
+                <CellLabel>{rowData.noOfSeats}</CellLabel>
+              </TableCell>
+              <TableCell key={rowData.luggageQuantity}>
+                <CellLabel>{rowData.luggageQuantity}</CellLabel>
+              </TableCell>
+              <TableCell key={rowData.rideRequestStatus}>
+                <CellLabel>{rowData.rideRequestStatus}</CellLabel>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
     )
   }
 }
 
-export default withTranslation('translation', { withRef: true })(
-  withRouter(Dashboard)
-)
+export default Dashboard
