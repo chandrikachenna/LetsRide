@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
 import { RidesInfoLayoutwrapper } from './styledComponents'
-import { TableUI } from '../../../../Common/components/Table'
 import LoadingWrapperWithFailure from '../../../../Common/components/LoadingWrapperWithFailure'
+import { Dashboard } from '../Dashboard'
 
 interface RidesInfoLayoutProps {
   data: any
@@ -11,7 +11,7 @@ interface RidesInfoLayoutProps {
 @observer
 class RidesInfoLayout extends Component<RidesInfoLayoutProps> {
   renderSuccessUI = observer(() => {
-    return <TableUI />
+    return <Dashboard />
   })
   render() {
     const { data } = this.props

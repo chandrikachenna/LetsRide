@@ -113,6 +113,7 @@ class RideInfoMainPage extends Component<RideInfoMainPageProps> {
             menu3Name={t('letsride:sharedDetails')}
             onClickMenu={this.onClickMenu}
           />
+
           {this.renderedInfo === renderedMenus.matchingResults && (
             <RidesInfoDashboard dashboardData={this.dashboardData} />
           )}
