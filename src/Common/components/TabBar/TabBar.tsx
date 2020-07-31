@@ -7,11 +7,13 @@ function panesList(Component, RenderedComponentTwo, firstData, secondDate) {
   return [
     {
       menuItem: firstData.title,
-      render: () => <Component data={firstData} />
+      render: () => <Component key={firstData.title} data={firstData} />
     },
     {
       menuItem: secondDate.title,
-      render: () => <RenderedComponentTwo data={secondDate} />
+      render: () => (
+        <RenderedComponentTwo key={secondDate.title} data={secondDate} />
+      )
     }
   ]
 }

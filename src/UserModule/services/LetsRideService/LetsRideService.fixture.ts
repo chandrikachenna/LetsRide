@@ -5,8 +5,6 @@ import getAssetMatchingResultsResponse from '../../fixtures/getAssetMatchingResu
 
 class LetsRideAPIService implements LetsRideService {
   GetRideMatchingResults(limit, offset, requestObject) {
-    console.log('ride');
-
     let dummyData = GetPaginateData(limit, offset, getRideMatchingResultsResponse)
     return resolveWithTimeout(dummyData)
   }
