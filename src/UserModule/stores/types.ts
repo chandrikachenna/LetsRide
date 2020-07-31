@@ -39,20 +39,28 @@ interface PersonDetails {
 }
 
 type RequestStatus = 'Pending' | 'Accepted'
-export interface RidesMatchingResultObject {
-  from_place: string
-  to_place: string
-  is_flexible: boolean
-  from_date_time: string
-  to_date_time: string
+
+interface MatchingResultObject extends BasicFormInfoObject {
   accepted_person_details: PersonDetails
   id: number
-  // ride_request_status: string
   is_status_pending: boolean
+}
+export interface RidesMatchingResultObject extends MatchingResultObject {
   number_of_seats: number
   luggage_quantity: number
 }
-export interface GetMatchingResultsRequest {
+export interface GetRidesMatchingResultsRequest {
   data: Array<RidesMatchingResultObject>
+  total_count: number
+}
+
+export interface AssestMatchingResultObject extends MatchingResultObject {
+  number_of_assets: number,
+  asset_type: string,
+  asset_sensitivity: string,
+  whom_to_deliver: string
+}
+export interface GetAssestMatchingResultsRequest {
+  data: Array<AssestMatchingResultObject>
   total_count: number
 }

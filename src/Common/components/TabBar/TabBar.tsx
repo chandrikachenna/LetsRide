@@ -3,7 +3,7 @@ import { Tab } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 import { observer } from 'mobx-react'
 
-function panesList(Component, firstData, secondDate) {
+function panesList(Component, RenderedComponentTwo, firstData, secondDate) {
   return [
     {
       menuItem: firstData.title,
@@ -11,12 +11,13 @@ function panesList(Component, firstData, secondDate) {
     },
     {
       menuItem: secondDate.title,
-      render: () => <Component data={secondDate} />
+      render: () => <RenderedComponentTwo data={secondDate} />
     }
   ]
 }
 interface TabBarProps {
   renderedComponent: Function
+  renderedComponentTwo: Function
   dataForComponentOne: any
   dataForComponentTwo: any
 }
@@ -26,6 +27,7 @@ class TabBar extends React.Component<TabBarProps> {
   render() {
     const {
       renderedComponent,
+      renderedComponentTwo,
       dataForComponentOne,
       dataForComponentTwo
     } = this.props
@@ -34,6 +36,7 @@ class TabBar extends React.Component<TabBarProps> {
         menu={{ secondary: true, pointing: true }}
         panes={panesList(
           renderedComponent,
+          renderedComponentTwo,
           dataForComponentOne,
           dataForComponentTwo
         )}

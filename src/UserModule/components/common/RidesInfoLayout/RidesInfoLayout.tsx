@@ -37,6 +37,8 @@ class RidesInfoLayout extends Component<RidesInfoLayoutProps> {
     this.TotalTasks = 0
   }
   componentDidMount() {
+    console.log('hi')
+
     this.getData()
   }
   getData = () => {
@@ -63,11 +65,14 @@ class RidesInfoLayout extends Component<RidesInfoLayoutProps> {
   })
   render() {
     const { t, data } = this.props
+
     const {
       getEntitiesListAPIStatus,
       getEntitiesListAPIError,
       entitiesList
     } = data.matchingResults
+    console.log(getEntitiesListAPIStatus)
+
     return (
       <RidesInfoLayoutwrapper>
         <Header>

@@ -2,6 +2,7 @@ const endpoints = {
   LetsRide: {
     letsRideInfo: 'letsRide',
     getRideMatchingResults: 'share_ride/matching_results/v1/',
+    getAssetMatchingResults: 'asset_transport_request_matching_results/v1/',
     updateRideRequest: 'ride_request/v1/',
     updateAsserTransportRequest: 'asset_transport_request/v1/',
     updateShareRide: 'share_ride_request/v1/',

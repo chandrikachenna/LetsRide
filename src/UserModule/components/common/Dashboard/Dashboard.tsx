@@ -9,10 +9,14 @@ import {
 import { Table } from '../../../../Common/components/Table'
 import { CheckBox } from '../../../../Common/components/CheckBox'
 
+import { observer } from 'mobx-react'
+
 interface DashboardProps {
   headings: any
   tableData: any
 }
+
+@observer
 class Dashboard extends React.Component<DashboardProps> {
   render() {
     const { headings, tableData } = this.props
@@ -29,7 +33,7 @@ class Dashboard extends React.Component<DashboardProps> {
             ))}
           </TableRow>
           {tableData.map(rowData => (
-            <TableRow>
+            <TableRow key={rowData.id}>
               <AcceptedPersonDetails
                 acceptedPersonDetails={rowData.acceptedPersonDetails}
               />
@@ -47,8 +51,9 @@ class Dashboard extends React.Component<DashboardProps> {
               <Cell cellData={rowData.luggageQuantity} />
               <TableCell key={rowData.isStatusPending}>
                 <CheckBox
-                  handleCheck={() => {}}
+                  handleCheck={rowData.updateRideRequestStatus}
                   isChecked={rowData.isStatusPending}
+                  isLabled={rowData.isStatusPending}
                 />
               </TableCell>
             </TableRow>

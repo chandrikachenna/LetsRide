@@ -8,25 +8,30 @@ const LIMIT = 4
 class LetsRideInfoStore {
   letsRideService: LetsRideService
   @observable formsInfo!: FormsInfoModel
-  @observable rideRideMatchingResultsInfo
+  @observable rideMatchingResultsInfo
+  @observable assetMatchingResultsInfo
   limit: number = LIMIT
   constructor(letsRideService: LetsRideService) {
     this.letsRideService = letsRideService
-    this.rideRideMatchingResultsInfo = new PaginationStore(
-      this.letsRideService.GetRideMatchingResults,
-      this.limit,
-      MatchingResultITemModel
-    )
-
     this.init()
   }
   @action.bound
   init = () => {
     this.formsInfo = new FormsInfoModel(this.letsRideService)
+    this.rideMatchingResultsInfo = new PaginationStore(
+      this.letsRideService.GetRideMatchingResults,
+      this.limit,
+      MatchingResultITemModel
+    )
+    this.assetMatchingResultsInfo = new PaginationStore(
+      this.letsRideService.GetAssetMatchingResults,
+      this.limit,
+      MatchingResultITemModel
+    )
   }
   @action.bound
   getRideMatchingResults = async requestObject => {
-    await this.rideRideMatchingResultsInfo.getEntitiesList(requestObject)
+    await this.rideMatchingResultsInfo.getEntitiesList(requestObject)
   }
 }
 export { LetsRideInfoStore }

@@ -11,17 +11,20 @@ interface InjectedProps extends RideInfoMainRouteProps {}
 @inject('letsRideInfoStore')
 @observer
 class RideInfoMainRoute extends Component<RideInfoMainRouteProps> {
-  componentDidMount = () => {
-    this.getLetsRideInfoStore().getRideMatchingResults({ filter_by: 'All' })
-    console.log(this.getLetsRideInfoStore())
-  }
   getLetsRideInfoStore = () => {
     return this.props['letsRideInfoStore']
   }
   renderSuccessUI = observer(() => {
     const RideMatchingResults = this.getLetsRideInfoStore()
-      .rideRideMatchingResultsInfo
-    return <RideInfoMainPage RideMatchingResults={RideMatchingResults} />
+      .rideMatchingResultsInfo
+    const AssetMatchingResults = this.getLetsRideInfoStore()
+      .assetMatchingResultsInfo
+    return (
+      <RideInfoMainPage
+        RideMatchingResults={RideMatchingResults}
+        AssetMatchingResults={AssetMatchingResults}
+      />
+    )
   })
   render() {
     return (

@@ -29,6 +29,7 @@ const imgSrc =
 
 interface RideInfoMainPageProps extends WithTranslation {
   RideMatchingResults: PaginationStore
+  AssetMatchingResults: PaginationStore
 }
 
 @observer
@@ -42,7 +43,7 @@ class RideInfoMainPage extends Component<RideInfoMainPageProps> {
   }
 
   init = () => {
-    const { t, RideMatchingResults } = this.props
+    const { t, RideMatchingResults, AssetMatchingResults } = this.props
     this.dashboardData = {
       categories: {
         one: {
@@ -56,14 +57,14 @@ class RideInfoMainPage extends Component<RideInfoMainPageProps> {
           title: t('letsride:asset'),
           formTitle: t('letsride:addAssetRequest'),
           formLink: goToRequstAssetTransportPage,
-          matchingResults: RideMatchingResults,
+          matchingResults: AssetMatchingResults,
           dashboardHeadings: RideRequestTableHeadings
         }
       }
     }
   }
   onClickMenu = menu => {
-    const { t, RideMatchingResults } = this.props
+    const { t, RideMatchingResults, AssetMatchingResults } = this.props
     switch (menu) {
       case menus.menu1:
         this.renderedInfo = renderedMenus.matchingResults
@@ -80,7 +81,7 @@ class RideInfoMainPage extends Component<RideInfoMainPageProps> {
               title: t('letsride:asset'),
               formTitle: t('letsride:addAssetRequest'),
               formLink: goToRequstAssetTransportPage,
-              matchingResults: RideMatchingResults,
+              matchingResults: AssetMatchingResults,
               dashboardHeadings: RideRequestTableHeadings
             }
           }

@@ -7,12 +7,14 @@ interface CheckBoxProps {
   label?: string
   isDisable?: boolean
   isChecked?: boolean
+  isLabled?: boolean
 }
 class CheckBox extends Component<CheckBoxProps> {
   static defaultProps = {
     labelTypo: 'p',
     label: null,
-    isChecked: false
+    isChecked: false,
+    isLabled: true
   }
   render() {
     const {
@@ -20,7 +22,8 @@ class CheckBox extends Component<CheckBoxProps> {
       labelTypo: LabelTypo,
       label,
       isDisable,
-      isChecked
+      isChecked,
+      isLabled
     } = this.props
     return (
       <CheckBoxWrapper>
@@ -30,9 +33,11 @@ class CheckBox extends Component<CheckBoxProps> {
           disabled={isDisable}
           checked={isChecked}
         />
-        <Label>
-          <LabelTypo>{label}</LabelTypo>
-        </Label>
+        {isLabled && (
+          <Label>
+            <LabelTypo>{label}</LabelTypo>
+          </Label>
+        )}
       </CheckBoxWrapper>
     )
   }

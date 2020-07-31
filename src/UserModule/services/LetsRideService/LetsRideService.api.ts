@@ -25,6 +25,16 @@ class LetsRideAPIService implements LetsRideService {
       apiMethods.post
     )
   }
+  @action.bound
+  async GetAssetMatchingResults(limit, offset, requestObject) {
+    const endpoint = `${endpoints.LetsRide.getAssetMatchingResults}?limit=${limit}&offset=${offset}`
+    return networkCallWithApisauce(
+      this.api,
+      endpoint,
+      requestObject,
+      apiMethods.post
+    )
+  }
   async AddRideRequestAPI(requestObject) {
     return networkCallWithApisauce(
       this.api,

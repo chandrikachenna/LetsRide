@@ -1,15 +1,19 @@
 import LetsRideService from '.'
 import { resolveWithTimeout } from '../../../Common/utils/TestUtils'
-import getMatchingResultsResponse from '../../fixtures/getMatchingResultsResponse.json'
+import getRideMatchingResultsResponse from '../../fixtures/getRideMatchingResultsResponse.json'
+import getAssetMatchingResultsResponse from '../../fixtures/getAssetMatchingResultsResponse.json'
 
 class LetsRideAPIService implements LetsRideService {
   GetRideMatchingResults(limit, offset, requestObject) {
-    let dataFromFixture = getMatchingResultsResponse.data.slice()
-    let data = dataFromFixture.splice(offset, limit)
-    let dummyData = {
-      data: data,
-      total_count: getMatchingResultsResponse.total_count
-    }
+    console.log('ride');
+
+    let dummyData = GetPaginateData(limit, offset, getRideMatchingResultsResponse)
+    return resolveWithTimeout(dummyData)
+  }
+  GetAssetMatchingResults(limit, offset, requestObject) {
+    console.log('asset');
+
+    let dummyData = GetPaginateData(limit, offset, getAssetMatchingResultsResponse)
     return resolveWithTimeout(dummyData)
   }
   AddRideRequestAPI() {
@@ -27,3 +31,14 @@ class LetsRideAPIService implements LetsRideService {
 }
 
 export default LetsRideAPIService
+
+
+function GetPaginateData(limit, offset, fixtureData) {
+  let dataFromFixture = fixtureData.data.slice()
+  let data = dataFromFixture.splice(offset, limit)
+  let dummyData = {
+    data: data,
+    total_count: fixtureData.total_count
+  }
+  return dummyData
+}
