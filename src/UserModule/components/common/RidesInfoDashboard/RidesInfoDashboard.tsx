@@ -16,7 +16,6 @@ class RidesInfoDashboard extends Component<RidesInfoDashboardProps> {
       <DashboardWrapper>
         <TabBar
           renderedComponent={RidesInfoLayout}
-          renderedComponentTwo={RidesInfoLayout}
           dataForComponentOne={dashboardData.categories.one}
           dataForComponentTwo={dashboardData.categories.two}
         />

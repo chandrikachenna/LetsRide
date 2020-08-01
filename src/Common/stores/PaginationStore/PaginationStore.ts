@@ -49,7 +49,6 @@ class PaginationStore {
   }
   @action.bound
   getEntitiesList(details) {
-
     this.details = details
     let offset = Math.ceil(this.limit * (this.currentPage - 1))
 

@@ -37,13 +37,11 @@ class RidesInfoLayout extends Component<RidesInfoLayoutProps> {
     this.TotalTasks = 0
   }
   componentDidMount() {
-    console.log('hi')
-
     this.getData()
   }
   getData = () => {
-    const { getEntitiesList } = this.props.data.matchingResults
-    getEntitiesList()
+    const { pagination } = this.props.data.matchingResults
+    pagination(this.currentPage)
   }
   onClickFormTitle = () => {
     const { history } = this.props
@@ -57,19 +55,24 @@ class RidesInfoLayout extends Component<RidesInfoLayoutProps> {
   }
   renderSuccessUI = observer(() => {
     const { data } = this.props
+    const { dashboardHeadings, dashboard, title } = data
     const { totalPages, totalCount, entitiesList } = data.matchingResults
-    const { dashboardHeadings } = data
     this.pageCount = totalPages
     this.TotalTasks = totalCount
-    return <Dashboard headings={dashboardHeadings} tableData={entitiesList} />
+    return (
+      <Dashboard
+        headings={dashboardHeadings}
+        tableData={entitiesList}
+        dashboard={dashboard}
+        title={title}
+      />
+    )
   })
   render() {
     const { t, data } = this.props
-
     const {
       getEntitiesListAPIStatus,
-      getEntitiesListAPIError,
-      entitiesList
+      getEntitiesListAPIError
     } = data.matchingResults
     console.log(getEntitiesListAPIStatus)
 

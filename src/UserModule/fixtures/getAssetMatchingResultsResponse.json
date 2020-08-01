@@ -48,7 +48,7 @@
       "is_status_pending": false,
       "number_of_assets": 3,
       "asset_type": "Laptop",
-      "asset_sensitivity": "Highly_Sensitive",
+      "asset_sensitivity": "Highly Sensitive",
       "whom_to_deliver": "Antonio.D 8000000808"
     },
     {
@@ -82,7 +82,7 @@
       "is_status_pending": true,
       "number_of_assets": 3,
       "asset_type": "Laptop",
-      "asset_sensitivity": "Highly_Sensitive",
+      "asset_sensitivity": "Highly Sensitive",
       "whom_to_deliver": "Antonio.D 8000000808"
     },
     {

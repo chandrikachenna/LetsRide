@@ -17,7 +17,7 @@ class MatchingResultITemModel {
   numberOfAssets: number
   assetType: string
   assetSensitivity
-  whom_to_deliver
+  whomToDeliver
   @observable isStatusPending: boolean
   constructor(matchingResultItem) {
     this.id = matchingResultItem.id
@@ -37,16 +37,16 @@ class MatchingResultITemModel {
       ? matchingResultItem.luggage_quantity
       : null
     this.isStatusPending = matchingResultItem.is_status_pending
-    this.numberOfAssets = matchingResultItem.numberOfAssets
-      ? matchingResultItem.numberOfAssets
+    this.numberOfAssets = matchingResultItem.number_of_assets
+      ? matchingResultItem.number_of_assets
       : null
     this.assetType = matchingResultItem.asset_type
       ? matchingResultItem.asset_type
       : null
-    this.assetSensitivity = matchingResultItem.assetSensitivity
-      ? matchingResultItem.assetSensitivity
+    this.assetSensitivity = matchingResultItem.asset_sensitivity
+      ? matchingResultItem.asset_sensitivity
       : null
-    this.whom_to_deliver = matchingResultItem.whom_to_deliver
+    this.whomToDeliver = matchingResultItem.whom_to_deliver
       ? matchingResultItem.whom_to_deliver
       : null
   }

@@ -1,22 +1,30 @@
 import React, { Component } from 'react'
-import { MainPageLayout } from '../../../Common/components/MainPageLayout'
-import { PageWrapper } from './styledComponents'
+import { withTranslation, WithTranslation } from 'react-i18next'
 import { observer } from 'mobx-react'
-import { MenuBar } from '../../../Common/components/MenuBar'
-import {
-  withTranslation,
-  WithTranslation,
-  initReactI18next
-} from 'react-i18next'
 import { observable } from 'mobx'
+
+import { MainPageLayout } from '../../../Common/components/MainPageLayout'
+import { MenuBar } from '../../../Common/components/MenuBar'
 import { menus } from '../../../Common/components/MenuBar/MenuBar'
-import { RidesInfoDashboard } from '../common/RidesInfoDashboard'
 import { PaginationStore } from '../../../Common/stores/PaginationStore'
+
 import {
   goToRequstRidePage,
-  goToRequstAssetTransportPage
+  goToRequstAssetTransportPage,
+  goToShareRidePage,
+  goToShareTravelInfoPage
 } from '../../utils/NavigationUtils'
-import { RideRequestTableHeadings } from '../../constants/TableHeadings'
+import {
+  RideMatchingTableHeadings,
+  AssetMatchingTableHeadings,
+  RideRequestTableHeadings,
+  AssetRequestTableHeadings,
+  SharedRideTableHeadings
+} from '../../constants/TableHeadings'
+
+import { RidesInfoDashboard } from '../common/RidesInfoDashboard'
+
+import { PageWrapper } from './styledComponents'
 
 const renderedMenus = {
   matchingResults: 'matchingResults',
@@ -47,18 +55,20 @@ class RideInfoMainPage extends Component<RideInfoMainPageProps> {
     this.dashboardData = {
       categories: {
         one: {
+          dashboard: 'matchingResults',
           title: t('letsride:ride'),
           formTitle: t('letsride:addRideRequest'),
           formLink: goToRequstRidePage,
           matchingResults: RideMatchingResults,
-          dashboardHeadings: RideRequestTableHeadings
+          dashboardHeadings: RideMatchingTableHeadings
         },
         two: {
+          dashboard: 'matchingResults',
           title: t('letsride:asset'),
           formTitle: t('letsride:addAssetRequest'),
           formLink: goToRequstAssetTransportPage,
           matchingResults: AssetMatchingResults,
-          dashboardHeadings: RideRequestTableHeadings
+          dashboardHeadings: AssetMatchingTableHeadings
         }
       }
     }
@@ -71,18 +81,20 @@ class RideInfoMainPage extends Component<RideInfoMainPageProps> {
         this.dashboardData = {
           categories: {
             one: {
+              dashboard: 'matchingResults',
               title: t('letsride:ride'),
               formTitle: t('letsride:addRideRequest'),
               formLink: goToRequstRidePage,
               matchingResults: RideMatchingResults,
-              dashboardHeadings: RideRequestTableHeadings
+              dashboardHeadings: RideMatchingTableHeadings
             },
             two: {
+              dashboard: 'matchingResults',
               title: t('letsride:asset'),
               formTitle: t('letsride:addAssetRequest'),
               formLink: goToRequstAssetTransportPage,
               matchingResults: AssetMatchingResults,
-              dashboardHeadings: RideRequestTableHeadings
+              dashboardHeadings: AssetMatchingTableHeadings
             }
           }
         }
@@ -92,12 +104,20 @@ class RideInfoMainPage extends Component<RideInfoMainPageProps> {
         this.dashboardData = {
           categories: {
             one: {
+              dashboard: 'myRequests',
               title: t('letsride:ride'),
-              formTitle: t('letsride:addRideRequest')
+              formTitle: t('letsride:addRideRequest'),
+              formLink: goToRequstRidePage,
+              matchingResults: RideMatchingResults,
+              dashboardHeadings: RideRequestTableHeadings
             },
             two: {
+              dashboard: 'myRequests',
               title: t('letsride:asset'),
-              formTitle: t('letsride:addAssetRequest')
+              formTitle: t('letsride:addAssetRequest'),
+              formLink: goToRequstAssetTransportPage,
+              matchingResults: RideMatchingResults,
+              dashboardHeadings: AssetRequestTableHeadings
             }
           }
         }
@@ -107,12 +127,20 @@ class RideInfoMainPage extends Component<RideInfoMainPageProps> {
         this.dashboardData = {
           categories: {
             one: {
+              dashboard: 'sharedDetails',
               title: t('letsride:ride'),
-              formTitle: t('letsride:addShareRide')
+              formTitle: t('letsride:addShareRide'),
+              formLink: goToShareRidePage,
+              matchingResults: RideMatchingResults,
+              dashboardHeadings: SharedRideTableHeadings
             },
             two: {
+              dashboard: 'sharedDetails',
               title: t('letsride:travelInfo'),
-              formTitle: t('letsride:addTravelInfo')
+              formTitle: t('letsride:addTravelInfo'),
+              formLink: goToShareTravelInfoPage,
+              matchingResults: RideMatchingResults,
+              dashboardHeadings: SharedRideTableHeadings
             }
           }
         }
@@ -135,12 +163,12 @@ class RideInfoMainPage extends Component<RideInfoMainPageProps> {
           {this.renderedInfo === renderedMenus.matchingResults && (
             <RidesInfoDashboard dashboardData={this.dashboardData} />
           )}
-          {/* {this.renderedInfo === renderedMenus.myRequests && (
+          {this.renderedInfo === renderedMenus.myRequests && (
             <RidesInfoDashboard dashboardData={this.dashboardData} />
           )}
           {this.renderedInfo === renderedMenus.sharedDetails && (
             <RidesInfoDashboard dashboardData={this.dashboardData} />
-          )} */}
+          )}
         </PageWrapper>
       </MainPageLayout>
     )

@@ -1,5 +1,6 @@
 import React from 'react'
 import {
+  HeadingLable,
   CellLabel,
   TableBody,
   TableRow,
@@ -12,14 +13,16 @@ import { CheckBox } from '../../../../Common/components/CheckBox'
 import { observer } from 'mobx-react'
 
 interface DashboardProps {
-  headings: any
+  headings: Array<string>
+  title: string
   tableData: any
+  dashboard: string
 }
 
 @observer
 class Dashboard extends React.Component<DashboardProps> {
   render() {
-    const { headings, tableData } = this.props
+    const { dashboard, title, headings, tableData } = this.props
     console.log(tableData)
 
     return (
@@ -28,15 +31,17 @@ class Dashboard extends React.Component<DashboardProps> {
           <TableRow>
             {headings.map(heading => (
               <TableCell key={heading}>
-                <CellLabel>{heading}</CellLabel>
+                <HeadingLable>{heading}</HeadingLable>
               </TableCell>
             ))}
           </TableRow>
           {tableData.map(rowData => (
             <TableRow key={rowData.id}>
-              <AcceptedPersonDetails
-                acceptedPersonDetails={rowData.acceptedPersonDetails}
-              />
+              {dashboard.match('matchingResults') && (
+                <AcceptedPersonDetails
+                  acceptedPersonDetails={rowData.acceptedPersonDetails}
+                />
+              )}
               <Cell cellData={rowData.fromPlace} />
               <Cell cellData={rowData.toPlace} />
               {rowData.isFlexible ? (
@@ -47,15 +52,57 @@ class Dashboard extends React.Component<DashboardProps> {
               ) : (
                 <Cell cellData={rowData.fromDateTime} />
               )}
-              <Cell cellData={rowData.noOfSeats} />
-              <Cell cellData={rowData.luggageQuantity} />
-              <TableCell key={rowData.isStatusPending}>
-                <CheckBox
-                  handleCheck={rowData.updateRideRequestStatus}
-                  isChecked={rowData.isStatusPending}
-                  isLabled={rowData.isStatusPending}
+
+              {title.match('Ride')
+                ? (dashboard.match('matchingResults') && (
+                    <>
+                      <Cell cellData={rowData.noOfSeats} />
+                      <Cell cellData={rowData.luggageQuantity} />
+                    </>
+                  )) ||
+                  (dashboard.match('myRequests') && (
+                    <>
+                      <Cell cellData={rowData.noOfPeople} />
+                      <Cell cellData={rowData.luggageQuantity} />
+                    </>
+                  )) ||
+                  (dashboard.match('sharedDetails') && (
+                    <>
+                      <Cell cellData={rowData.noOfSeats} />
+                      <Cell cellData={rowData.assetsQuantity} />
+                    </>
+                  ))
+                : ((dashboard.match('matchingResults') ||
+                    dashboard.match('myRequests')) && (
+                    <>
+                      <Cell cellData={rowData.numberOfAssets} />
+                      <Cell cellData={rowData.assetType} />
+                      <Cell cellData={rowData.assetSensitivity} />
+                      <Cell cellData={rowData.whomToDeliver} />
+                    </>
+                  )) ||
+                  (dashboard.match('sharedDetails') && (
+                    <>
+                      <Cell cellData={rowData.travelMedium} />
+                      <Cell cellData={rowData.assetsQuantity} />
+                    </>
+                  ))}
+              {dashboard.match('myRequests') && (
+                <AcceptedPersonDetails
+                  acceptedPersonDetails={rowData.acceptedPersonDetails}
                 />
-              </TableCell>
+              )}
+              {dashboard.match('matchingResults') ? (
+                <TableCell key={rowData.isStatusPending}>
+                  <CheckBox
+                    handleCheck={rowData.updateRideRequestStatus}
+                    isChecked={rowData.isStatusPending}
+                    isLabled={rowData.isStatusPending}
+                  />
+                </TableCell>
+              ) : (
+                <Cell cellData={rowData.isStatusPending} />
+              )}
             </TableRow>
           ))}
         </TableBody>
