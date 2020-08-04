@@ -14,10 +14,10 @@ import {
   Footer,
   FormLink,
   FormLabel,
-  Pages,
-  FilterBar
+  Pages
 } from './styledComponents'
 import { PlusIcon } from '../../../../Common/components/Icons/PlusIcon'
+import { FilterBar } from '../../../../Common/components/FilterBar'
 
 interface RidesInfoLayoutProps extends WithTranslation, RouteComponentProps {
   data: any
@@ -83,7 +83,7 @@ class RidesInfoLayout extends Component<RidesInfoLayoutProps> {
             {this.TotalTasks}
             {t('letsride:tasks')}
           </TotalTasks>
-          <FilterBar></FilterBar>
+          <FilterBar />
         </Header>
         <LoadingWrapperWithFailure
           apiStatus={getEntitiesListAPIStatus}
