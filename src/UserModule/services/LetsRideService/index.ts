@@ -7,15 +7,19 @@ import {
   RequestMatchingResultsWithFilter,
   GetAssestMatchingResultsRequest,
   GetMyRideRequest,
-  RequestMyRequestInfoWithDetails,
-  GetMyAssetRequest
+  RequestInfoWithDetails,
+  GetMyAssetRequest,
+  GetSharedRideDetailsRequest,
+  GetSharedTravelInfoRequest
 } from '../../stores/types'
 
 interface LetsRideService {
   GetRideMatchingResults: (limit: number, offset: number, requestObject: RequestMatchingResultsWithFilter) => Promise<GetRidesMatchingResultsRequest>
   GetAssetMatchingResults: (limit: number, offset: number, requestObject: RequestMatchingResultsWithFilter) => Promise<GetAssestMatchingResultsRequest>
-  GetMyRideRequests: (limit: number, offset: number, requestObject: RequestMyRequestInfoWithDetails) => Promise<GetMyRideRequest>
-  GetMyAssetRequests: (limit: number, offset: number, requestObject: RequestMyRequestInfoWithDetails) => Promise<GetMyAssetRequest>
+  GetMyRideRequests: (limit: number, offset: number, requestObject: RequestInfoWithDetails) => Promise<GetMyRideRequest>
+  GetMyAssetRequests: (limit: number, offset: number, requestObject: RequestInfoWithDetails) => Promise<GetMyAssetRequest>
+  GetSharedRideDetails: (limit: number, offset: number, requestObject: RequestInfoWithDetails) => Promise<GetSharedRideDetailsRequest>
+  GetSharedTravelInfo: (limit: number, offset: number, requestObject: RequestInfoWithDetails) => Promise<GetSharedTravelInfoRequest>
   AddRideRequestAPI: (requestObject: UpdateRideRequest) => Promise<{}>
   AddAsserTransportRequestAPI: (
     requestObject: UpdateAsserTransportRequest

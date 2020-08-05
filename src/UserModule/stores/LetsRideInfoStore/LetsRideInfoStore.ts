@@ -12,6 +12,8 @@ class LetsRideInfoStore {
   @observable assetMatchingResultsInfo
   @observable myRideRequestsInfo
   @observable myAssetRequestsInfo
+  @observable sharedRideInfo
+  @observable sharedTravelInfo
   limit: number = LIMIT
   constructor(letsRideService: LetsRideService) {
     this.letsRideService = letsRideService
@@ -37,6 +39,16 @@ class LetsRideInfoStore {
     )
     this.myAssetRequestsInfo = new PaginationStore(
       this.letsRideService.GetMyAssetRequests,
+      this.limit,
+      ResultITemModel
+    )
+    this.sharedRideInfo = new PaginationStore(
+      this.letsRideService.GetSharedRideDetails,
+      this.limit,
+      ResultITemModel
+    )
+    this.sharedTravelInfo = new PaginationStore(
+      this.letsRideService.GetSharedTravelInfo,
       this.limit,
       ResultITemModel
     )

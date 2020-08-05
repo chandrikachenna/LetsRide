@@ -64,7 +64,7 @@ export interface GetAssestMatchingResultsRequest {
   data: Array<AssestMatchingResultObject>
   total_count: number
 }
-export interface RequestMyRequestInfoWithDetails {
+export interface RequestInfoWithDetails {
   order_by: string,
   sort_by: string,
   filter_by: string
@@ -92,5 +92,25 @@ export interface MyAssetRequestObject extends MyRequestObject {
 
 export interface GetMyAssetRequest {
   data: Array<MyAssetRequestObject>
+  total_count: number
+}
+
+
+export interface SharedRideDetailsObject extends BasicFormInfoObject {
+  number_of_seats_available: number,
+  assets_quantity: number,
+  status: string
+}
+export interface GetSharedRideDetailsRequest {
+  data: Array<SharedRideDetailsObject>
+  total_count: number
+}
+export interface SharedTravelInfoObject extends BasicFormInfoObject {
+  travel_medium: string,
+  assets_quantity: number,
+  status: string
+}
+export interface GetSharedTravelInfoRequest {
+  data: Array<SharedTravelInfoObject>
   total_count: number
 }

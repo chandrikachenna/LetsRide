@@ -4,7 +4,8 @@ import getRideMatchingResultsResponse from '../../fixtures/getRideMatchingResult
 import getAssetMatchingResultsResponse from '../../fixtures/getAssetMatchingResultsResponse.json'
 import getMyRideRequestsResponse from '../../fixtures/getMyRideRequestsResponse.json'
 import getMyAssetRequestsResponse from '../../fixtures/getMyAssetRequestResponse.json'
-
+import getSharedRideDetailsResponse from '../../fixtures/getSharedRideDetailsResponse.json'
+import getSharedTravelInfoResponse from '../../fixtures/getSharedTravelInfoResponse.json'
 class LetsRideAPIService implements LetsRideService {
   GetRideMatchingResults(limit, offset, requestObject) {
     let dummyData = GetPaginateData(limit, offset, getRideMatchingResultsResponse)
@@ -20,6 +21,14 @@ class LetsRideAPIService implements LetsRideService {
   }
   GetMyAssetRequests(limit, offset, requestObject) {
     let dummyData = GetPaginateData(limit, offset, getMyAssetRequestsResponse)
+    return resolveWithTimeout(dummyData)
+  }
+  GetSharedRideDetails(limit, offset, requestObject) {
+    let dummyData = GetPaginateData(limit, offset, getSharedRideDetailsResponse)
+    return resolveWithTimeout(dummyData)
+  }
+  GetSharedTravelInfo(limit, offset, requestObject) {
+    let dummyData = GetPaginateData(limit, offset, getSharedTravelInfoResponse)
     return resolveWithTimeout(dummyData)
   }
   AddRideRequestAPI() {

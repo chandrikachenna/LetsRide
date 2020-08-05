@@ -23,8 +23,6 @@ interface DashboardProps {
 class Dashboard extends React.Component<DashboardProps> {
   render() {
     const { dashboard, title, headings, tableData } = this.props
-    // console.log(tableData)
-
     return (
       <Table padded>
         <TableBody>

@@ -55,6 +55,26 @@ class LetsRideAPIService implements LetsRideService {
       apiMethods.post
     )
   }
+  @action.bound
+  async GetSharedRideDetails(limit, offset, requestObject) {
+    const endpoint = `${endpoints.LetsRide.getSharedRideDetails}?limit=${limit}&offset=${offset}`
+    return networkCallWithApisauce(
+      this.api,
+      endpoint,
+      requestObject,
+      apiMethods.post
+    )
+  }
+  @action.bound
+  async GetSharedTravelInfo(limit, offset, requestObject) {
+    const endpoint = `${endpoints.LetsRide.getSharedTravelInfo}?limit=${limit}&offset=${offset}`
+    return networkCallWithApisauce(
+      this.api,
+      endpoint,
+      requestObject,
+      apiMethods.post
+    )
+  }
   async AddRideRequestAPI(requestObject) {
     return networkCallWithApisauce(
       this.api,

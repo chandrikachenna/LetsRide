@@ -18,6 +18,8 @@ class ResultITemModel {
   assetType: string
   assetSensitivity
   whomToDeliver
+  assetQuantity
+  travelMedium
   status!: string
   @observable isStatusPending: boolean
   constructor(ResultItem: any) {
@@ -35,6 +37,9 @@ class ResultITemModel {
     }
     this.noOfSeats = ResultItem.number_of_seats
       ? ResultItem.number_of_seats
+      : null
+    this.noOfSeats = ResultItem.number_of_seats_available
+      ? ResultItem.number_of_seats_available
       : null
     this.luggageQuantity = ResultItem.luggage_quantity
       ? ResultItem.luggage_quantity
@@ -55,6 +60,12 @@ class ResultITemModel {
       : null
     this.whomToDeliver = ResultItem.whom_to_deliver
       ? ResultItem.whom_to_deliver
+      : null
+    this.assetQuantity = ResultItem.assets_quantity
+      ? ResultItem.assets_quantity
+      : null
+    this.travelMedium = ResultItem.travel_medium
+      ? ResultItem.travel_medium
       : null
   }
   updateRideRequestStatus = () => {
