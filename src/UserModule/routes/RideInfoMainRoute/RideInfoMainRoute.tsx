@@ -19,10 +19,15 @@ class RideInfoMainRoute extends Component<RideInfoMainRouteProps> {
       .rideMatchingResultsInfo
     const AssetMatchingResults = this.getLetsRideInfoStore()
       .assetMatchingResultsInfo
+    const MyRideRequestsResults = this.getLetsRideInfoStore().myRideRequestsInfo
+    const MyAssetRequestsResults = this.getLetsRideInfoStore()
+      .myAssetRequestsInfo
     return (
       <RideInfoMainPage
         RideMatchingResults={RideMatchingResults}
         AssetMatchingResults={AssetMatchingResults}
+        MyRideRequestsResults={MyRideRequestsResults}
+        MyAssetRequestsResults={MyAssetRequestsResults}
       />
     )
   })

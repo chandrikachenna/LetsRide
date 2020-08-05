@@ -1,0 +1,119 @@
+{
+  "data": [
+    {
+      "from_place": "Old Kottam College, Kurnool",
+      "to_place": "Financial district, Hyderabad",
+      "is_flexible": false,
+      "from_date_time": "25/05/2020, 10:30 PM",
+      "to_date_time": "",
+      "number_of_assets": 3,
+      "asset_type": "Gadget",
+      "asset_sensitivity": "Normal",
+      "whom_to_deliver": "Antonio.D 8000000808",
+      "accepted_person_details": {
+        "name": "Antonio.D",
+        "mobile_number": 8000000808
+      },
+      "status": "CONFIRM"
+    },
+    {
+      "from_place": "Kurnool",
+      "to_place": "Hyderabad",
+      "is_flexible": true,
+      "from_date_time": "25/05/2020, 10:30 PM",
+      "to_date_time": "25/05/2020, 10:30 PM",
+      "number_of_assets": 3,
+      "asset_type": "Package",
+      "asset_sensitivity": "Sensitive",
+      "whom_to_deliver": "Antonio.D 8000000808",
+      "accepted_person_details": {
+        "name": "Antonio.D",
+        "mobile_number": 8000000808
+      },
+      "status": "PENDING"
+    },
+    {
+      "from_place": "Kurnool",
+      "to_place": "Hyderabad",
+      "is_flexible": true,
+      "from_date_time": "25/05/2020, 10:30 PM",
+      "to_date_time": "25/05/2020, 10:30 PM",
+      "number_of_assets": 3,
+      "asset_type": "Laptop",
+      "asset_sensitivity": "Highly Sensitive",
+      "whom_to_deliver": "Antonio.D 8000000808",
+      "accepted_person_details": {
+        "name": "Antonio.D",
+        "mobile_number": 8000000808
+      },
+
+      "status": "CONFIRM"
+    },
+    {
+      "from_place": "Old Kottam College, Kurnool",
+      "to_place": "Financial district, Hyderabad",
+      "is_flexible": false,
+      "from_date_time": "25/05/2020, 10:30 PM",
+      "to_date_time": "",
+      "number_of_assets": 3,
+      "asset_type": "Gadget",
+      "asset_sensitivity": "Normal",
+      "whom_to_deliver": "Antonio.D 8000000808",
+      "accepted_person_details": {
+        "name": "Antonio.D",
+        "mobile_number": 8000000808
+      },
+
+      "status": "PENDING"
+    },
+    {
+      "from_place": "Old Kottam College, Kurnool",
+      "to_place": "Financial district, Hyderabad",
+      "is_flexible": false,
+      "from_date_time": "25/05/2020, 10:30 PM",
+      "to_date_time": "",
+      "number_of_assets": 3,
+      "asset_type": "Laptop",
+      "asset_sensitivity": "Highly Sensitive",
+      "whom_to_deliver": "Antonio.D 8000000808",
+      "accepted_person_details": {
+        "name": "Antonio.D",
+        "mobile_number": 8000000808
+      },
+      "status": "PENDING"
+    },
+    {
+      "from_place": "Kurnool",
+      "to_place": "Hyderabad",
+      "is_flexible": true,
+      "from_date_time": "25/05/2020, 10:30 PM",
+      "to_date_time": "25/05/2020, 10:30 PM",
+      "number_of_assets": 3,
+      "asset_type": "Package",
+      "asset_sensitivity": "Sensitive",
+      "whom_to_deliver": "Antonio.D 8000000808",
+      "accepted_person_details": {
+        "name": "Antonio.D",
+        "mobile_number": 8000000808
+      },
+      "status": "CONFIRM"
+    },
+    {
+      "from_place": "Kurnool",
+      "to_place": "Hyderabad",
+      "is_flexible": true,
+      "from_date_time": "25/05/2020, 10:30 PM",
+      "to_date_time": "25/05/2020, 10:30 PM",
+      "number_of_assets": 3,
+      "asset_type": "Package",
+      "asset_sensitivity": "Sensitive",
+      "whom_to_deliver": "Antonio.D 8000000808",
+      "accepted_person_details": {
+        "name": "Antonio.D",
+        "mobile_number": 8000000808
+      },
+      "status": "CONFIRM"
+    }
+  ],
+  "total_count": 7
+}

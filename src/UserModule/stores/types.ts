@@ -64,3 +64,33 @@ export interface GetAssestMatchingResultsRequest {
   data: Array<AssestMatchingResultObject>
   total_count: number
 }
+export interface RequestMyRequestInfoWithDetails {
+  order_by: string,
+  sort_by: string,
+  filter_by: string
+}
+
+export interface MyRequestObject extends BasicFormInfoObject {
+  accepted_person_details: PersonDetails
+  status: string
+}
+
+export interface MyRideRequestObject extends MyRequestObject {
+  number_of_seats: number
+  luggage_quantity: number
+}
+export interface GetMyRideRequest {
+  data: Array<MyRideRequestObject>
+  total_count: number
+}
+export interface MyAssetRequestObject extends MyRequestObject {
+  number_of_assets: number,
+  asset_type: string,
+  asset_sensitivity: string,
+  whom_to_deliver: string
+}
+
+export interface GetMyAssetRequest {
+  data: Array<MyAssetRequestObject>
+  total_count: number
+}

@@ -23,7 +23,7 @@ interface DashboardProps {
 class Dashboard extends React.Component<DashboardProps> {
   render() {
     const { dashboard, title, headings, tableData } = this.props
-    console.log(tableData)
+    // console.log(tableData)
 
     return (
       <Table padded>
@@ -62,7 +62,7 @@ class Dashboard extends React.Component<DashboardProps> {
                   )) ||
                   (dashboard.match('myRequests') && (
                     <>
-                      <Cell cellData={rowData.noOfPeople} />
+                      <Cell cellData={rowData.numberOfAssets} />
                       <Cell cellData={rowData.luggageQuantity} />
                     </>
                   )) ||
@@ -101,7 +101,7 @@ class Dashboard extends React.Component<DashboardProps> {
                   />
                 </TableCell>
               ) : (
-                <Cell cellData={rowData.isStatusPending} />
+                <Cell cellData={rowData.status} />
               )}
             </TableRow>
           ))}

@@ -43,6 +43,8 @@ class PaginationStore {
     if (this.totalPages < this.currentPage) {
       this.currentPage = 1
     }
+    console.log(response);
+
     this.totalCount = response.total_count
     this.totalPages = Math.ceil(response.total_count / this.limit)
     this.entitiesList = response.data.map(item => new entityModel(item))

@@ -3,10 +3,12 @@ const endpoints = {
     letsRideInfo: 'letsRide',
     getRideMatchingResults: 'share_ride/matching_results/v1/',
     getAssetMatchingResults: 'asset_transport_request_matching_results/v1/',
-    updateRideRequest: 'ride_request/v1/',
-    updateAsserTransportRequest: 'asset_transport_request/v1/',
-    updateShareRide: 'share_ride_request/v1/',
-    updateShareTravelInfo: 'share_travel_info_request/v1/'
+    getMyRideRequests: 'get_my_ride_request_details/v1/',
+    getMyAssetRequests: 'get_my_asset_transport_requests_details/v1/',
+    addRideRequest: 'ride_request/v1/',
+    addAsserTransportRequest: 'asset_transport_request/v1/',
+    addShareRide: 'share_ride_request/v1/',
+    addShareTravelInfo: 'share_travel_info_request/v1/'
   }
 }
 export default endpoints

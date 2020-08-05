@@ -35,10 +35,30 @@ class LetsRideAPIService implements LetsRideService {
       apiMethods.post
     )
   }
+  @action.bound
+  async GetMyRideRequests(limit, offset, requestObject) {
+    const endpoint = `${endpoints.LetsRide.getMyRideRequests}?limit=${limit}&offset=${offset}`
+    return networkCallWithApisauce(
+      this.api,
+      endpoint,
+      requestObject,
+      apiMethods.post
+    )
+  }
+  @action.bound
+  async GetMyAssetRequests(limit, offset, requestObject) {
+    const endpoint = `${endpoints.LetsRide.getMyAssetRequests}?limit=${limit}&offset=${offset}`
+    return networkCallWithApisauce(
+      this.api,
+      endpoint,
+      requestObject,
+      apiMethods.post
+    )
+  }
   async AddRideRequestAPI(requestObject) {
     return networkCallWithApisauce(
       this.api,
-      endpoints.LetsRide.updateRideRequest,
+      endpoints.LetsRide.addRideRequest,
       requestObject,
       apiMethods.post
     )
@@ -46,7 +66,7 @@ class LetsRideAPIService implements LetsRideService {
   async AddAsserTransportRequestAPI(requestObject) {
     return networkCallWithApisauce(
       this.api,
-      endpoints.LetsRide.updateAsserTransportRequest,
+      endpoints.LetsRide.addAsserTransportRequest,
       requestObject,
       apiMethods.post
     )
@@ -54,7 +74,7 @@ class LetsRideAPIService implements LetsRideService {
   async AddShareRideAPI(requestObject) {
     return networkCallWithApisauce(
       this.api,
-      endpoints.LetsRide.updateShareRide,
+      endpoints.LetsRide.addShareRide,
       requestObject,
       apiMethods.post
     )
@@ -62,7 +82,7 @@ class LetsRideAPIService implements LetsRideService {
   async AddShareTravelInfoAPI(requestObject) {
     return networkCallWithApisauce(
       this.api,
-      endpoints.LetsRide.updateShareTravelInfo,
+      endpoints.LetsRide.addShareTravelInfo,
       requestObject,
       apiMethods.post
     )
