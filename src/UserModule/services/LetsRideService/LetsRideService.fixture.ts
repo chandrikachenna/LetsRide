@@ -6,6 +6,7 @@ import getMyRideRequestsResponse from '../../fixtures/getMyRideRequestsResponse.
 import getMyAssetRequestsResponse from '../../fixtures/getMyAssetRequestResponse.json'
 import getSharedRideDetailsResponse from '../../fixtures/getSharedRideDetailsResponse.json'
 import getSharedTravelInfoResponse from '../../fixtures/getSharedTravelInfoResponse.json'
+import { action } from "mobx"
 class LetsRideAPIService implements LetsRideService {
   GetRideMatchingResults(limit, offset, requestObject) {
     let dummyData = GetPaginateData(limit, offset, getRideMatchingResultsResponse)

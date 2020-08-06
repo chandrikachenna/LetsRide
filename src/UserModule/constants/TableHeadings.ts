@@ -31,4 +31,4 @@ const { assetsQuantity } = TableHeadingsConstants
 export const SharedRideTableHeadings = [from, to, dateAndTime, noOfSeats, assetsQuantity, status]
 
 const { travelMedium } = TableHeadingsConstants
-export const SharedAssetTableHeadings = [from, to, dateAndTime, travelMedium, assetsQuantity, status]
+export const SharedTravelInfoTableHeadings = [from, to, dateAndTime, travelMedium, assetsQuantity, status]

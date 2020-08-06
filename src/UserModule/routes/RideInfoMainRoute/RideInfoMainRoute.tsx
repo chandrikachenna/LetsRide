@@ -15,19 +15,22 @@ class RideInfoMainRoute extends Component<RideInfoMainRouteProps> {
     return this.props['letsRideInfoStore']
   }
   renderSuccessUI = observer(() => {
-    const RideMatchingResults = this.getLetsRideInfoStore()
-      .rideMatchingResultsInfo
-    const AssetMatchingResults = this.getLetsRideInfoStore()
-      .assetMatchingResultsInfo
-    const MyRideRequestsResults = this.getLetsRideInfoStore().myRideRequestsInfo
-    const MyAssetRequestsResults = this.getLetsRideInfoStore()
-      .myAssetRequestsInfo
+    const {
+      rideMatchingResultsInfo,
+      assetMatchingResultsInfo,
+      myRideRequestsInfo,
+      myAssetRequestsInfo,
+      sharedRideInfo,
+      sharedTravelInfo
+    } = this.getLetsRideInfoStore()
     return (
       <RideInfoMainPage
-        RideMatchingResults={RideMatchingResults}
-        AssetMatchingResults={AssetMatchingResults}
-        MyRideRequestsResults={MyRideRequestsResults}
-        MyAssetRequestsResults={MyAssetRequestsResults}
+        rideMatchingResultsInfo={rideMatchingResultsInfo}
+        assetMatchingResultsInfo={assetMatchingResultsInfo}
+        myRideRequestsInfo={myRideRequestsInfo}
+        myAssetRequestsInfo={myAssetRequestsInfo}
+        sharedRideInfo={sharedRideInfo}
+        sharedTravelInfo={sharedTravelInfo}
       />
     )
   })

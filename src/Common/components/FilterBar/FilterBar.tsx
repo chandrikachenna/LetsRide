@@ -20,7 +20,7 @@ class FilterBar extends React.Component {
   }
   render() {
     return (
-      <Dropdown icon='none' text='Sample Filter' onChange={this.handle}>
+      <Dropdown text='Sample Filter' onChange={this.handle}>
         <Dropdown.Menu>
           <Dropdown.Menu scrolling>
             {tagOptions.map(option => (

@@ -31,10 +31,13 @@ class PaginationStore {
   }
   @action.bound
   setGetEntitiesListAPIStatus(apiStatus) {
+
+
     this.getEntitiesListAPIStatus = apiStatus
   }
   @action.bound
   setGetEntitiesListAPIError(error) {
+
     this.getEntitiesListAPIError = error
   }
   @action.bound
@@ -43,8 +46,6 @@ class PaginationStore {
     if (this.totalPages < this.currentPage) {
       this.currentPage = 1
     }
-    console.log(response);
-
     this.totalCount = response.total_count
     this.totalPages = Math.ceil(response.total_count / this.limit)
     this.entitiesList = response.data.map(item => new entityModel(item))
@@ -62,7 +63,6 @@ class PaginationStore {
   @action.bound
   pagination(value) {
     this.currentPage = parseInt(value)
-    console.log(this.currentPage);
 
     this.getEntitiesList(this.details)
   }

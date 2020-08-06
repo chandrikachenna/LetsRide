@@ -25,22 +25,29 @@ class ResultITemModel {
   constructor(ResultItem: any) {
     // console.log(ResultItem)
 
-    this.id = ResultItem.id
+    this.id = ResultItem.id ? ResultItem.id : Math.random()
     this.fromPlace = ResultItem.from_place
     this.toPlace = ResultItem.to_place
     this.isFlexible = ResultItem.is_flexible
     this.fromDateTime = ResultItem.from_date_time
     this.toDateTime = ResultItem.to_date_time
     this.acceptedPersonDetails = {
-      name: ResultItem.accepted_person_details.name,
-      mobileNumber: ResultItem.accepted_person_details.mobile_number
+      name: ResultItem.accepted_person_details
+        ? ResultItem.accepted_person_details.name
+        : null,
+      mobileNumber: ResultItem.accepted_person_details
+        ? ResultItem.accepted_person_details.mobile_number
+        : null
     }
-    this.noOfSeats = ResultItem.number_of_seats
-      ? ResultItem.number_of_seats
-      : null
-    this.noOfSeats = ResultItem.number_of_seats_available
-      ? ResultItem.number_of_seats_available
-      : null
+    if (ResultItem.number_of_seats) {
+      this.noOfSeats = ResultItem.number_of_seats
+        ? ResultItem.number_of_seats
+        : null
+    } else {
+      this.noOfSeats = ResultItem.number_of_seats_available
+        ? ResultItem.number_of_seats_available
+        : null
+    }
     this.luggageQuantity = ResultItem.luggage_quantity
       ? ResultItem.luggage_quantity
       : null

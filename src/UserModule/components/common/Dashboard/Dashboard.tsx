@@ -67,7 +67,7 @@ class Dashboard extends React.Component<DashboardProps> {
                   (dashboard.match('sharedDetails') && (
                     <>
                       <Cell cellData={rowData.noOfSeats} />
-                      <Cell cellData={rowData.assetsQuantity} />
+                      <Cell cellData={rowData.assetQuantity} />
                     </>
                   ))
                 : ((dashboard.match('matchingResults') ||
@@ -82,7 +82,7 @@ class Dashboard extends React.Component<DashboardProps> {
                   (dashboard.match('sharedDetails') && (
                     <>
                       <Cell cellData={rowData.travelMedium} />
-                      <Cell cellData={rowData.assetsQuantity} />
+                      <Cell cellData={rowData.assetQuantity} />
                     </>
                   ))}
               {dashboard.match('myRequests') && (

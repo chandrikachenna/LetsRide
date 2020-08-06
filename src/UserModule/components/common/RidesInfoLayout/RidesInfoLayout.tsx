@@ -72,9 +72,10 @@ class RidesInfoLayout extends Component<RidesInfoLayoutProps> {
     const { t, data } = this.props
     const {
       getEntitiesListAPIStatus,
-      getEntitiesListAPIError
+      getEntitiesListAPIError,
+      entitiesList
     } = data.matchingResults
-    console.log(getEntitiesListAPIStatus)
+    // console.log(getEntitiesListAPIStatus, entitiesList)
 
     return (
       <RidesInfoLayoutwrapper>
@@ -88,7 +89,7 @@ class RidesInfoLayout extends Component<RidesInfoLayoutProps> {
         <LoadingWrapperWithFailure
           apiStatus={getEntitiesListAPIStatus}
           apiError={getEntitiesListAPIError}
-          onRetryClick={() => {}}
+          onRetryClick={this.getData}
           renderSuccessUI={this.renderSuccessUI}
         />
         <Footer>

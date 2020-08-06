@@ -1,0 +1,82 @@
+{
+  "data": [
+    {
+      "from_place": "Old Kottam College, Kurnool",
+      "to_place": "Financial district, Hyderabad",
+      "is_flexible": false,
+      "from_date_time": "25/05/2020, 10:30 PM",
+      "to_date_time": "",
+      "travel_medium": "Car",
+      "assets_quantity": 3,
+
+      "status": "CONFIRM"
+    },
+    {
+      "from_place": "Kurnool",
+      "to_place": "Hyderabad",
+      "is_flexible": true,
+      "from_date_time": "25/05/2020, 10:30 PM",
+      "to_date_time": "25/05/2020, 10:30 PM",
+      "travel_medium": "Bus",
+      "assets_quantity": 3,
+
+      "status": "PENDING"
+    },
+    {
+      "from_place": "Kurnool",
+      "to_place": "Hyderabad",
+      "is_flexible": true,
+      "from_date_time": "25/05/2020, 10:30 PM",
+      "to_date_time": "25/05/2020, 10:30 PM",
+      "travel_medium": "Bus",
+      "assets_quantity": 3,
+
+      "status": "CONFIRM"
+    },
+    {
+      "from_place": "Old Kottam College, Kurnool",
+      "to_place": "Financial district, Hyderabad",
+      "is_flexible": false,
+      "from_date_time": "25/05/2020, 10:30 PM",
+      "to_date_time": "",
+      "travel_medium": "Car",
+      "assets_quantity": 3,
+
+      "status": "PENDING"
+    },
+    {
+      "from_place": "Old Kottam College, Kurnool",
+      "to_place": "Financial district, Hyderabad",
+      "is_flexible": false,
+      "from_date_time": "25/05/2020, 10:30 PM",
+      "to_date_time": "",
+      "travel_medium": "Car",
+      "assets_quantity": 3,
+
+      "status": "PENDING"
+    },
+    {
+      "from_place": "Kurnool",
+      "to_place": "Hyderabad",
+      "is_flexible": true,
+      "from_date_time": "25/05/2020, 10:30 PM",
+      "to_date_time": "25/05/2020, 10:30 PM",
+      "travel_medium": "Bus",
+      "assets_quantity": 3,
+
+      "status": "CONFIRM"
+    },
+    {
+      "from_place": "Kurnool",
+      "to_place": "Hyderabad",
+      "is_flexible": true,
+      "from_date_time": "25/05/2020, 10:30 PM",
+      "to_date_time": "25/05/2020, 10:30 PM",
+      "travel_medium": "Car",
+      "assets_quantity": 3,
+
+      "status": "CONFIRM"
+    }
+  ],
+  "total_count": 7
+}

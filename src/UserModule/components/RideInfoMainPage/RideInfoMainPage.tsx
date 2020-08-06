@@ -19,7 +19,8 @@ import {
   AssetMatchingTableHeadings,
   RideRequestTableHeadings,
   AssetRequestTableHeadings,
-  SharedRideTableHeadings
+  SharedRideTableHeadings,
+  SharedTravelInfoTableHeadings
 } from '../../constants/TableHeadings'
 
 import { RidesInfoDashboard } from '../common/RidesInfoDashboard'
@@ -36,10 +37,12 @@ const imgSrc =
   'https://cdn.zeplin.io/5d0afc9102b7fa56760995cc/assets/c2438b2e-3c57-45cc-a4e7-10c2b3eec159.svg'
 
 interface RideInfoMainPageProps extends WithTranslation {
-  RideMatchingResults: PaginationStore
-  AssetMatchingResults: PaginationStore
-  MyRideRequestsResults: PaginationStore
-  MyAssetRequestsResults: PaginationStore
+  rideMatchingResultsInfo: PaginationStore
+  assetMatchingResultsInfo: PaginationStore
+  myRideRequestsInfo: PaginationStore
+  myAssetRequestsInfo: PaginationStore
+  sharedRideInfo: PaginationStore
+  sharedTravelInfo: PaginationStore
 }
 
 @observer
@@ -53,7 +56,7 @@ class RideInfoMainPage extends Component<RideInfoMainPageProps> {
   }
 
   init = () => {
-    const { t, RideMatchingResults, AssetMatchingResults } = this.props
+    const { t, rideMatchingResultsInfo, assetMatchingResultsInfo } = this.props
     this.dashboardData = {
       categories: {
         one: {
@@ -61,7 +64,7 @@ class RideInfoMainPage extends Component<RideInfoMainPageProps> {
           title: t('letsride:ride'),
           formTitle: t('letsride:addRideRequest'),
           formLink: goToRequstRidePage,
-          matchingResults: RideMatchingResults,
+          matchingResults: rideMatchingResultsInfo,
           dashboardHeadings: RideMatchingTableHeadings
         },
         two: {
@@ -69,7 +72,7 @@ class RideInfoMainPage extends Component<RideInfoMainPageProps> {
           title: t('letsride:asset'),
           formTitle: t('letsride:addAssetRequest'),
           formLink: goToRequstAssetTransportPage,
-          matchingResults: AssetMatchingResults,
+          matchingResults: assetMatchingResultsInfo,
           dashboardHeadings: AssetMatchingTableHeadings
         }
       }
@@ -78,10 +81,12 @@ class RideInfoMainPage extends Component<RideInfoMainPageProps> {
   onClickMenu = menu => {
     const {
       t,
-      RideMatchingResults,
-      AssetMatchingResults,
-      MyRideRequestsResults,
-      MyAssetRequestsResults
+      rideMatchingResultsInfo,
+      assetMatchingResultsInfo,
+      myRideRequestsInfo,
+      myAssetRequestsInfo,
+      sharedRideInfo,
+      sharedTravelInfo
     } = this.props
     switch (menu) {
       case menus.menu1:
@@ -93,7 +98,7 @@ class RideInfoMainPage extends Component<RideInfoMainPageProps> {
               title: t('letsride:ride'),
               formTitle: t('letsride:addRideRequest'),
               formLink: goToRequstRidePage,
-              matchingResults: RideMatchingResults,
+              matchingResults: rideMatchingResultsInfo,
               dashboardHeadings: RideMatchingTableHeadings
             },
             two: {
@@ -101,7 +106,7 @@ class RideInfoMainPage extends Component<RideInfoMainPageProps> {
               title: t('letsride:asset'),
               formTitle: t('letsride:addAssetRequest'),
               formLink: goToRequstAssetTransportPage,
-              matchingResults: AssetMatchingResults,
+              matchingResults: assetMatchingResultsInfo,
               dashboardHeadings: AssetMatchingTableHeadings
             }
           }
@@ -116,7 +121,7 @@ class RideInfoMainPage extends Component<RideInfoMainPageProps> {
               title: t('letsride:ride'),
               formTitle: t('letsride:addRideRequest'),
               formLink: goToRequstRidePage,
-              matchingResults: MyRideRequestsResults,
+              matchingResults: myRideRequestsInfo,
               dashboardHeadings: RideRequestTableHeadings
             },
             two: {
@@ -124,7 +129,7 @@ class RideInfoMainPage extends Component<RideInfoMainPageProps> {
               title: t('letsride:asset'),
               formTitle: t('letsride:addAssetRequest'),
               formLink: goToRequstAssetTransportPage,
-              matchingResults: MyAssetRequestsResults,
+              matchingResults: myAssetRequestsInfo,
               dashboardHeadings: AssetRequestTableHeadings
             }
           }
@@ -139,7 +144,7 @@ class RideInfoMainPage extends Component<RideInfoMainPageProps> {
               title: t('letsride:ride'),
               formTitle: t('letsride:addShareRide'),
               formLink: goToShareRidePage,
-              matchingResults: RideMatchingResults,
+              matchingResults: sharedRideInfo,
               dashboardHeadings: SharedRideTableHeadings
             },
             two: {
@@ -147,8 +152,8 @@ class RideInfoMainPage extends Component<RideInfoMainPageProps> {
               title: t('letsride:travelInfo'),
               formTitle: t('letsride:addTravelInfo'),
               formLink: goToShareTravelInfoPage,
-              matchingResults: RideMatchingResults,
-              dashboardHeadings: SharedRideTableHeadings
+              matchingResults: sharedTravelInfo,
+              dashboardHeadings: SharedTravelInfoTableHeadings
             }
           }
         }
