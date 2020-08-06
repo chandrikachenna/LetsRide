@@ -3,7 +3,11 @@ import {
   Layout,
   Text,
   ButtonStyles,
-  ActiveButtonStyles
+  ActiveButtonStyles,
+  LeftButtonStyles,
+  RightButtonStyles,
+  LeftActiveButtonStyles,
+  RightActiveButtonStyles
 } from './styledComponents'
 import { observer } from 'mobx-react'
 import { observable } from 'mobx'
@@ -53,8 +57,8 @@ class MenuBar extends Component<MenuBarProps> {
               textTypo={Text}
               buttonStyles={
                 this.selectedMenu.match(menu1)
-                  ? ActiveButtonStyles
-                  : ButtonStyles
+                  ? LeftActiveButtonStyles
+                  : LeftButtonStyles
               }
             />
             <Button
@@ -75,8 +79,8 @@ class MenuBar extends Component<MenuBarProps> {
               textTypo={Text}
               buttonStyles={
                 this.selectedMenu.match(menu3)
-                  ? ActiveButtonStyles
-                  : ButtonStyles
+                  ? RightActiveButtonStyles
+                  : RightButtonStyles
               }
             />
           </>

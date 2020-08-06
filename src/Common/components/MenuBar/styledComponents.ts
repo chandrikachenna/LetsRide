@@ -23,6 +23,7 @@ width: 129px;
   border: solid 1px ${COLORS.brightBlue};
   background-color: ${COLORS.brightBlue};
   color:${COLORS.white};
+  border-radius:0px
 `
 export const ButtonStyles = css`
 width: 129px;
@@ -30,7 +31,40 @@ width: 129px;
   border: solid 1px ${COLORS.lightBlueGrey};
   background-color: ${COLORS.white};
   color:${COLORS.darkBlueGrey};
+  border-radius:0px
 `
 export { Layout, Text, Button }
 
+export const LeftButtonStyles = css`
+width: 129px;
+  height: 40px;
+  border: solid 1px ${COLORS.lightBlueGrey};
+  background-color: ${COLORS.white};
+  color:${COLORS.darkBlueGrey};
+  border-radius:2px 0px 0px 2px;
+`
+export const LeftActiveButtonStyles = css`
+width: 129px;
+  height: 40px;
+  border: solid 1px ${COLORS.brightBlue};
+  background-color: ${COLORS.brightBlue};
+  color:${COLORS.white};
+  border-radius:2px 0px 0px 2px;
+`
+export const RightButtonStyles = css`
+width: 129px;
+  height: 40px;
+  border: solid 1px ${COLORS.lightBlueGrey};
+  background-color: ${COLORS.white};
+  color:${COLORS.darkBlueGrey};
+  border-radius:0px 2px 2px 0px;
+`
 
+export const RightActiveButtonStyles = css`
+width: 129px;
+  height: 40px;
+  border: solid 1px ${COLORS.brightBlue};
+  background-color: ${COLORS.brightBlue};
+  color:${COLORS.white};
+  border-radius:0px 2px 2px 0px;
+`

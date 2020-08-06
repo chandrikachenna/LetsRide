@@ -7,7 +7,7 @@ export const LoadingViewContainer = styled.div`
 `
 
 export const FailureViewContainer = styled.div`
-  ${tw`flex flex-col justify-center items-center min-h-screen `}
+  ${tw`flex flex-col justify-center items-center  `}
   height:100%;
 `
 
