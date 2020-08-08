@@ -51,7 +51,7 @@ class Dashboard extends React.Component<DashboardProps> {
                 <Cell cellData={rowData.fromDateTime} />
               )}
 
-              {title.match('Ride')
+              {title.match('RIDE')
                 ? (dashboard.match('matchingResults') && (
                     <>
                       <Cell cellData={rowData.noOfSeats} />
@@ -122,14 +122,23 @@ function AcceptedPersonDetails(props) {
     </TableCell>
   )
 }
+interface CellProps {
+  cellData: string | number
+  isCenter?: boolean
+}
+class Cell extends React.Component<CellProps> {
+  static defaultProps = {
+    isCenter: false
+  }
+  render() {
+    const { cellData, isCenter } = this.props
 
-function Cell(props) {
-  const { cellData } = props
-  return (
-    <TableCell key={cellData}>
-      <CellLabel>{cellData}</CellLabel>
-    </TableCell>
-  )
+    return (
+      <TableCell key={cellData} textAlign={isCenter ? 'center' : 'left'}>
+        <CellLabel>{cellData}</CellLabel>
+      </TableCell>
+    )
+  }
 }
 
 function FromAndToDate(props) {

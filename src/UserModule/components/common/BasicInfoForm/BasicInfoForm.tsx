@@ -45,7 +45,7 @@ class BasicInfoForm extends Component<BasicInfoFormProps> {
     this.inputRef = React.createRef()
   }
   componentDidMount() {
-    this.inputRef.current.focus()
+    // this.inputRef.current.focus()
   }
   render() {
     const {

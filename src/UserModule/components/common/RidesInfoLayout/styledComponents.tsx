@@ -3,7 +3,7 @@ import tw from 'tailwind.macro'
 import { Typo14SteelHKGroteskRegular } from '../../../../Common/styleGuide/Typos'
 
 export const Header = styled.div`
-  ${tw`flex justify-between`}
+  ${tw`flex justify-between items-center`}
 `
 export const FilterBar = styled.div`
   ${tw`flex `}
@@ -20,5 +20,5 @@ export const FormLabel = styled(Typo14SteelHKGroteskRegular)``
 export const Pages = styled(Typo14SteelHKGroteskRegular)``
 
 export const RidesInfoLayoutwrapper = styled.div`
-  ${tw` mt-12`}
+  ${tw` mt-4`}
 `

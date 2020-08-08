@@ -24,6 +24,7 @@ class ResultITemModel {
   @observable isStatusPending: boolean
   constructor(ResultItem: any) {
     // console.log(ResultItem)
+    console.log(ResultItem)
 
     this.id = ResultItem.id ? ResultItem.id : Math.random()
     this.fromPlace = ResultItem.from_place

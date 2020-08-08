@@ -1,9 +1,9 @@
 {
   "request": "Request",
   "share": "Share",
-  "ride": "Ride",
+  "ride": "RIDE",
   "assetTransport": "Asset Transport",
-  "travelInfo": "Travel Info",
+  "travelInfo": "TRAVEL INFO",
   "from": "FROM",
   "to": "TO",
   "flexibleTimings": "FLEXIBLE TIMINGS",

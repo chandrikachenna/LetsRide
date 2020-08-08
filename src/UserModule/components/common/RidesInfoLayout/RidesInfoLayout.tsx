@@ -18,6 +18,7 @@ import {
 } from './styledComponents'
 import { PlusIcon } from '../../../../Common/components/Icons/PlusIcon'
 import { FilterBar } from '../../../../Common/components/FilterBar'
+import { Filter } from '../../../../Common/components/Filter'
 
 interface RidesInfoLayoutProps extends WithTranslation, RouteComponentProps {
   data: any
@@ -84,7 +85,8 @@ class RidesInfoLayout extends Component<RidesInfoLayoutProps> {
             {this.TotalTasks}
             {t('letsride:tasks')}
           </TotalTasks>
-          <FilterBar />
+          {/* <FilterBar /> */}
+          <Filter />
         </Header>
         <LoadingWrapperWithFailure
           apiStatus={getEntitiesListAPIStatus}
